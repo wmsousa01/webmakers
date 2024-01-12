@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@0,100;0,200;0,300;0,700;1,100;1,200&display=swap");
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Space Grotesk', sans-serif;
+  background: white;
+}
+
+@layer utilities {
+  .font-space-grotesk {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer base {
+  body {
+    @apply text-black tracking-wide;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-5xl md:text-6xl font-space-grotesk;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl;
+  }
+  
+  li {
+    @apply cursor-pointer;
+  }
+
+  p {
+    @apply font-thin
+  }
+  
+
+  button {
+    @apply rounded-xl uppercase bg-gradient-to-r from-[#8949f1] to-purple-400 text-white;
+  }
+}
