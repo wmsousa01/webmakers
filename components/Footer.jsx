@@ -7,7 +7,7 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import Image from "next/image";
-import NavLogo from "../public/logo-sousas.svg";
+import NavLogo from "../public/assets/logo-principal.png";
 import Link from "next/link";
 
 function Footer() {
