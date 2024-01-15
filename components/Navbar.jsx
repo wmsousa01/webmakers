@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from "react-icons/ai";
 // import { useRouter } from 'next/router';
-import NavLogo from "../public/assets/Logo-principal.png";
+import NavLogo from "../public/logo.png";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
