@@ -8,7 +8,7 @@ const AllPlans = () => {
         <div className="grid  text-2xl text-black mt-6 p-4 ">
           <h2>Pronto para transformar sua presença nas redes sociais?</h2>
         </div>
-        <div className="box-border">
+        <div className="">
         <p> </p>
         </div>
       </div>
