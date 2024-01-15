@@ -33,8 +33,8 @@ const Transform = () => {
 
         <Image
           src={ProdutoImg1}
-          width={400}
-          height={400}
+          width={300}
+          height={200}
           alt="imagem"
           className="p-4"
         />

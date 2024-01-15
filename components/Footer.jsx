@@ -13,7 +13,7 @@ import Link from "next/link";
 function Footer() {
   return (
     <div>
-      <div className="  h-1/2 w-full flex md:flex-row justify-around p-10 ">
+      <div className="grid items-center justify-between  w-full h-full p-4">
         <div className=" ">
           <ul>
             <a>
@@ -26,7 +26,7 @@ function Footer() {
               />
             </a>
 
-            <div className="flex pl-2 gap-6 -mt-12">
+            <div className="flex gap-6 ">
               <a
                 href="https://www.facebook.com/flaviamachadobuffeteeventos/?locale=pt_BR"
                 target="_blank"
@@ -54,25 +54,12 @@ function Footer() {
           </ul>
         </div>
 
-        <div className="pb-5 pl-2">
-          <ul>
-            <p className="text-black font-bold text-2xl pb-4 mt-10  ">
-              Sobre nós
-            </p>
-            <li className="text-black text-md pb-2 font-semibold hover:text-red-600 cursor-pointer">
-              <Link href="/#principios">Principios</Link>
-            </li>
-
-            <li className="text-black text-md pb-2 font-semibold hover:text-red-600 cursor-pointer">
-              <Link href="/contact">Contato </Link>
-            </li>
-          </ul>
-        </div>
+       
       </div>
 
       <div className="flex flex-col justify-center items-center text-center p-5 bg-gray-50">
         <h3 className=" text-gray-800 font-semibold">
-          © 2024 Flavia | Todos os direitos reservados | Desenvolvido ❤ pela{" "}
+          © 2024 Sousas Midia | Todos os direitos reservados | Desenvolvido ❤ pela{" "}
           <span className="hover:text-gray-400 font-semibold cursor-pointer">
             <a
               href="https://www.sousasmidia.com.br/"

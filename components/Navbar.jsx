@@ -32,7 +32,7 @@ const Navbar = () => {
       style={{ backgroundColor: `${color}` }}
       className={"fixed h-[95px]  top-0  w-full z-10 p-5 ease-in duration-300"}
     >
-      <div className="flex items-center justify-between  w-full h-full ">
+      <div className="flex items-center justify-between  w-full h-full">
         <Link legacyBehavior href="/">
           <a>
             <Image
