@@ -7,7 +7,7 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import Image from "next/image";
-import NavLogo from "../public/logo-sousas.svg";
+import NavLogo from "../public/assets/logo-principal.png";
 import Link from "next/link";
 
 function Footer() {
@@ -58,10 +58,10 @@ function Footer() {
         <p className=" ">
           Copyright Sousas Mídia Ltda. Todos os direitos reservados. CNPJ:
           40.128.915/0001-00{" "}
-          <p>
+          </p>
             Politica de privacidade | Politica de vendas | Avisos legais | Mapa
             do site
-          </p>
+          <p>
           <span className="hover:text-purple-600 font-semibold cursor-pointer">
             <a
               href="https://www.sousasmidia.com.br/"
