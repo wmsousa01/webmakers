@@ -4,7 +4,7 @@ import BasicPlan from "../components/BasicPlan";
 import IntermediatePlan from "../components/IntermediatePlan";
 import PremiumPlan from "../components/PremiumPlan";
 import AllPlans from "../components/AllPlans";
-
+import Video from "../components/Video";
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
       <IntermediatePlan />
       <PremiumPlan />
       <AllPlans />
-     
+      <Video />
     </div>
   );
 }

@@ -24,26 +24,61 @@ const AllPlans = () => {
     },
   };
   return (
-    <div id="services" className="container mx-auto text-black p-5 ">
-      <div className="grid justify-items-center  ">
-        <div className="grid  text-2xl text-black mt- p-4 ">
+    <div id="precos" className="container mx-auto text-black p-5 ">
+      <div className="grid justify-items-center   ">
+        <div className="grid text-center text-black mt- p-4  ">
           <h2>Pronto para transformar sua presença nas redes sociais?</h2>
+
           <Carousel responsive={responsive}>
-            <div className="card mt-4">
+            <div className="mt-4 border shadow-lg  rounded-lg p-6">
               <h3>Plano Básico</h3>
-              <p className="grid text-start pt-4">
+              <p className="grid text-start pt-4 ">
                 Criação de um site de alta qualidade, gerenciamento de mídias
                 sociais, criação de conteúdo de marketing, SEO e otimização de
                 conversões.
               </p>
-              <p className="price mt-4 font-bold">R$ 1200,00/mês</p>
+              <h3 className="price mt-4 italic font-bold">R$ 1200,00/mês</h3>
               <p>
-                <button className="font-bold p-4 mt-4 rounded-full">Assinar agora!</button>
+                Contrato de 12 meses
+                <button className="font-bold p-4 mt-4 rounded-full">
+                  Assinar agora!
+                </button>
               </p>
             </div>
-            <div>Item 2</div>
-            <div>Item 3</div>
-            <div>Item 4</div>
+            <div>
+              <div className="mt-4 border shadow-lg  w-full h-full rounded-lg p-6">
+                <h3>Plano Básico</h3>
+                <p className="grid text-start pt-4">
+                  Criação de um site de alta qualidade, gerenciamento de mídias
+                  sociais, criação de conteúdo de marketing, SEO e otimização de
+                  conversões.
+                </p>
+                <h3 className="price mt-4 italic font-bold ">R$ 1200,00/mês</h3>
+                <p>
+                  Contrato de 12 meses
+                  <button className="font-bold p-4 mt-4 rounded-full">
+                    Assinar agora!
+                  </button>
+                </p>
+              </div>
+            </div>
+            <div>
+              <div className="mt-4 border shadow-lg  w-full h-full rounded-lg p-6">
+                <h3>Plano Básico</h3>
+                <p className="grid text-start pt-4">
+                  Criação de um site de alta qualidade, gerenciamento de mídias
+                  sociais, criação de conteúdo de marketing, SEO e otimização de
+                  conversões.
+                </p>
+                <h3 className="price mt-4 italic font-bold">R$ 1200,00/mês</h3>
+                <p>
+                  Contrato de 12 meses
+                  <button className="font-bold p-4 mt-4 rounded-full">
+                    Assinar agora!
+                  </button>
+                </p>
+              </div>
+            </div>
           </Carousel>
         </div>
       </div>
