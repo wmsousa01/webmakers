@@ -13,7 +13,7 @@ import Link from "next/link";
 function Footer() {
   return (
     <div>
-      <div className="bg-gradient-to-r from-[#49f1dd] to-[#ed97ed] h-1/2 w-full  flex md:flex-row flex-col justify-around p-20">
+      <div className="bg-gradient-to-r from-[#49f1dd] to-[#ed97ed] h-1/2 w-full   flex md:flex-row flex-col justify-around p-20">
         <div className="">
           <ul>
             <a>
@@ -55,9 +55,13 @@ function Footer() {
       </div>
 
       <div className="flex flex-col justify-center items-center text-center p-5 ">
-        <h3 className=" text-gray-800 font-semibold">
-          © 2024 Sousas Midia | Todos os direitos reservados | Desenvolvido ❤
-          pela{" "}
+        <p className=" ">
+          Copyright Sousas Mídia Ltda. Todos os direitos reservados. CNPJ:
+          40.128.915/0001-00{" "}
+          <p>
+            Politica de privacidade | Politica de vendas | Avisos legais | Mapa
+            do site
+          </p>
           <span className="hover:text-purple-600 font-semibold cursor-pointer">
             <a
               href="https://www.sousasmidia.com.br/"
@@ -67,7 +71,7 @@ function Footer() {
               Sousas Midia{" "}
             </a>
           </span>
-        </h3>
+        </p>
       </div>
     </div>
   );

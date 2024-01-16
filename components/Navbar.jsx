@@ -58,7 +58,7 @@ const Navbar = () => {
             <Link href="/#galeria">Serviços</Link>
           </li>
           <li className="p-4 hover:text-purple-600">
-            <Link href="/#principios">Preços</Link>
+            <Link href="/#precos">Preços</Link>
           </li>
           <li className="p-4 hover:text-purple-600">
             <Link href="/contact">Contato</Link>
@@ -77,8 +77,8 @@ const Navbar = () => {
         <div
           className={
             nav
-              ? "sm:hidden absolute top-0 left-0 right-0 botton-0 flex justify-center items-center w-full h-screen bg-gradient-to-r from-[#8949f1] to-[#9e7db9]  text-center ease-in duration-300"
-              : "sm:hidden absolute top-0 left-[-100%] right-0 botton-0 flex justify-center items-center w-full h-screen bg-gradient-to-r from-[#9e7db9] text-center ease-in duration-300"
+              ? "sm:hidden absolute top-0 left-0 right-0 botton-0 flex justify-center items-center w-full h-screen bg-[#8949f1]  text-center ease-in duration-300"
+              : "sm:hidden absolute top-0 left-[-100%] right-0 botton-0 flex justify-center items-center w-full h-screen bg-[#8949f1]  text-center ease-in duration-300"
           }
         >
           <ul>

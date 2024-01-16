@@ -43,6 +43,6 @@ html {
   
 
   button {
-    @apply rounded-xl  bg-gradient-to-r from-[#8949f1] to-purple-400 text-white;
+    @apply rounded-xl  bg-blue-800 text-white;
   }
 }
