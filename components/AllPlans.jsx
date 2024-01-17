@@ -30,6 +30,7 @@ const AllPlans = () => {
           <h2>Pronto para transformar sua presença nas redes sociais?</h2>
 
           <Carousel responsive={responsive}>
+          
             <div className="mt-4 border shadow-lg  rounded-lg p-6">
               <h3>Plano Básico</h3>
               <p className="grid text-start pt-4 ">
