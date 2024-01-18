@@ -16,7 +16,7 @@ const video = () => {
         <div className="">
           <video
           controls
-            src=""
+            src="/assets/video/video-1.mp4"
             style={{
               width: "100%",
               height: "100%",
