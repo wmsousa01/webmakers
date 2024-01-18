@@ -25,7 +25,7 @@ const AllPlans = () => {
   };
   return (
     <div id="precos" className="container mx-auto text-black p-5 ">
-      <div className="grid justify-items-center   ">
+      <div className="grid justify-items-center">
         <div className="grid text-start text-black mt- p-4  ">
           <h2>Pronto para transformar sua presença nas redes sociais?</h2>
 
