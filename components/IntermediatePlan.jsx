@@ -5,7 +5,7 @@ import GraficImg from "../public/assets/grafico-2.png";
 
 const IntermediatePlan = () => {
   return (
-    <div id="services" className="container mx-auto text-black p-5 ">
+    <div id="intermediate" className="container mx-auto text-black p-5 ">
       <div className="grid justify-items-center  ">
         <div className="grid text-center text-2xl text-black mt-6 p-4 ">
           <h2>

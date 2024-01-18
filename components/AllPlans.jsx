@@ -30,7 +30,6 @@ const AllPlans = () => {
           <h2>Pronto para transformar sua presença nas redes sociais?</h2>
 
           <Carousel responsive={responsive}>
-          
             <div className="mt-4 border shadow-lg  rounded-lg p-6 gap-2 ">
               <h3>Plano Básico</h3>
               <p className="grid text-start pt-4">
@@ -47,33 +46,34 @@ const AllPlans = () => {
               </p>
             </div>
 
-            <div className="mt-4 border shadow-lg  w-full h-full rounded-lg p-6">
-              <h3>Plano Básico</h3>
+            <div className="mt-4 border shadow-lg  rounded-lg p-6 gap-2 ">
+              <h3>Plano Intermediário</h3>
               <p className="grid text-start pt-4">
-                Criação de um site de alta qualidade, gerenciamento de mídias
-                sociais, criação de conteúdo de marketing, SEO e otimização de
-                conversões.
+                Tudo o que o Plano Básico oferece, além de campanhas de
+                marketing por e-mail, publicidade paga, marketing de influência,
+                marketing de conteúdo e análise de dados
               </p>
-              <h3 className="price mt-4 italic font-bold ">R$ 1200,00/mês</h3>
+              <h3 className="price mt-4 italic font-bold ">R$ 2400,00/mês</h3>
               <p>
                 Contrato de 12 meses
-                <button className="font-bold p-4 mt-4 rounded-full">
+                <button className="font-bold mt-4 rounded-xl w-[200px] h-[50px]">
                   Assinar agora!
                 </button>
               </p>
             </div>
 
-            <div className=" mt-4 border shadow-lg  w-full h-full rounded-lg p-6">
-              <h3>Plano Básico</h3>
+            <div className="mt-4 border shadow-lg  rounded-lg p-6 gap-2 ">
+              <h3>Plano Premium</h3>
               <p className="grid text-start pt-4">
-                Criação de um site de alta qualidade, gerenciamento de mídias
-                sociais, criação de conteúdo de marketing, SEO e otimização de
-                conversões.
+                Tudo o que o Plano Intermediário oferece, além de
+                desenvolvimento de aplicativos móveis, criação de vídeos, design
+                gráfico, serviços de atendimento ao cliente, assessoria de
+                imprensa e participação em eventos da indústria
               </p>
-              <h3 className="price mt-4 italic font-bold">R$ 1200,00/mês</h3>
+              <h3 className="price mt-4 italic font-bold">R$ 4800,00/mês</h3>
               <p>
                 Contrato de 12 meses
-                <button className="font-bold p-4 mt-4 rounded-full">
+                <button className="font-bold mt-4 rounded-xl w-[200px] h-[50px]">
                   Assinar agora!
                 </button>
               </p>

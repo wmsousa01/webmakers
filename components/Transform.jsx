@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Transform = () => {
   return (
-    <div id="transformar" className="container mx-auto ">
+    <div id="transform" className="container mx-auto ">
       <div className="grid justify-items-center p-5 mt-20">
         <h2>transforme sua presença nas redes sociais</h2>
 
