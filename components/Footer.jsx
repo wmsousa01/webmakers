@@ -13,7 +13,7 @@ import Link from "next/link";
 function Footer() {
   return (
     <div>
-      <div className="bg-gradient-to-r from-[#49f1dd] to-[#ed97ed] h-1/2 w-full   flex md:flex-row flex-col justify-around p-20">
+      <div className="bg-gradient-to-r from-[#49f1dd] to-[#ed97ed] h-[200px] w-full flex md:flex-row justify-around items-center flex-col p-10">
         <div className="">
           <ul>
             <a>
@@ -27,7 +27,7 @@ function Footer() {
             </a>
           </ul>
         </div>
-        <div className="flex  gap-12 ">
+        <div className="flex  gap-12">
           <a
             href="https://www.facebook.com/flaviamachadobuffeteeventos/?locale=pt_BR"
             target="_blank"
