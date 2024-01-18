@@ -1,5 +1,6 @@
 import React from "react";
 import { PiYoutubeLogoLight } from "react-icons/pi";
+import Iframe from "react-iframe";
 
 const video = () => {
   return (
@@ -8,15 +9,19 @@ const video = () => {
         <div className="grid text-center text-2xl text-black  p-4 ">
           <h2 className="p-4">Os planos na pratica!</h2>
           <div className="flex items-center justify-center ">
-          < PiYoutubeLogoLight />
-          <p className="p-2">Video demonstrativo</p>
+            <PiYoutubeLogoLight />
+            <p className="p-2">Video demonstrativo</p>
           </div>
         </div>
-        <div className="p-4">
+        <div className="">
           <video
-            controls
-            src={"/assets/videos/video-1.mp4"}
-            style={{ width: "864px", height: "480px" }}
+          controls
+            src="/assets/videos/video-1.mp4"
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+            className="rounded-2xl"
           />
         </div>
       </div>
