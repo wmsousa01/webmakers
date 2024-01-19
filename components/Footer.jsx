@@ -7,13 +7,13 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import Image from "next/image";
-import NavLogo from "../public/assets/logo-principal.png";
+import NavLogo from "../public/assets/logo-branco.png";
 import Link from "next/link";
 
 function Footer() {
   return (
     <div>
-      <div className="bg-gradient-to-r from-[#49f1dd] to-[#ed97ed] h-[200px] w-full flex md:flex-row justify-around items-center flex-col p-10">
+      <div className="bg-[#8949f1] h-[200px] w-full flex md:flex-row justify-around items-center flex-col p-10">
         <div className="">
           <ul>
             <a>
@@ -33,7 +33,7 @@ function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            <div className="text-2xl text-purple-500 cursor-pointer hover:text-gray-300 ">
+            <div className="text-2xl text-white cursor-pointer hover:text-gray-300 ">
               <FaFacebook />
             </div>
           </a>
@@ -42,7 +42,7 @@ function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            <div className="text-2xl text-purple-500 cursor-pointer hover:text-gray-300">
+            <div className="text-2xl text-white cursor-pointer hover:text-gray-300">
               <FaInstagram />
             </div>
           </a>
@@ -51,7 +51,7 @@ function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            <div className="text-2xl text-purple-500 cursor-pointer hover:text-gray-300">
+            <div className="text-2xl text-white cursor-pointer hover:text-gray-300">
               <FaWhatsapp />
             </div>
           </a>
