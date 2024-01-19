@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from "react-icons/ai";
 // import { useRouter } from 'next/router';
-import NavLogo from "../public/Logo-sousas.svg";
+import NavLogo from "../public/assets/logo-principal.png";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -28,7 +28,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div
+    <section
       style={{ backgroundColor: `${color}` }}
       className={"fixed h-[95px]  top-0  w-full z-10 p-5 ease-in duration-300"}
     >
@@ -98,7 +98,7 @@ const Navbar = () => {
               onClick={handleNav}
               className="p-4 text-4xl text-white hover:text-purple-600"
             >
-              <Link href="/#principios">Preços</Link>
+              <Link href="/#precos">Preços</Link>
             </li>
             <li
               onClick={handleNav}
@@ -109,7 +109,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

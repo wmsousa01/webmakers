@@ -14,7 +14,6 @@ const AllPlans = () => {
             <h2 className="text-2xl font-medium">Preços</h2>
 
             <div className="flex flex-wrap items-center justify-center w-full max-w-4xl mt-8">
-            
               <div className="flex flex-col flex-grow mt-8 overflow-hidden bg-white rounded-lg shadow-lg">
                 <div className="flex flex-col items-center p-10 bg-gray-200">
                   <span className="font-semibold">Plano Básico</span>
@@ -100,50 +99,48 @@ const AllPlans = () => {
                   </button>
                 </div>
               </div>
-
-              <div class="flex flex-col flex-grow overflow-hidden bg-white rounded-lg shadow-lg mt-19">
-                <div class="flex flex-col items-center p-10 bg-gray-200">
-                  <span class="font-semibold">Plano Premium</span>
-                  <div class="flex items-center">
-                    <span class="text-3xl">R$</span>
-                    <span class="text-5xl font-bold">4800</span>
-                    <span class="text-2xl text-gray-500">/mês</span>
-                  </div>
+            </div>
+            <div class="flex flex-col flex-grow mt-8 overflow-hidden bg-white rounded-lg shadow-lg">
+              <div class="flex flex-col items-center p-10 bg-gray-200">
+                <span class="font-semibold">Plano Premium</span>
+                <div class="flex items-center">
+                  <span class="text-3xl">R$</span>
+                  <span class="text-5xl font-bold">4800</span>
+                  <span class="text-2xl text-gray-500">/mês</span>
                 </div>
-                <div class="p-10">
-                  <ul>
-                    <li class="flex items-center">
-                      <span class="ml-2 italic">
-                        Tudo o que o Plano Intermediário oferece, além de
-                        desenvolvimento de aplicativos móveis, criação de
-                        vídeos, design gráfico, serviços de atendimento ao
-                        cliente, assessoria de imprensa e participação em
-                        eventos da indústria
-                      </span>
-                    </li>
-                    <li class="flex items-center">
-                      <svg
-                        class="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span class="ml-2">Contrato de 12 meses</span>
-                    </li>
-                    
-                  </ul>
-                </div>
-                <div class="flex px-10 pb-10 justfy-center">
-                  <button class="flex items-center justify-center w-full h-12 px-6 text-sm uppercase bg-blue-700 rounded-lg">
-                    Assinar agora!
-                  </button>
-                </div>
+              </div>
+              <div class="p-10">
+                <ul>
+                  <li class="flex items-center">
+                    <span class="ml-2 italic">
+                      Tudo o que o Plano Intermediário oferece, além de
+                      desenvolvimento de aplicativos móveis, criação de vídeos,
+                      design gráfico, serviços de atendimento ao cliente,
+                      assessoria de imprensa e participação em eventos da
+                      indústria
+                    </span>
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      class="w-5 h-5 text-green-600 fill-current"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span class="ml-2">Contrato de 12 meses</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="flex px-10 pb-10 justfy-center">
+                <button class="flex items-center justify-center w-full h-12 px-6 text-sm uppercase bg-blue-700 rounded-lg">
+                  Assinar agora!
+                </button>
               </div>
             </div>
           </div>

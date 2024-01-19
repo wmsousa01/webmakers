@@ -13,15 +13,11 @@ const video = () => {
             <p className="p-2">Video demonstrativo</p>
           </div>
         </div>
-        <div className="">
-          <video
-          controls
-            src="/assets/videos/video-1.mp4"
-            style={{
-              width: "100%",
-              height: "100%",
-            }}
-            className="rounded-2xl"
+        <div className="justify-center w-full h-[600px]">
+          <Iframe
+            url="https://www.youtube.com/embed/HWJ7FI6ieCA"
+            width="100%"
+            height="100%"
           />
         </div>
       </div>
