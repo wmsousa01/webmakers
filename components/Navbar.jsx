@@ -28,7 +28,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div
+    <section
       style={{ backgroundColor: `${color}` }}
       className={"fixed h-[95px]  top-0  w-full z-10 p-5 ease-in duration-300"}
     >
@@ -109,7 +109,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
