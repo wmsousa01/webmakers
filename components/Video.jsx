@@ -13,11 +13,12 @@ const video = () => {
             <p className="p-2">Video demonstrativo</p>
           </div>
         </div>
-        <div className="justify-center w-full h-[600px]">
+        <div className="justify-center w-full h-[550px] lg:w-2/3">
           <Iframe
             url="https://www.youtube.com/embed/HWJ7FI6ieCA"
             width="100%"
             height="100%"
+            className="rounded-md"
           />
         </div>
       </div>

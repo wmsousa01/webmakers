@@ -13,7 +13,7 @@ const AllPlans = () => {
             <h2 className="text-2xl font-medium">Preços</h2>
 
             <div className="flex flex-wrap items-center justify-center w-full max-w-4xl mt-8">
-              <div className="flex flex-col flex-grow mt-8 overflow-hidden bg-white rounded-lg shadow-lg">
+              <div class="flex flex-col flex-grow overflow-hidden bg-white rounded-lg shadow-lg mt-19">
                 <div className="flex flex-col items-center p-10 bg-gray-200">
                   <span className="font-semibold">Plano Básico</span>
                   <div className="flex items-center">
@@ -24,28 +24,7 @@ const AllPlans = () => {
                 </div>
                 <div className="p-10">
                   <ul>
-                    <li className="flex items-center">
-                      <p className="ml-2 font-bold">
-                        Tudo o que o Plano Básico oferece, além de:
-                      </p>
-                    </li>
-
-                    <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">Contrato de 12 meses</span>
-                    </li>
-                    <li className="flex items-center">
+                    <li class="flex items-center">
                       <svg
                         className="w-5 h-5 text-green-600 fill-current"
                         xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +38,7 @@ const AllPlans = () => {
                         />
                       </svg>
                       <span className="ml-2">
-                        campanhas de marketing por e-mail,
+                        Criação de um site de alta qualidade,
                       </span>
                     </li>
                     <li className="flex items-center">
@@ -75,7 +54,9 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">publicidade paga,</span>
+                      <span className="ml-2">
+                        gerenciamento de mídias sociais,
+                      </span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -90,7 +71,9 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">marketing de influência,</span>
+                      <span className="ml-2">
+                        criação de conteúdo de marketing,
+                      </span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -105,42 +88,29 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">marketing de conteúdo</span>
-                    </li>
-                    <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">análise de dados</span>
+                      <span className="ml-2">
+                        SEO e otimização de conversões
+                      </span>
                     </li>
                   </ul>
                 </div>
                 <div className="flex px-10 pb-10 justfy-center">
-                  <button className="flex items-center justify-center w-full h-12 px-6 text-sm uppercase bg-blue-700 rounded-lg">
+                  <button className="flex items-center justify-center w-full h-12 px-6 text-sm uppercase bg-bg-blue-700 rounded-lg">
                     Assinar agora!
                   </button>
                 </div>
               </div>
 
-              <div class="z-10 flex flex-col flex-grow mt-8 overflow-hidden transform bg-white rounded-lg shadow-lg md:scale-110">
-                <div class="flex flex-col items-center p-10 bg-gray-200">
-                  <span class="font-semibold">Plano Intermediario</span>
-                  <div class="flex items-center">
-                    <span class="text-3xl">R$</span>
-                    <span class="text-6xl font-bold">2400</span>
-                    <span class="text-2xl text-gray-500">/mês</span>
+              <div class="flex flex-col flex-grow mt-8 overflow-hidden transform bg-white rounded-lg shadow-lg md:scale-110">
+                <div className="flex flex-col items-center p-10 bg-gray-200">
+                  <span className="font-semibold">Plano Intermediario</span>
+                  <div className="flex items-center">
+                    <span className="text-3xl">R$</span>
+                    <span className="text-6xl font-bold">2400</span>
+                    <span className="text-2xl text-gray-500">/mês</span>
                   </div>
                 </div>
-                <div class="p-10">
+                <div className="p-10">
                   <ul>
                     <li className="flex items-center">
                       <p className="ml-2 font-bold">
@@ -249,20 +219,20 @@ const AllPlans = () => {
                 </div>
               </div>
 
-              <div class="flex flex-col flex-grow overflow-hidden bg-white rounded-lg shadow-lg mt-19">
-                <div class="flex flex-col items-center p-10 bg-gray-200">
-                  <span class="font-semibold">Plano Premium</span>
-                  <div class="flex items-center">
-                    <span class="text-3xl">R$</span>
-                    <span class="text-5xl font-bold">4800</span>
-                    <span class="text-2xl text-gray-500">/mês</span>
+              <div class="flex flex-col flex-grow mt-8 overflow-hidden transform bg-white rounded-lg shadow-lg md:scale-110">
+                <div className="flex flex-col items-center p-10 bg-gray-200">
+                  <span className="font-semibold">Plano Premium</span>
+                  <div className="flex items-center">
+                    <span className="text-3xl">R$</span>
+                    <span className="text-5xl font-bold">4800</span>
+                    <span className="text-2xl text-gray-500">/mês</span>
                   </div>
                 </div>
-                <div class="p-10">
+                <div className="p-10">
                   <ul>
                     <li className="flex items-center">
                       <p className="ml-2 font-bold">
-                        Tudo o que o Plano Básico oferece, além de:
+                        Tudo o que o Plano Intermediário oferece, além de:
                       </p>
                     </li>
 
@@ -295,7 +265,7 @@ const AllPlans = () => {
                         />
                       </svg>
                       <span className="ml-2">
-                        campanhas de marketing por e-mail,
+                        desenvolvimento de aplicativos móveis,
                       </span>
                     </li>
                     <li className="flex items-center">
@@ -311,7 +281,10 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">publicidade paga,</span>
+                      <span className="ml-2">
+                        {" "}
+                        criação de vídeos, design gráfico,{" "}
+                      </span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -326,7 +299,9 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">marketing de influência,</span>
+                      <span className="ml-2">
+                        serviços de atendimento ao cliente,
+                      </span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -341,27 +316,16 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">marketing de conteúdo</span>
-                    </li>
-                    <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">análise de dados</span>
+                      <span className="ml-2">
+                        {" "}
+                        assessoria de imprensa e participação em eventos da
+                        indústria
+                      </span>
                     </li>
                   </ul>
                 </div>
-                <div class="flex px-10 pb-10 justfy-center">
-                  <button class="flex items-center justify-center w-full h-12 px-6 text-sm uppercase bg-blue-700 rounded-lg">
+                <div className="flex px-10 pb-10 justfy-center">
+                  <button className="flex items-center justify-center w-full h-12 px-6 text-sm uppercase bg-blue-700 rounded-lg">
                     Assinar agora!
                   </button>
                 </div>
