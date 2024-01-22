@@ -76,8 +76,8 @@ const Navbar = () => {
         <div
           className={
             nav
-              ? "sm:hidden absolute top-0 left-0 right-0 botton-0 flex justify-center items-center w-full h-screen bg-[#8949f1]  text-center ease-in duration-300"
-              : "sm:hidden absolute top-0 left-[-100%] right-0 botton-0 flex justify-center items-center w-full h-screen bg-[#8949f1]  text-center ease-in duration-300"
+              ? "sm:hidden absolute top-0  right-0 botton-0 flex justify- items-start w-5/6 h-screen bg-[#8949f1]  text-start ease-in duration-300"
+              : "sm:hidden absolute top-0 left-[-100%] right-0 botton-0 flex justify-center items-center w-5/6 h-screen bg-[#8949f1]  text-start ease-in duration-300"
           }
         >
           <ul>
@@ -89,20 +89,20 @@ const Navbar = () => {
             </li>
             <li
               onClick={handleNav}
-              className="p-4 text-4xl text-white hover:text-purple-600"
+              className="p-4 text-xl text-white hover:text-purple-600"
             >
               <Link href="/#basic">Serviços</Link>
             </li>
 
             <li
               onClick={handleNav}
-              className="p-4 text-4xl text-white hover:text-purple-600"
+              className="p-4 text-xl text-white hover:text-purple-600"
             >
               <Link href="/#precos">Preços</Link>
             </li>
             <li
               onClick={handleNav}
-              className="p-4 text-4xl text-white hover:text-purple-600"
+              className="p-4 text-xl text-white hover:text-purple-600"
             >
               <Link href="/contact">Contato</Link>
             </li>

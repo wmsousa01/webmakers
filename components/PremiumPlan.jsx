@@ -10,10 +10,10 @@ const PremiumPlan = () => {
   return (
     <div id="services" className="container mx-auto text-black p-5 ">
       <div className="grid justify-items-center  ">
-        <div className="grid text-center text-2xl text-black mt-6 p-4 ">
+        <div className="grid text-start text-2xl text-black mt-6">
           <h2>Maximize seu alcance e engajamento com nosso Plano Premium</h2>
         </div>
-        <div className="grid text-center">
+        <div className="grid text-start mt-4">
           <p>
             Entre em contato conosco hoje mesmo e descubra como a Sousas Mídia
             pode ajudar a sua empresa a crescer através das redes sociais.

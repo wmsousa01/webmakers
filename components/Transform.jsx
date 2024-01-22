@@ -10,7 +10,7 @@ const Transform = () => {
       <div className="grid justify-items-center p-5 mt-20">
         <h2>Transforme sua presença nas redes sociais</h2>
 
-        <p>
+        <p className="mt-4"> 
           aumente seu alcance, engajamento e retorno sobre o investimento com
           nossos planos personalizados de midia social.
         </p>

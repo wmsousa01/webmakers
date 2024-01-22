@@ -7,13 +7,13 @@ const IntermediatePlan = () => {
   return (
     <div id="intermediate" className="container mx-auto text-black p-5 ">
       <div className="grid justify-items-center  ">
-        <div className="grid text-center text-2xl text-black mt-6 p-4 ">
+        <div className="grid text-start text-2xl text-black mt-6">
           <h2>
             Leve sua presença nas redes sociais para o próximo nível com nosso
             Plano Intermediário
           </h2>
         </div>
-        <div className="grid text-center">
+        <div className="grid text-start mt-4">
           <p>
             Perfeito para empresas que desejam aumentar sua presença nas redes
             sociais. Este plano oferece criação e otimização de perfis em até

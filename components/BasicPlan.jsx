@@ -5,12 +5,12 @@ import GraficImg from "../public/assets/grafico.png";
 
 const BasicPlan = () => {
   return (
-    <div id="basic" className="container mx-auto text-black p-5 ">
+    <div id="basic" className="container mx-auto text-black p-5">
       <div className="grid justify-items-center  ">
-        <div className="grid text-center text-2xl text-black mt-6 p-4 ">
+        <div className="grid text-start text-2xl text-black mt-6">
           <h2>Comece sua jornada nas redes sociais com nosso Plano Básico</h2>
         </div>
-        <div className="grid text-center">
+        <div className="grid text-start mt-4">
           <p>
             Ideal para quem está começando a explorar o mundo das redes sociais.
             Este plano inclui a criação e otimização de perfis em duas
