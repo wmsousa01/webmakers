@@ -9,7 +9,7 @@ import { AiOutlineSafety } from "react-icons/ai";
 const PremiumPlan = () => {
   return (
     <div id="services" className="container mx-auto text-black p-5 ">
-      <div className="grid justify-items-center  ">
+      <div className="grid  ">
         <div className="grid text-start text-2xl text-black mt-6">
           <h2>Maximize seu alcance e engajamento com nosso Plano Premium</h2>
         </div>

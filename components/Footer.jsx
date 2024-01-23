@@ -65,17 +65,6 @@ function Footer() {
         </p>
         Politica de privacidade | Politica de vendas | Avisos legais | Mapa do
         site
-        <p>
-          <span className="hover:text-purple-600 font-semibold cursor-pointer">
-            <a
-              href="https://www.sousasmidia.com.br/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Sousas Midia{" "}
-            </a>
-          </span>
-        </p>
       </div>
     </div>
   );

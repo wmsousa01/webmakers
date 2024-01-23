@@ -2,14 +2,14 @@ import React from "react";
 
 const AllPlans = () => {
   return (
-    <div id="precos" className=" ">
+    <div id="precos" className="container mx-auto p-5">
       <div className="">
         <div className=" ">
-          <h2 className="p-5 text-start">
+          <h2 className="mt-6">
             Pronto para transformar sua presença nas redes sociais?
           </h2>
 
-          <div class="flex flex-col items-center justify-center min-h-screen p-10 text-gray-700 bg-gray-100 md:p-20">
+          <div class="flex flex-col items-center justify-center min-h-screen p-10 text-gray-700 bg-gray-100 md:p-20 mt-5">
             <h2 className="text-2xl font-medium">Preços</h2>
 
             <div className="flex flex-wrap items-center justify-center w-full max-w-4xl mt-8">
@@ -147,7 +147,7 @@ const AllPlans = () => {
                         />
                       </svg>
                       <span className="ml-2">
-                        campanhas de marketing por e-mail,
+                        Campanhas de marketing por e-mail,
                       </span>
                     </li>
                     <li className="flex items-center">
@@ -163,7 +163,7 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">publicidade paga,</span>
+                      <span className="ml-2">Publicidade paga,</span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -178,7 +178,7 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">marketing de influência,</span>
+                      <span className="ml-2">Marketing de influência,</span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -193,7 +193,7 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">marketing de conteúdo</span>
+                      <span className="ml-2">Marketing de conteúdo,</span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -208,7 +208,7 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">análise de dados</span>
+                      <span className="ml-2">Análise de dados</span>
                     </li>
                   </ul>
                 </div>
@@ -265,7 +265,42 @@ const AllPlans = () => {
                         />
                       </svg>
                       <span className="ml-2">
-                        desenvolvimento de aplicativos móveis,
+                        Desenvolvimento de apps móveis,
+                      </span>
+                    </li>
+                    <li className="flex items-center">
+                      <svg
+                        className="w-5 h-5 text-green-600 fill-current"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      <span className="ml-2">
+                       
+                        Criação de vídeos e design gráfico,
+                      </span>
+                    </li>
+                    <li className="flex items-center">
+                      <svg
+                        className="w-5 h-5 text-green-600 fill-current"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      <span className="ml-2">
+                        Serviços de atendimento ao cliente,
                       </span>
                     </li>
                     <li className="flex items-center">
@@ -283,43 +318,7 @@ const AllPlans = () => {
                       </svg>
                       <span className="ml-2">
                         {" "}
-                        criação de vídeos, design gráfico,{" "}
-                      </span>
-                    </li>
-                    <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">
-                        serviços de atendimento ao cliente,
-                      </span>
-                    </li>
-                    <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">
-                        {" "}
-                        assessoria de imprensa e participação em eventos da
-                        indústria
+                        Assessoria de imprensa e participação 
                       </span>
                     </li>
                   </ul>

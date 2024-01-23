@@ -7,13 +7,14 @@ import Link from "next/link";
 const Transform = () => {
   return (
     <section id="transform" className="container mx-auto">
-      <div className="grid justify-items-center p-5 mt-20">
+      <div className="grid p-5 mt-20">
         <h2>Transforme sua presença nas redes sociais</h2>
 
         <p className="mt-4"> 
           aumente seu alcance, engajamento e retorno sobre o investimento com
           nossos planos personalizados de midia social.
         </p>
+        <div className="grid  justify-items-center p-5">
         <ul>
           <li className="flex items-center p-4 hover:text-purple-600">
             <Link className="p-2" href="/contact">Saber mais</Link>
@@ -29,6 +30,7 @@ const Transform = () => {
           alt="imagem"
           className="p-4"
         />
+        </div>
       </div>
     </section>
   );
