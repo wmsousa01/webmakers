@@ -5,7 +5,7 @@ import GraficImg from "../public/assets/grafico.png";
 
 const BasicPlan = () => {
   return (
-    <div id="intermediate" className="container mx-auto text-black p-5 ">
+    <div id="basic" className="container mx-auto text-black p-5 ">
     <div className="grid  ">
       <div className="grid text-start text-2xl text-black mt-6">
         <h2 className="">

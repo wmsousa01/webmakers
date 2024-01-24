@@ -50,8 +50,8 @@ const Navbar = () => {
         </Link>
 
         <ul style={{ color: `${textColor}` }} className="hidden sm:flex">
-          <li className="p-4 hover:text-gray-600">
-            <Link href="/"></Link>
+          <li className="p-4 hover:text-purple-600">
+            <Link href="/">Home</Link>
           </li>
           <li className="p-4 hover:text-purple-600 ">
             <Link href="/#basic">Serviços</Link>
@@ -80,29 +80,29 @@ const Navbar = () => {
               : "sm:hidden absolute top-0 left-[-100%] right-0 botton-0 flex justify-center items-center w-5/6 h-screen bg-[#8949f1]  text-start ease-in duration-300"
           }
         >
-          <ul>
+          <ul className="mt-5">
             <li
               onClick={handleNav}
-              className="p-4 text-4xl text-white hover:text-purple-600"
+              className="p-4 text-xl text-white hover:text-gray-700"
             >
-              <Link href="/"></Link>
+              <Link href="/">Home</Link>
             </li>
             <li
               onClick={handleNav}
-              className="p-4 text-xl text-white hover:text-purple-600"
+              className="p-4 text-xl text-white hover:text-gray-700"
             >
               <Link href="/#basic">Serviços</Link>
             </li>
 
             <li
               onClick={handleNav}
-              className="p-4 text-xl text-white hover:text-purple-600"
+              className="p-4 text-xl text-white hover:text-gray-700"
             >
               <Link href="/#precos">Preços</Link>
             </li>
             <li
               onClick={handleNav}
-              className="p-4 text-xl text-white hover:text-purple-600"
+              className="p-4 text-xl text-white hover:text-gray-700"
             >
               <Link href="/contact">Contato</Link>
             </li>
