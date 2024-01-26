@@ -5,7 +5,7 @@ const AllPlans = () => {
     <div id="precos" className="container mx-auto p-5">
       <div className="">
         <div className=" ">
-          <h2 className="mt-6">
+          <h2 className="mt-6 md:text-center">
             Pronto para transformar sua presença nas redes sociais?
           </h2>
 

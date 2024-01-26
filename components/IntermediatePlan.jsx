@@ -7,32 +7,41 @@ const IntermediatePlan = () => {
   return (
     <div id="intermediate" className="container mx-auto text-black p-5 ">
       <div className="grid justify-items-center  ">
-        <div className="grid text-start text-2xl text-black mt-6">
-          <h2>
-            Leve sua presença nas redes sociais para o próximo nível com nosso
-            Plano Intermediário
-          </h2>
-        </div>
-        <div className="grid text-start mt-4">
-          <p>
-            Perfeito para empresas que desejam aumentar sua presença nas redes
-            sociais. Este plano oferece criação e otimização de perfis em até
-            três plataformas, publicação de conteúdo diário, monitoramento e
-            resposta a comentários e mensagens sete dias por semana, gestão de
-            crises e reputação online, e um relatório semanal de desempenho.
-          </p>
-        </div>
-        <div className="flex items-center p-4 ">
-          <IoIosArrowDown />
-          <p className="p-2 font-bold">Total de Seguidores</p>
-        </div>
-        <div>
-          <Image
-            src={GraficImg}
-            alt={"imagem do produto"}
-            width={400}
-            height={400}
-          />
+        <div className="grid md:grid-cols-2  text-black mt-6">
+          <div>
+            <h2>
+              Leve sua presença nas redes sociais para o próximo nível com nosso
+              Plano Intermediário
+            </h2>
+
+            <p className="mt-4">
+              Perfeito para empresas que desejam aumentar sua presença nas redes
+              sociais. Este plano oferece criação e otimização de perfis em até
+              três plataformas, publicação de conteúdo diário, monitoramento e
+              resposta a comentários e mensagens sete dias por semana, gestão de
+              crises e reputação online, e um relatório semanal de desempenho.
+            </p>
+
+            <div>
+              <div className="flex items-center mt-4">
+                <IoIosArrowDown />
+                <h2 className="p-2 font-bold text-2xl">Entenda seu publico</h2>
+              </div>
+              <p className="p-4">
+                Veja um aumento significativo no engajamento e retorno sobre o
+                investimento.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid justify-center">
+            <Image
+              src={GraficImg}
+              alt={"imagem do produto"}
+              width={500}
+              height={400}
+            />
+          </div>
         </div>
       </div>
     </div>
