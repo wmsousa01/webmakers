@@ -32,7 +32,7 @@ const Contact = () => {
             <textarea 
               className='border shadow-lg p-3 w-full' 
               cols='' 
-              rows='10' 
+              rows='6' 
               placeholder='Menssagem'
               name='mensagem'
               />

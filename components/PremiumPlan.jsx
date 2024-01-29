@@ -1,7 +1,6 @@
 import React from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import Image from "next/image";
-import GraficImg from "../public/assets/grafico.png";
 import { CiClock2, CiStar } from "react-icons/ci";
 import { LuActivitySquare } from "react-icons/lu";
 import { AiOutlineSafety } from "react-icons/ai";
@@ -21,7 +20,7 @@ const PremiumPlan = () => {
         <div className="grid justify-center">
           <div className="grid md:grid-cols-4 text-center mt-10 justify-center gap-3">
             <div className="grid justify-items-center p-8 border shadow-lg rounded-lg w-[250px]">
-              <CiClock2 size={30} />
+              <CiClock2 size={30} color="blue" fontSize={1.5} />
               <p className="p-2 font-bold">Otimização de conteúdo</p>
 
               <p>
@@ -31,7 +30,7 @@ const PremiumPlan = () => {
             </div>
 
             <div className="grid justify-items-center p-8 border shadow-lg rounded-lg w-[250px]">
-              <AiOutlineSafety size={30} />
+              <AiOutlineSafety size={30} color="orange"/>
               <p className="grid text-center p-2 font-bold">
                 Monitoramento de comportamento
               </p>
@@ -43,7 +42,7 @@ const PremiumPlan = () => {
             </div>
 
             <div className="grid justify-items-center p-8 border shadow-lg rounded-lg w-[250px]">
-              <CiStar size={30} />
+              <CiStar size={30} color="purple" />
               <p className="grid text-center p-2 font-bold">
                 Campanhas para crescimento
               </p>
@@ -55,7 +54,7 @@ const PremiumPlan = () => {
             </div>
 
             <div className="grid justify-items-center p-8 border shadow-lg rounded-lg w-[250px]">
-              <LuActivitySquare size={30} />
+              <LuActivitySquare size={30} color="red"/>
               <p className="p-2 font-bold">Estratégia Digital</p>
 
               <p>

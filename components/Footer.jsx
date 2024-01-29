@@ -63,8 +63,7 @@ function Footer() {
           Copyright Sousas Mídia Ltda. Todos os direitos reservados. CNPJ:
           40.128.915/0001-00{" "}
         </p>
-        Politica de privacidade | Politica de vendas | Avisos legais | Mapa do
-        site
+        Politica de privacidade | Politica de vendas | Avisos legais 
       </div>
     </div>
   );

@@ -34,7 +34,7 @@ const IntermediatePlan = () => {
             </div>
           </div>
 
-          <div className="grid justify-center">
+          <div className="grid justify-center mt-4">
             <Image
               src={GraficImg}
               alt={"imagem do produto"}
