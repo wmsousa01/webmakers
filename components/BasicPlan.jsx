@@ -30,6 +30,7 @@ const BasicPlan = () => {
                 alt={"imagem do produto"}
                 width={600}
                 height={500}
+                className="shadow border-4 rounded-lg"
               />
             </div>
 
@@ -53,7 +54,7 @@ const BasicPlan = () => {
                 </li>
               </div>
 
-              <div className="mt-4">
+              <div className="mt-4 border shadow-lg rounded-lg p-4">
                 <div className="flex items-center">
                   <IoIosArrowDown />
                   <h3 className="flex p-2 font-bold text-2xl">

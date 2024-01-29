@@ -18,50 +18,51 @@ const PremiumPlan = () => {
             pode ajudar a sua empresa a crescer através das redes sociais.
           </p>
         </div>
+        <div className="grid justify-center">
+          <div className="grid md:grid-cols-4 text-center mt-10 justify-center gap-3">
+            <div className="grid justify-items-center p-8 border shadow-lg rounded-lg w-[250px]">
+              <CiClock2 size={30} />
+              <p className="p-2 font-bold">Otimização de conteúdo</p>
 
-        <div className="grid md:grid-cols-4 text-center mt-10 justify-center gap-2">
-          <div className="grid justify-items-center p-8 border shadow-lg rounded-lg w-[250px]">
-            <CiClock2 size={30} />
-            <p className="p-2 font-bold">Otimização de conteúdo</p>
+              <p>
+                Com a criação e otimização de perfis em múltiplas plataformas,
+                publicação de conteúdo várias vezes ao dia.
+              </p>
+            </div>
 
-            <p>
-              Com a criação e otimização de perfis em múltiplas plataformas,
-              publicação de conteúdo várias vezes ao dia.
-            </p>
-          </div>
+            <div className="grid justify-items-center p-8 border shadow-lg rounded-lg w-[250px]">
+              <AiOutlineSafety size={30} />
+              <p className="grid text-center p-2 font-bold">
+                Monitoramento de comportamento
+              </p>
 
-          <div className="grid justify-items-center p-8 border shadow-lg rounded-lg w-[250px]">
-            <AiOutlineSafety size={30} />
-            <p className="grid text-center p-2 font-bold">
-              Monitoramento de comportamento
-            </p>
+              <p>
+                Monitoramento e resposta a comentários e mensagens 24/7, gestão
+                de crises e reputação online.
+              </p>
+            </div>
 
-            <p>
-              Monitoramento e resposta a comentários e mensagens 24/7, gestão de
-              crises e reputação online.
-            </p>
-          </div>
+            <div className="grid justify-items-center p-8 border shadow-lg rounded-lg w-[250px]">
+              <CiStar size={30} />
+              <p className="grid text-center p-2 font-bold">
+                Campanhas para crescimento
+              </p>
 
-          <div className="grid justify-items-center p-8 border shadow-lg rounded-lg w-[250px]">
-            <CiStar size={30} />
-            <p className="grid text-center p-2 font-bold">
-              Campanhas para crescimento
-            </p>
+              <p>
+                Criação de campanhas de engajamento e crescimento de seguidores,
+                um relatório semanal detalhado de desempenho.
+              </p>
+            </div>
 
-            <p>
-              Criação de campanhas de engajamento e crescimento de seguidores,
-              um relatório semanal detalhado de desempenho.
-            </p>
-          </div>
+            <div className="grid justify-items-center p-8 border shadow-lg rounded-lg w-[250px]">
+              <LuActivitySquare size={30} />
+              <p className="p-2 font-bold">Estratégia Digital</p>
 
-          <div className="grid justify-items-center p-8 border shadow-lg rounded-lg w-[250px]">
-            <LuActivitySquare size={30} />
-            <p className="p-2 font-bold">Estratégia Digital</p>
-
-            <p>
-              Consultoria estratégica mensal. Com este plano, o retorno sobre o
-              investimento será uma certeza, não apenas uma possibilidade.
-            </p>
+              <p>
+                Consultoria estratégica mensal. Com este plano, o retorno sobre
+                o investimento será uma certeza, não apenas uma possibilidade.
+              </p>
+            </div>
           </div>
         </div>
       </div>

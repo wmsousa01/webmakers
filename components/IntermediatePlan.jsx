@@ -6,8 +6,9 @@ import GraficImg from "../public/assets/grafico-2.png";
 const IntermediatePlan = () => {
   return (
     <div id="intermediate" className="container mx-auto text-black p-5 ">
-      <div className="grid justify-items-center  ">
-        <div className="grid md:grid-cols-2  text-black mt-6">
+      <div className="grid ">
+        <div className="grid md:grid-cols-2 mt-6 md:p-10">
+
           <div>
             <h2>
               Leve sua presença nas redes sociais para o próximo nível com nosso
@@ -22,8 +23,8 @@ const IntermediatePlan = () => {
               crises e reputação online, e um relatório semanal de desempenho.
             </p>
 
-            <div>
-              <div className="flex items-center mt-4">
+            <div className="border shadow-lg rounded-lg p-4 mt-4">
+              <div className="flex items-center">
                 <IoIosArrowDown />
                 <h2 className="p-2 font-bold text-2xl">Entenda seu publico</h2>
               </div>
@@ -40,8 +41,10 @@ const IntermediatePlan = () => {
               alt={"imagem do produto"}
               width={500}
               height={400}
+              className="shadow border-4 rounded-lg"
             />
           </div>
+
         </div>
       </div>
     </div>
