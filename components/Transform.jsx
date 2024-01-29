@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Transform = () => {
   return (
-    <section id="transform" className="container mx-auto p-5">
+    <section id="transform" className="container mx-auto ">
       <div className="grid md:grid-cols-3 p-5 mt-20 md:p-10">
         <div>
           <div className="">

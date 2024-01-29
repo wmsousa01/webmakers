@@ -23,7 +23,7 @@ const BasicPlan = () => {
         </div>
 
         <div className="grid justify-center">
-          <div className="grid md:grid-cols-2 items-center p-4 ">
+          <div className="grid md:grid-cols-2 items-center mt-4 ">
             <div className="">
               <Image
                 src={GraficImg}

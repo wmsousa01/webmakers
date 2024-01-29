@@ -5,10 +5,9 @@ import GraficImg from "../public/assets/grafico-2.png";
 
 const IntermediatePlan = () => {
   return (
-    <div id="intermediate" className="container mx-auto text-black p-5 ">
-      <div className="grid ">
-        <div className="grid md:grid-cols-2 mt-6 md:p-10">
-
+    <div id="intermediate" className="container mx-auto text-black">
+      <div className="grid justify-center">
+        <div className="grid md:grid-cols-2 p-5 mt-6 md:p-10">
           <div>
             <h2>
               Leve sua presença nas redes sociais para o próximo nível com nosso
@@ -44,7 +43,6 @@ const IntermediatePlan = () => {
               className="shadow border-4 rounded-lg"
             />
           </div>
-
         </div>
       </div>
     </div>
