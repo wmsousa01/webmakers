@@ -4,6 +4,7 @@ import Image from "next/image";
 import GraficImg from "../public/assets/grafico-2.png";
 
 const IntermediatePlan = () => {
+  
   const [isPara1Visible, setPara1Visible] = useState(false);
 
   const togglePara1Visibility = () => {
