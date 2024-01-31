@@ -9,7 +9,7 @@ const video = () => {
         <div className="grid text-center text-2xl text-black  p-4 ">
           <h2 className="p-4">Os planos na pratica!</h2>
           <div className="flex items-center justify-center ">
-            <PiYoutubeLogoLight />
+            <PiYoutubeLogoLight size={30} color="red"/>
             <p className="p-2">Video demonstrativo</p>
           </div>
         </div>

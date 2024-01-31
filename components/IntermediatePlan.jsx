@@ -7,7 +7,7 @@ const IntermediatePlan = () => {
   return (
     <div id="intermediate" className="container mx-auto text-black">
       <div className="grid justify-center">
-        <div className="grid md:grid-cols-2 p-5 mt-6 md:p-10">
+        <div className="grid md:grid-cols-2 p-5 mt-6 md:p-20">
           <div>
             <h2>
               Leve sua presença nas redes sociais para o próximo nível com nosso
