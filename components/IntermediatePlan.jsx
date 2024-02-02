@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import Image from "next/image";
 import GraficImg from "../public/assets/grafico-2.png";
-
+import Link from "next/link";
+import { MdArrowRightAlt } from "react-icons/md";
+ 
 const IntermediatePlan = () => {
   
   const [isPara1Visible, setPara1Visible] = useState(false);
@@ -37,6 +39,12 @@ const IntermediatePlan = () => {
               <p id="para1" className={`p-4 ${isPara1Visible ? "block" : "hidden"}`}>
                 Veja um aumento significativo no engajamento e retorno sobre o
                 investimento.
+                <li className="flex mt-2 hover:text-purple-600">
+                      <Link className="flex items-center" href="/contact">
+                        <p>Saiba mais </p>
+                        <MdArrowRightAlt />
+                      </Link>
+                    </li>
               </p>
             </div>
           </div>

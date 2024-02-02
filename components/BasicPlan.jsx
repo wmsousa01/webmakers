@@ -6,6 +6,7 @@ import { MdArrowRightAlt } from "react-icons/md";
 import Link from "next/link";
 
 const BasicPlan = () => {
+  
   const [isReportsVisible, setReportsVisible] = useState(false);
   const [isCommentsVisible, setCommentsVisible] = useState(false);
 
@@ -34,44 +35,43 @@ const BasicPlan = () => {
         </div>
 
         <div className="">
-          <div className="grid md:grid-cols-2  mt-4">
+          <div className="grid md:grid-cols-2 mt-4">
             <div className="grid justify-center">
               <Image
                 src={GraficImg}
                 alt={"imagem do produto"}
-                width={600}
+                width={700}
                 height={0}
                 className="shadow border-4 rounded-lg"
               />
             </div>
 
-            <div className="grid md:grid-rows-2 ">
-
-              <div className="border shadow-lg rounded-lg p-4 mt-2 ">
+            <div className="grid md:grid-rows-2 md:items-center">
+              <div className="border shadow-lg rounded-lg p-2 mt-4 w-full md:h-[150px]">
                 <div
                   onClick={toggleReportsVisibility}
                   className="flex items-center cursor-pointer"
                 >
                   <IoIosArrowDown />
-                  <h3 className=" p-2 font-bold text-2xl">Relatórios Mensais</h3>
+                  <h3 className="p-2 font-bold text-2xl">
+                    Relatórios Mensais
+                  </h3>
                 </div>
                 {isReportsVisible && (
-                  <p className="p-4">
+                  <p className="p-2">
                     Veja o retorno do seu investimento com nosso relatório
                     mensal de desempenho.
+                    <li className="flex mt-2 hover:text-purple-600">
+                      <Link className="flex items-center" href="/contact">
+                        <p>Saiba mais </p>
+                        <MdArrowRightAlt />
+                      </Link>
+                    </li>
                   </p>
-                )}
-                {isReportsVisible && (
-                  <li className="flex p-4 hover:text-purple-600">
-                    <Link className="flex items-center" href="/contact">
-                      <p>Saiba mais </p>
-                      <MdArrowRightAlt />
-                    </Link>
-                  </li>
                 )}
               </div>
 
-              <div className="mt-4 border shadow-lg rounded-lg p-4">
+              <div className="mt-4 border shadow-lg w-full h-100 rounded-lg p-4 md:h-[150px]">
                 <div
                   onClick={toggleCommentsVisibility}
                   className="flex items-center cursor-pointer"
@@ -81,15 +81,16 @@ const BasicPlan = () => {
                     Monitoramento de Comentários
                   </h3>
                 </div>
-                {isCommentsVisible && (
-                  <p className="p-4">
+                {isCommentsVisible && ( 
+                  <p className="p-2">
                     Aqui você pode adicionar o conteúdo do parágrafo de
                     Monitoramento de Comentários.
+                    Aqui você pode adicionar o conteúdo do parágrafo de
+                    Monitoramento de Comentários.
+                   
                   </p>
                 )}
-                
               </div>
-              
             </div>
           </div>
         </div>
