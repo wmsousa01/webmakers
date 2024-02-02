@@ -33,39 +33,42 @@ const BasicPlan = () => {
           </p>
         </div>
 
-        <div className="grid justify-center">
-          <div className="grid md:grid-cols-2 items-center mt-4">
-            <div className="">
+        <div className="">
+          <div className="grid md:grid-cols-2  mt-4">
+            <div className="grid justify-center">
               <Image
                 src={GraficImg}
                 alt={"imagem do produto"}
                 width={600}
-                height={500}
+                height={0}
                 className="shadow border-4 rounded-lg"
               />
             </div>
 
-            <div className="grid md:grid-rows-2 m-5">
-              <div className="border shadow-lg rounded-lg p-4 mt-2">
+            <div className="grid md:grid-rows-2 ">
+
+              <div className="border shadow-lg rounded-lg p-4 mt-2 ">
                 <div
                   onClick={toggleReportsVisibility}
                   className="flex items-center cursor-pointer"
                 >
                   <IoIosArrowDown />
-                  <h3 className="p-2 font-bold text-2xl">Relatórios Mensais</h3>
+                  <h3 className=" p-2 font-bold text-2xl">Relatórios Mensais</h3>
                 </div>
                 {isReportsVisible && (
                   <p className="p-4">
-                    Veja o retorno do seu investimento com nosso relatório mensal
-                    de desempenho.
+                    Veja o retorno do seu investimento com nosso relatório
+                    mensal de desempenho.
                   </p>
                 )}
-                <li className="flex p-4 hover:text-purple-600">
-                  <Link className="flex items-center" href="/contact">
-                    <p>Saiba mais </p>
-                    <MdArrowRightAlt />
-                  </Link>
-                </li>
+                {isReportsVisible && (
+                  <li className="flex p-4 hover:text-purple-600">
+                    <Link className="flex items-center" href="/contact">
+                      <p>Saiba mais </p>
+                      <MdArrowRightAlt />
+                    </Link>
+                  </li>
+                )}
               </div>
 
               <div className="mt-4 border shadow-lg rounded-lg p-4">
@@ -80,10 +83,13 @@ const BasicPlan = () => {
                 </div>
                 {isCommentsVisible && (
                   <p className="p-4">
-                    Aqui você pode adicionar o conteúdo do parágrafo de Monitoramento de Comentários.
+                    Aqui você pode adicionar o conteúdo do parágrafo de
+                    Monitoramento de Comentários.
                   </p>
                 )}
+                
               </div>
+              
             </div>
           </div>
         </div>
