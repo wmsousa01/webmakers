@@ -6,16 +6,10 @@ import { MdArrowRightAlt } from "react-icons/md";
 import Link from "next/link";
 
 const BasicPlan = () => {
-  
-  const [isReportsVisible, setReportsVisible] = useState(false);
-  const [isCommentsVisible, setCommentsVisible] = useState(false);
+  const [isPara1Visible, setPara1Visible] = useState(false);
 
-  const toggleReportsVisibility = () => {
-    setReportsVisible(!isReportsVisible);
-  };
-
-  const toggleCommentsVisibility = () => {
-    setCommentsVisible(!isCommentsVisible);
+  const togglePara1Visibility = () => {
+    setPara1Visible(!isPara1Visible);
   };
 
   return (
@@ -46,50 +40,52 @@ const BasicPlan = () => {
               />
             </div>
 
-            <div className="grid md:grid-rows-2 md:items-center">
-              <div className="border shadow-lg rounded-lg p-2 mt-4 w-full md:h-[150px]">
+            <div className="grid md:grid-rows-2 md:items-start">
+              <div className="border shadow-lg rounded-lg p-4 mt-4">
                 <div
-                  onClick={toggleReportsVisibility}
+                  onClick={togglePara1Visibility}
                   className="flex items-center cursor-pointer"
                 >
                   <IoIosArrowDown />
-                  <h3 className="p-2 font-bold text-2xl">
-                    Relatórios Mensais
-                  </h3>
+                  <h2 className="p-2 font-bold text-2xl">Relatórios Mensais</h2>
                 </div>
-                {isReportsVisible && (
-                  <p className="p-2">
-                    Veja o retorno do seu investimento com nosso relatório
-                    mensal de desempenho.
-                    <li className="flex mt-2 hover:text-purple-600">
-                      <Link className="flex items-center" href="/contact">
-                        <p>Saiba mais </p>
-                        <MdArrowRightAlt />
-                      </Link>
-                    </li>
-                  </p>
-                )}
+                <p
+                  id="para1"
+                  className={`p-4 ${isPara1Visible ? "block" : "hidden"}`}
+                >
+                  Veja o retorno do seu investimento com nosso relatório mensal
+                  de desempenho.
+                  <li className="flex mt-2 hover:text-purple-600">
+                    <Link className="flex items-center" href="/contact">
+                      <p>Saiba mais </p>
+                      <MdArrowRightAlt />
+                    </Link>
+                  </li>
+                </p>
               </div>
-
-              <div className="mt-4 border shadow-lg w-full h-100 rounded-lg p-4 md:h-[150px]">
+              <div className="border shadow-lg rounded-lg p-4 mt-4">
                 <div
-                  onClick={toggleCommentsVisibility}
+                  onClick={togglePara1Visibility}
                   className="flex items-center cursor-pointer"
                 >
                   <IoIosArrowDown />
-                  <h3 className="flex p-2 font-bold text-2xl">
-                    Monitoramento de Comentários
-                  </h3>
+                  <h2 className="p-2 font-bold text-2xl">
+                    Monitoramento de comentários
+                  </h2>
                 </div>
-                {isCommentsVisible && ( 
-                  <p className="p-2">
-                    Aqui você pode adicionar o conteúdo do parágrafo de
-                    Monitoramento de Comentários.
-                    Aqui você pode adicionar o conteúdo do parágrafo de
-                    Monitoramento de Comentários.
-                   
-                  </p>
-                )}
+                <p
+                  id="para1"
+                  className={`p-4 ${isPara1Visible ? "block" : "hidden"}`}
+                >
+                  Veja um aumento significativo no engajamento e retorno sobre o
+                  investimento.
+                  <li className="flex mt-2 hover:text-purple-600">
+                    <Link className="flex items-center" href="/contact">
+                      <p>Saiba mais </p>
+                      <MdArrowRightAlt />
+                    </Link>
+                  </li>
+                </p>
               </div>
             </div>
           </div>
