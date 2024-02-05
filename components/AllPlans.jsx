@@ -15,7 +15,7 @@ const AllPlans = () => {
             <div className="flex flex-wrap items-center justify-center w-full max-w-4xl mt-8">
               <div className="flex flex-col flex-grow mt-8 overflow-hidden bg-white rounded-lg shadow-lg">
                 <div className="flex flex-col items-center p-10 bg-gray-200">
-                  <span className="font-semibold">Social media</span>
+                  <span className="font-semibold text-2xl">Social media</span>
                   <div className="flex items-center">
                     <span className="text-3xl">R$</span>
                     <span className="text-5xl font-bold">1200</span>
@@ -116,7 +116,7 @@ const AllPlans = () => {
 
               <div className=" flex flex-col flex-grow mt-8 overflow-hidden transform bg-white rounded-lg shadow-lg md:scale-110">
                 <div className="flex flex-col items-center p-10 bg-gray-200">
-                  <span className="font-semibold">Site</span>
+                  <span className="font-semibold text-2xl">Site</span>
                   <div className="flex items-center">
                     <span className="text-3xl">R$</span>
                     <span className="text-6xl font-bold">2400</span>
@@ -218,7 +218,7 @@ const AllPlans = () => {
 
               <div className="flex flex-col mt-8 flex-grow overflow-hidden bg-white rounded-lg shadow-lg">
                 <div className="flex flex-col items-center p-10 bg-gray-200">
-                  <span className="font-semibold">
+                  <span className="font-semibold text-2xl">
                     Consultoria
                   </span>
                   <div className="flex items-center">

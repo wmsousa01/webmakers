@@ -73,6 +73,7 @@ const BasicPlan = () => {
                     Monitoramento de comentários
                   </h2>
                 </div>
+                <div>
                 <p
                   id="para1"
                   className={`p-4 ${isPara1Visible ? "block" : "hidden"}`}
@@ -86,6 +87,7 @@ const BasicPlan = () => {
                     </Link>
                   </li>
                 </p>
+                </div>
               </div>
             </div>
           </div>
