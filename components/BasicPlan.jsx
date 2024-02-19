@@ -7,9 +7,13 @@ import Link from "next/link";
 
 const BasicPlan = () => {
   const [isPara1Visible, setPara1Visible] = useState(false);
+  const [isPara1Visible1, setPara1Visible1] = useState(false);
 
   const togglePara1Visibility = () => {
     setPara1Visible(!isPara1Visible);
+  };
+  const togglePara1Visibility1 = () => {
+    setPara1Visible1(!isPara1Visible1);
   };
 
   return (
@@ -40,7 +44,7 @@ const BasicPlan = () => {
               />
             </div>
 
-            <div className="grid md:grid-rows-2 md:items-start">
+            <div className="grid md:grid-rows-2 md:items-center">
               <div className="border shadow-lg rounded-lg p-4 mt-4">
                 <div
                   onClick={togglePara1Visibility}
@@ -49,7 +53,7 @@ const BasicPlan = () => {
                   <IoIosArrowDown />
                   <h2 className="p-2 font-bold text-2xl">Relatórios Mensais</h2>
                 </div>
-                <p
+                <ul
                   id="para1"
                   className={`p-4 ${isPara1Visible ? "block" : "hidden"}`}
                 >
@@ -61,11 +65,12 @@ const BasicPlan = () => {
                       <MdArrowRightAlt />
                     </Link>
                   </li>
-                </p>
+                </ul>
               </div>
+
               <div className="border shadow-lg rounded-lg p-4 mt-4">
                 <div
-                  onClick={togglePara1Visibility}
+                  onClick={togglePara1Visibility1}
                   className="flex items-center cursor-pointer"
                 >
                   <IoIosArrowDown />
@@ -74,19 +79,19 @@ const BasicPlan = () => {
                   </h2>
                 </div>
                 <div>
-                <p
-                  id="para1"
-                  className={`p-4 ${isPara1Visible ? "block" : "hidden"}`}
-                >
-                  Veja um aumento significativo no engajamento e retorno sobre o
-                  investimento.
-                  <li className="flex mt-2 hover:text-purple-600">
-                    <Link className="flex items-center" href="/contact">
-                      <p>Saiba mais </p>
-                      <MdArrowRightAlt />
-                    </Link>
-                  </li>
-                </p>
+                  <p
+                    id="para1"
+                    className={`p-4 ${isPara1Visible1 ? "block" : "hidden"}`}
+                  >
+                    Veja um aumento significativo no engajamento e retorno sobre
+                    o investimento.
+                    <li className="flex mt-2 hover:text-purple-600">
+                      <Link className="flex items-center" href="/contact">
+                        <p>Saiba mais </p>
+                        <MdArrowRightAlt />
+                      </Link>
+                    </li>
+                  </p>
                 </div>
               </div>
             </div>
