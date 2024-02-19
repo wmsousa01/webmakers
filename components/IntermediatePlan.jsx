@@ -36,7 +36,7 @@ const IntermediatePlan = () => {
                 <IoIosArrowDown />
                 <h2 className="p-2 font-bold text-2xl">Entenda seu público</h2>
               </div>
-              <p id="para1" className={`p-4 ${isPara1Visible ? "block" : "hidden"}`}>
+              <ul id="para1" className={`p-4 ${isPara1Visible ? "block" : "hidden"}`}>
                 Veja um aumento significativo no engajamento e retorno sobre o
                 investimento.
                 <li className="flex mt-2 hover:text-purple-600">
@@ -45,7 +45,7 @@ const IntermediatePlan = () => {
                         <MdArrowRightAlt />
                       </Link>
                     </li>
-              </p>
+              </ul>
             </div>
           </div>
 

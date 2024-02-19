@@ -5,15 +5,15 @@ const AllPlans = () => {
     <div id="precos" className="container mx-auto p-5">
       <div className="">
         <div className=" ">
-          <h2 className="mt-6 md:text-center">
-          
-          </h2>
+          <h2 className="mt-6 md:text-center"></h2>
 
           <div className="flex flex-col items-center justify-center min-h-screen p-10 text-gray-700 bg-gray-100 md:p-20">
-            <h2 className="md:text-center text-black">Pronto para transformar sua presença nas redes sociais?</h2>
+            <h2 className="md:text-center text-black">
+              Pronto para transformar sua presença nas redes sociais?
+            </h2>
 
             <div className="flex flex-wrap items-center justify-center w-full max-w-4xl mt-8">
-              <div className="flex flex-col flex-grow mt-8 overflow-hidden bg-white rounded-lg shadow-lg">
+              <div className="flex flex-col flex-grow mt-8 overflow-hidden bg-white rounded-lg shadow-lg hover:scale-110">
                 <div className="flex flex-col items-center p-10 bg-gray-200">
                   <span className="font-semibold text-2xl">Social media</span>
                   <p className="text-gray-500">A partir de:</p>
@@ -115,8 +115,8 @@ const AllPlans = () => {
                 </a>
               </div>
 
-              <div className=" flex flex-col flex-grow mt-8 overflow-hidden transform bg-white rounded-lg shadow-lg md:scale-110">
-                <div className="flex flex-col items-center p-10 bg-gray-200">
+              <div className=" flex flex-col flex-grow mt-8 overflow-hidden transform bg-white rounded-lg shadow-lg  hover:scale-110 ">
+                <div className="flex flex-col items-center p-10 bg-gray-200 ">
                   <span className="font-semibold text-2xl">Site</span>
                   <p className="text-gray-500">A partir de:</p>
                   <div className="flex items-center">
@@ -219,7 +219,7 @@ const AllPlans = () => {
                 </a>
               </div>
 
-              <div className="flex flex-col mt-8 flex-grow overflow-hidden bg-white rounded-lg shadow-lg">
+              <div className="flex flex-col mt-8 flex-grow overflow-hidden bg-white rounded-lg shadow-lg hover:scale-110">
                 <div className="flex flex-col items-center p-10 bg-gray-200">
                   <span className="font-semibold text-2xl">Consultoria</span>
                   <p className="text-gray-500">Consultoria exclusiva,</p>
@@ -247,7 +247,10 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2  italic">Intermediário +</span>
+                      <span className="ml-2">Estratégias </span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="ml-7">personalizadas</span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -262,7 +265,10 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">Apps móveis</span>
+                      <span className="ml-2">Maximização do </span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="ml-7">retorno sobre (ROI)</span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -277,7 +283,7 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">Vídeos & Design</span>
+                      <span className="ml-2">Acesso a Especialistas</span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -292,7 +298,10 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">Atendimento</span>
+                      <span className="ml-2">Análise de Dados</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="ml-7">e métricas</span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -307,7 +316,7 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">Imprensa & Eventos</span>
+                      <span className="ml-2">Ampliação da Presença </span>
                     </li>
                   </ul>
                 </div>

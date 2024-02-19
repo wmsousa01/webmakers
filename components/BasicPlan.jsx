@@ -79,7 +79,7 @@ const BasicPlan = () => {
                   </h2>
                 </div>
                 <div>
-                  <p
+                  <ul
                     id="para1"
                     className={`p-4 ${isPara1Visible1 ? "block" : "hidden"}`}
                   >
@@ -91,7 +91,7 @@ const BasicPlan = () => {
                         <MdArrowRightAlt />
                       </Link>
                     </li>
-                  </p>
+                  </ul>
                 </div>
               </div>
             </div>
