@@ -33,8 +33,8 @@ const BasicPlan = () => {
         </div>
 
         <div className="">
-          <div className="grid md:grid-cols-2 mt-4">
-            <div className="grid justify-center">
+          <div className="grid md:grid-cols-2 mt-5">
+            <div className="grid justify-center mb-5">
               <Image
                 src={GraficImg}
                 alt={"imagem do produto"}
@@ -44,8 +44,8 @@ const BasicPlan = () => {
               />
             </div>
 
-            <div className="grid md:grid-rows-2 md:items-center">
-              <div className="border shadow-lg rounded-lg p-4 mt-4">
+            <div className="">
+              <div className="border shadow-lg rounded-xl p-4 ">
                 <div
                   onClick={togglePara1Visibility}
                   className="flex items-center cursor-pointer"
@@ -59,16 +59,10 @@ const BasicPlan = () => {
                 >
                   Veja o retorno do seu investimento com nosso relatório mensal
                   de desempenho.
-                  <li className="flex mt-2 hover:text-purple-600">
-                    <Link className="flex items-center" href="/contact">
-                      <p>Saiba mais </p>
-                      <MdArrowRightAlt />
-                    </Link>
-                  </li>
                 </ul>
               </div>
 
-              <div className="border shadow-lg rounded-lg p-4 mt-4">
+              <div className="border shadow-lg rounded-xl p-4 mt-4 ">
                 <div
                   onClick={togglePara1Visibility1}
                   className="flex items-center cursor-pointer"
@@ -85,12 +79,6 @@ const BasicPlan = () => {
                   >
                     Veja um aumento significativo no engajamento e retorno sobre
                     o investimento.
-                    <li className="flex mt-2 hover:text-purple-600">
-                      <Link className="flex items-center" href="/contact">
-                        <p>Saiba mais </p>
-                        <MdArrowRightAlt />
-                      </Link>
-                    </li>
                   </ul>
                 </div>
               </div>

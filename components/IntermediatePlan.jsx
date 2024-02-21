@@ -4,9 +4,8 @@ import Image from "next/image";
 import GraficImg from "../public/assets/grafico-2.png";
 import Link from "next/link";
 import { MdArrowRightAlt } from "react-icons/md";
- 
+
 const IntermediatePlan = () => {
-  
   const [isPara1Visible, setPara1Visible] = useState(false);
 
   const togglePara1Visibility = () => {
@@ -32,19 +31,19 @@ const IntermediatePlan = () => {
             </p>
 
             <div className="border shadow-lg rounded-lg p-4 mt-4">
-              <div onClick={togglePara1Visibility} className="flex items-center cursor-pointer">
+              <div
+                onClick={togglePara1Visibility}
+                className="flex items-center cursor-pointer"
+              >
                 <IoIosArrowDown />
                 <h2 className="p-2 font-bold text-2xl">Entenda seu público</h2>
               </div>
-              <ul id="para1" className={`p-4 ${isPara1Visible ? "block" : "hidden"}`}>
+              <ul
+                id="para1"
+                className={`p-4 ${isPara1Visible ? "block" : "hidden"}`}
+              >
                 Veja um aumento significativo no engajamento e retorno sobre o
                 investimento.
-                <li className="flex mt-2 hover:text-purple-600">
-                      <Link className="flex items-center" href="/contact">
-                        <p>Saiba mais </p>
-                        <MdArrowRightAlt />
-                      </Link>
-                    </li>
               </ul>
             </div>
           </div>

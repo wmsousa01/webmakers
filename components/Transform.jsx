@@ -8,7 +8,6 @@ const Transform = () => {
   return (
     <section id="transform" className="container mx-auto">
       <div className="grid md:grid-cols-3 p-5 mt-20 md:p-20">
-
         <div>
           <div className="">
             <h1>Transforme sua presença nas redes sociais</h1>
@@ -18,8 +17,8 @@ const Transform = () => {
             </p>
             <ul>
               <li className="mt-4">
-                <Link href="/contact">
-                  <button className="p-2">Começar</button>
+                <Link href="/#basic">
+                  <button className="p-4">Começar</button>
                 </Link>
               </li>
             </ul>
@@ -42,16 +41,8 @@ const Transform = () => {
             <p className="mt-4">
               Não deixe seus clientes sem respostas nunca mais!
             </p>
-
-            <li className="flex mt-4 hover:text-purple-600">
-              <Link className="flex items-center" href="/contact">
-                <p>Saiba mais </p>
-                <MdArrowRightAlt />
-              </Link>
-            </li>
           </div>
         </div>
-
       </div>
     </section>
   );

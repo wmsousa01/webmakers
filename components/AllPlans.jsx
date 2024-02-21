@@ -219,12 +219,14 @@ const AllPlans = () => {
                 </a>
               </div>
 
-              <div className="flex flex-col mt-8 flex-grow overflow-hidden bg-white rounded-lg shadow-lg hover:scale-110">
+              <div className="flex flex-col mt-8 flex-grow overflow-hidden bg-white rounded-lg shadow-lg  hover:scale-110">
                 <div className="flex flex-col items-center p-10 bg-gray-200">
                   <span className="font-semibold text-2xl">Consultoria</span>
+                  <div className="text-center text-lg">
                   <p className="text-gray-500">Consultoria exclusiva,</p>
-                  <p className="text-gray-500">consulte nossa equipe </p>
-                  <p className="text-gray-500"> comercial</p>
+                  <p className="text-gray-500">consulte nossa  </p>
+                  <p className="text-gray-500"> equipe comercial</p>
+                  </div>
 
                   <div className="flex items-center">
                     <span className="text-3xl"></span>
@@ -247,28 +249,14 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">Estratégias </span>
+                      <span className="ml-2 text-base">Estratégias </span>
                     </li>
                     <li className="flex items-center">
-                      <span className="ml-7">personalizadas</span>
+                      <span className="ml-7"></span>
                     </li>
+                    
                     <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">Maximização do </span>
-                    </li>
-                    <li className="flex items-center">
-                      <span className="ml-7">retorno sobre (ROI)</span>
+                      <span className="ml-7"></span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -301,7 +289,7 @@ const AllPlans = () => {
                       <span className="ml-2">Análise de Dados</span>
                     </li>
                     <li className="flex items-center">
-                      <span className="ml-7">e métricas</span>
+                      <span className="ml-7"></span>
                     </li>
                     <li className="flex items-center">
                       <svg
