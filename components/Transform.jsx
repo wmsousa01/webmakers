@@ -10,7 +10,7 @@ const Transform = () => {
       <div className="grid md:grid-cols-3 p-5 mt-20 md:p-20">
         <div>
           <div className="">
-            <h1>Transforme sua presença nas redes sociais</h1>
+            <h1 className="mt-5">Transforme sua presença nas redes sociais</h1>
             <p className="mt-4">
               aumente seu alcance, engajamento e retorno sobre o investimento
               com nossos planos personalizados de midia social.

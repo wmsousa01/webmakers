@@ -1,15 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from "react-icons/ai";
-// import { useRouter } from 'next/router';
 import NavLogo from "../public/assets/logo-principal.png";
+import { Sling as Hamburger } from 'hamburger-react'
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [color, setColor] = useState("white");
-  const [textColor, setTextColor] = useState("black");
-
   const handleNav = () => {
     setNav(!nav);
   };
@@ -18,100 +15,114 @@ const Navbar = () => {
     const changeColor = () => {
       if (window.scrollY >= 90) {
         setColor("#ffffff");
-        setTextColor("#000000");
       } else {
         setColor("white");
-        setTextColor("#000000");
       }
     };
-    window.addEventListener("", changeColor);
+
+    window.addEventListener("scroll", changeColor);
+    return () => window.removeEventListener("scroll", changeColor);
   }, []);
 
   return (
-    <section
+    <div
+      id="navbar"
       style={{ backgroundColor: `${color}` }}
-      className={"fixed h-[95px] top-0  w-full z-10 p-5 ease-in duration-300"}
+      className="fixed h-[95px] left-0 top-0 w-full z-10 ease-in duration-300 shadow-xl"
     >
-      <div className="flex items-center justify-between  w-full h-full">
-        <div className="">
-          <Link legacyBehavior href="/">
-            <a>
-              <Image
-                src={NavLogo}
-                alt="/"
-                width="170"
-                height="70"
-                className="cursor-pointer"
-                style={{
-                  maxWidth: "70%",
-                  height: "auto",
-                }}
-              />
-            </a>
-          </Link>
+      <div className="max-w-[1240p] m-auto flex justify-between items-center p-4 text-white">
+        <Link legacyBehavior href="/">
+          <a>
+            <Image
+              src={NavLogo}
+              alt="/"
+              width="170"
+              height="70"
+              className="cursor-pointer"
+              style={{
+                maxWidth: "70%",
+                height: "auto",
+              }}
+            />
+          </a>
+        </Link>
+        {/* Mobile button */}
+        <div onClick={handleNav} className="block z-10">
+          <Hamburger color="#595252" toggled={nav} toggle={setNav} />
         </div>
-
-        <div className="flex justify-center">
-          <ul style={{ color: `${textColor}` }} className="hidden sm:flex">
-            <li className="p-4 hover:text-purple-600">
-              <Link href="/">Home</Link>
-            </li>
-            <li className="p-4 hover:text-purple-600 ">
-              <Link href="/#basic">Serviços</Link>
-            </li>
-            <li className="p-4 hover:text-purple-600">
-              <Link href="/#precos">Preços</Link>
-            </li>
-            <li className="p-4 hover:text-purple-600">
-              <Link href="/socialmedia">Social media</Link>
-            </li>
-            <li className="p-4 hover:text-purple-600">
-            <Link href="/site">Site</Link>
-          </li>
-          </ul>
-
-          {/*Mobile button */}
-          <div onClick={handleNav} className="block sm:hidden z-10">
-            {nav ? (
-              <AiOutlineClose size={20} style={{ color: `${textColor}` }} />
-            ) : (
-              <AiOutlineMenu size={20} style={{ color: `${textColor}` }} />
-            )}
-          </div>
-          {/*Mobile menu */}
-          <div
-            className={
-              nav
-                ? "sm:hidden absolute top-0  right-0 botton-0 flex justify-items-start w-5/6 h-screen bg-[#8949f1]  text-start ease-in duration-300"
-                : "sm:hidden absolute top-0 left-[-100%] right-0 botton-0 flex justify-center items-center w-5/6 h-screen bg-[#8949f1]  text-start ease-in duration-300"
-            }
-          >
-            <ul className="mt-5">
-              <li
-                onClick={handleNav}
-                className="p-4 text-xl text-white hover:text-gray-700"
-              >
-                <Link href="/">Home</Link>
-              </li>
-              <li
-                onClick={handleNav}
-                className="p-4 text-xl text-white hover:text-gray-700"
-              >
-                <Link href="/#basic">Serviços</Link>
-              </li>
-
-              <li
-                onClick={handleNav}
-                className="p-4 text-xl text-white hover:text-gray-700"
-              >
-                <Link href="/#precos">Preços</Link>
-              </li>
-            </ul>
+        {/* Mobile menu */}
+        <div
+          className={
+            nav
+              ? "absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-[#8949f1] text-center ease-in duration-300"
+              : "absolute top-0 left-[-100%] right-0 bottom-0 flex justify-center items-center w-full h-screen bg-[#8949f1] text-center ease-in duration-300"
+          }
+        >
+          <div className="flex flex-col sm:flex-row justify-around justify-items-center w-full p-4 sm:p-20 text-white text-start">
+            <div className="prod" style={{ margin: "0 20px" }}>
+              <ul>
+                <h2
+                  className="p-2 text-1xl"
+                  style={{
+                    borderBottom: "2px solid white",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Sousas midia
+                </h2>
+                <li
+                  onClick={handleNav}
+                  className="p-2 text-2xl hover:text-[#595252]"
+                >
+                  <Link href="/">Home</Link>
+                </li>
+                <li
+                  onClick={handleNav}
+                  className="p-2 text-2xl hover:text-[#595252]"
+                >
+                  <Link href="/#basic">Planos</Link>
+                </li>
+                <li
+                  onClick={handleNav}
+                  className="p-2 text-2xl mb-5 hover:text-[#595252]"
+                >
+                  <Link href="/#precos">Preços</Link>
+                </li>
+                
+                {/* Outros itens da lista */}
+              </ul>
+            </div>
+            <div className="prod " style={{ margin: "0 20px" }}>
+              <ul>
+                <h2
+                  className="p-2  text-1xl"
+                  style={{
+                    borderBottom: "2px solid white",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Serviços
+                </h2>
+                <li
+                  onClick={handleNav}
+                  className="p-2 text-2xl hover:text-[#595252]"
+                >
+                  <Link href="/socialmedia">Social media</Link>
+                </li>
+                <li
+                  onClick={handleNav}
+                  className="p-2 text-2xl hover:text-[#595252]"
+                >
+                  <Link href="/site">Site</Link>
+                </li>
+                
+                {/* Outros itens da lista */}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
-
 export default Navbar;

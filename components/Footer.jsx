@@ -29,7 +29,7 @@ function Footer() {
         </div>
         <div className="flex  gap-12">
           <a
-            href="https://www.facebook.com/sousasmidia/"
+            href="https://www.facebook.com/agenciasousasmidia"
             target="_blank"
             rel="noreferrer"
           >
