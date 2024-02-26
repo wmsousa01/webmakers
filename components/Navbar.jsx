@@ -62,6 +62,12 @@ const Navbar = () => {
             <li className="p-4 hover:text-purple-600">
               <Link href="/#precos">Preços</Link>
             </li>
+            <li className="p-4 hover:text-purple-600">
+              <Link href="/socialmedia">Social media</Link>
+            </li>
+            <li className="p-4 hover:text-purple-600">
+            <Link href="/site">Site</Link>
+          </li>
           </ul>
 
           {/*Mobile button */}
