@@ -1,23 +1,16 @@
 import React from "react";
 import Image from "next/image";
-import ProdutoImg from "../public/assets/social-media.jpg";
 import Logo from "../public/assets/logo-principal.png";
 import Link from "next/link";
+
 
 const SocialMedia = () => {
   return (
     <div className="">
-      <div className="max-w-full h-[500px] md:h-[500px] w-[500px] relative group m-auto">
-        <div className="w-full h-full mt-24 bg-center bg-cover duration-500 relative ">
-          <Image
-            className="rounded-full"
-            src={ProdutoImg}
-            alt={"/"}
-            layout="fill"
-            objectFit="cover"
-            priority
-          />
-        </div>
+      <div className="mt-24 grid justify-center ">
+        <video autoPlay muted playsInline loop width={500} height={240}   preload="auto">
+          <source src="/assets/videos/video-sousas.mp4" type="video/mp4" />
+        </video>
       </div>
 
       <div className="grid justify-items-center gap-8 mt-5">
@@ -31,7 +24,7 @@ const SocialMedia = () => {
             Iniciar sessão
           </button>
         </a>
-        <h2 className="grid text-center w-[500px]">
+        <h2 className="grid text-center md:w-[500px]">
           O melhor lugar para todas as suas fotos, arquivos, notas, e‑mails e
           muito mais.
         </h2>
