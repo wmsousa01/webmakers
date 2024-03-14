@@ -11,6 +11,7 @@ const Whatsapp = () => {
         phoneNumber="55 19 98933-1908"
         allowClickAway="true"
         onClick={HandleClick}
+        chatboxClassName="invisible"
       />
     </div>
   );

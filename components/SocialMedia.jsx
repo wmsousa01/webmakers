@@ -3,24 +3,31 @@ import Image from "next/image";
 import Logo from "../public/assets/logo-principal.png";
 import Link from "next/link";
 
-
 const SocialMedia = () => {
   return (
     <div className="">
       <div className="mt-24 grid justify-center ">
-        <video autoPlay muted playsInline loop width={500} height={240}   preload="auto">
+        <video
+          autoPlay
+          muted
+          playsInline
+          loop
+          width={500}
+          height={240}
+          preload="auto"
+        >
           <source src="/assets/videos/video-sousas.mp4" type="video/mp4" />
         </video>
       </div>
 
       <div className="grid justify-items-center gap-8 mt-5">
-        <h1>Social Media</h1>
+        <h1 className="text-8xl">Social Media</h1>
         <a
           href="https://api.whatsapp.com/send/?phone=989331908&text=Olá tudo bem!"
           target="_Blank"
           rel="noreferrer"
         >
-          <button className="p-2 rounded-full w-[200px] text-xl">
+          <button className="p-4 rounded-full w-[250px] text-xl bg-[#8949f1]">
             Iniciar sessão
           </button>
         </a>
@@ -40,16 +47,15 @@ const SocialMedia = () => {
           </div>
 
           <div className="grid text-left  font-sans font-medium text-lg leading-loose mx-10">
-            <h3 className="font-bold text-3xl ">
-              Acesse facilmente apps e dados do seu iPhone na web
-            </h3>
+            <h3 className="font-bold text-3xl ">Conecte, Engaje e Cresça</h3>
             <p className="mt-3">
-              O iCloud é essencial para que as informações pessoais em seus
-              dispositivos sejam mantidas seguras, atualizadas e disponíveis
-              onde quer que você esteja. No iCloud.com, você pode acessar suas
-              fotos, arquivos e muito mais de qualquer navegador da web. As
-              alterações que você fizer serão sincronizadas com seu iPhone e
-              outros dispositivos. Assim, você sempre terá tudo atualizado.
+              Eleve sua marca ao patamar que ela merece com o poder das redes
+              sociais. Na Sousas Mídia, nós não apenas destacamos sua voz em
+              meio ao ruído digital; nós criamos uma sinfonia de conteúdo
+              relevante e campanhas impactantes que ressoam diretamente com o
+              seu público. Comece a jornada que transformará seu engajamento em
+              resultados reais. Inicie agora e veja sua marca florescer nas
+              mídias sociais.
             </p>
           </div>
         </div>
@@ -64,15 +70,16 @@ const SocialMedia = () => {
 
           <div className="grid text-left  font-sans font-medium text-lg leading-loose mx-10">
             <h3 className="font-bold text-3xl ">
-              Acesse facilmente apps e dados do seu iPhone na web
+              Presença Digital Duplamente Poderosa
             </h3>
             <p className="mt-3">
-              O iCloud é essencial para que as informações pessoais em seus
-              dispositivos sejam mantidas seguras, atualizadas e disponíveis
-              onde quer que você esteja. No iCloud.com, você pode acessar suas
-              fotos, arquivos e muito mais de qualquer navegador da web. As
-              alterações que você fizer serão sincronizadas com seu iPhone e
-              outros dispositivos. Assim, você sempre terá tudo atualizado.
+              Imagine a sinergia perfeita entre seu site e mídias sociais — essa
+              é a nossa promessa na Sousas Mídia. Combinamos estratégias de
+              social media dinâmicas com websites responsivos e otimizados para
+              captar a essência da sua marca e catalisar conversões. Aproveite o
+              pacote completo que garante uma presença online que não apenas é
+              vista, mas sentida. Conecte-se com a gente hoje e multiplique seu
+              alcance digital.
             </p>
           </div>
         </div>

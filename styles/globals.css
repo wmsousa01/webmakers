@@ -45,7 +45,7 @@ html {
   
 
   button {
-    @apply rounded-xl  bg-blue-800 text-white;
+    @apply rounded-xl  bg-[#8949f1] text-white;
   }
 }
 
