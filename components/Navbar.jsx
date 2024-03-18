@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import NavLogo from "../public/assets/logo-principal.png";
-import { Sling as Hamburger } from 'hamburger-react'
+import { Sling as Hamburger } from "hamburger-react";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -28,7 +28,7 @@ const Navbar = () => {
     <div
       id="navbar"
       style={{ backgroundColor: `${color}` }}
-      className="fixed h-[95px] left-0 top-0 w-full z-10 ease-in duration-300 shadow-xl"
+      className="fixed  left-0 top-0 w-full z-10 ease-in duration-300 shadow-xl"
     >
       <div className="max-w-[1240p] m-auto flex justify-between items-center p-4 text-white">
         <Link legacyBehavior href="/">
@@ -36,9 +36,9 @@ const Navbar = () => {
             <Image
               src={NavLogo}
               alt="/"
-              width="170"
+              width="220"
               height="70"
-              className="cursor-pointer"
+              className="cursor-pointer "
               style={{
                 maxWidth: "70%",
                 height: "auto",
@@ -88,7 +88,7 @@ const Navbar = () => {
                 >
                   <Link href="/#precos">Preços</Link>
                 </li>
-                
+
                 {/* Outros itens da lista */}
               </ul>
             </div>
@@ -115,7 +115,7 @@ const Navbar = () => {
                 >
                   <Link href="/site">Site</Link>
                 </li>
-                
+
                 {/* Outros itens da lista */}
               </ul>
             </div>

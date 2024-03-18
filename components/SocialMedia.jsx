@@ -21,7 +21,7 @@ const SocialMedia = () => {
       </div>
 
       <div className="grid justify-items-center gap-8 mt-5">
-        <h1 className="text-8xl">Social Media</h1>
+        <h1 className="text-6xl md:text-8xl text-center">Social Media</h1>
         <a
           href="https://api.whatsapp.com/send/?phone=989331908&text=Olá tudo bem!"
           target="_Blank"
@@ -32,8 +32,8 @@ const SocialMedia = () => {
           </button>
         </a>
         <h2 className="grid text-center md:w-[500px]">
-          O melhor lugar para todas as suas fotos, arquivos, notas, e‑mails e
-          muito mais.
+          Alcance Global, Engajamento Local: Domine as Redes Sociais com a
+          Sousas Mídia
         </h2>
       </div>
 
@@ -46,7 +46,7 @@ const SocialMedia = () => {
             <Image src={Logo} alt="logo-branco" height={38.5} width={200} />
           </div>
 
-          <div className="grid text-left  font-sans font-medium text-lg leading-loose mx-10">
+          <div className="grid text-left  font-sans font-medium text-lg leading-loose md:mx-10">
             <h3 className="font-bold text-3xl ">Conecte, Engaje e Cresça</h3>
             <p className="mt-3">
               Eleve sua marca ao patamar que ela merece com o poder das redes
@@ -68,7 +68,7 @@ const SocialMedia = () => {
             <Image src={Logo} alt="logo-branco" height={38.5} width={200} />
           </div>
 
-          <div className="grid text-left  font-sans font-medium text-lg leading-loose mx-10">
+          <div className="grid text-left  font-sans font-medium text-lg leading-loose md:mx-10">
             <h3 className="font-bold text-3xl ">
               Presença Digital Duplamente Poderosa
             </h3>

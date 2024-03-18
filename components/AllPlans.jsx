@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const AllPlans = () => {
   return (
@@ -14,7 +15,7 @@ const AllPlans = () => {
 
             <div className="flex flex-wrap items-center justify-center w-full max-w-4xl mt-8">
               <div className="flex flex-col flex-grow mt-8 overflow-hidden bg-white rounded-lg shadow-lg hover:scale-110">
-                <a href="/socialmedia">
+                <Link href="/socialmedia">
                   <div className="flex flex-col items-center p-10 bg-gray-200">
                     <span className="font-semibold text-2xl">Social media</span>
                     <p className="text-gray-500">A partir de:</p>
@@ -106,7 +107,7 @@ const AllPlans = () => {
                       </li>
                     </ul>
                   </div>
-                </a>
+                </Link>
 
                 <a
                   href="https://api.whatsapp.com/send?phone=%2B5519989331908&data=ARCfCoqXL6rAuAeRtb11yu7mTAXVzpS7R-2_bWpHOkmckPOwx0hkFkFkgz-usYQHRMW1Gv6hwxJJW5jf6QICCMa1Ai7DswvlKNoDCxIo7m3JyQMo6vGDsRLT7nqWawnb6lpO0OwsK_ogxLzd4PWyeVbuFg&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwAR2_qJkpPjDi8B5_waq26qjrRJtYiMSLxylP7l0HrF8X-6u7Lt1xfI_3T5o"
@@ -122,7 +123,7 @@ const AllPlans = () => {
               </div>
 
               <div className=" flex flex-col flex-grow mt-8 overflow-hidden transform bg-white rounded-lg shadow-lg  hover:scale-110 ">
-                <a href="/site">
+                <Link href="/site">
                   <div className="flex flex-col items-center p-10 bg-gray-200 ">
                     <span className="font-semibold text-2xl">Site</span>
                     <p className="text-gray-500">A partir de:</p>
@@ -213,7 +214,7 @@ const AllPlans = () => {
                       </li>
                     </ul>
                   </div>
-                </a>
+                </Link>
                 <a
                   href="https://api.whatsapp.com/send?phone=%2B5519989331908&data=ARCfCoqXL6rAuAeRtb11yu7mTAXVzpS7R-2_bWpHOkmckPOwx0hkFkFkgz-usYQHRMW1Gv6hwxJJW5jf6QICCMa1Ai7DswvlKNoDCxIo7m3JyQMo6vGDsRLT7nqWawnb6lpO0OwsK_ogxLzd4PWyeVbuFg&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwAR2_qJkpPjDi8B5_waq26qjrRJtYiMSLxylP7l0HrF8X-6u7Lt1xfI_3T5o"
                   target="_blank"
