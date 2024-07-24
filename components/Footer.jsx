@@ -7,13 +7,13 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import Image from "next/image";
-import NavLogo from "../public/assets/logo-branco.png";
+import NavLogo from "../public/assets/logo-principal.png";
 import Link from "next/link";
 
 function Footer() {
   return (
     <div>
-      <div className="bg-[#8949f1] h-[200px] w-full flex md:flex-row justify-around items-center flex-col p-10">
+      <div className="bg-[#39B6EB] h-[200px] w-full flex md:flex-row justify-around items-center flex-col p-10">
         <div className="">
           <ul>
             <a>
@@ -60,7 +60,7 @@ function Footer() {
 
       <div className="flex flex-col justify-center items-center text-center p-5 ">
         <p className=" ">
-          Copyright Sousas Mídia Ltda. Todos os direitos reservados. CNPJ:
+          Copyright Web Makers. Todos os direitos reservados. CNPJ:
           40.128.915/0001-00{" "}
         </p>
         Politica de privacidade | Politica de vendas | Avisos legais 

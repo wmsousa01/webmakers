@@ -6,7 +6,7 @@ import { Sling as Hamburger } from "hamburger-react";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const [color, setColor] = useState("white");
+  const [color, setColor] = useState("#39B6EB");
   const handleNav = () => {
     setNav(!nav);
   };
@@ -14,9 +14,9 @@ const Navbar = () => {
   useEffect(() => {
     const changeColor = () => {
       if (window.scrollY >= 90) {
-        setColor("#ffffff");
+        setColor("#39B6EB");
       } else {
-        setColor("white");
+        setColor("#39B6EB");
       }
     };
 
@@ -30,7 +30,7 @@ const Navbar = () => {
       style={{ backgroundColor: `${color}` }}
       className="fixed  left-0 top-0 w-full z-10 ease-in duration-300 shadow-xl"
     >
-      <div className="max-w-[1240p] m-auto flex justify-between items-center p-4 text-white">
+      <div className=" m-auto flex justify-between items-center p-4 text-white md:mx-20">
         <Link legacyBehavior href="/">
           <a>
             <Image
@@ -46,20 +46,37 @@ const Navbar = () => {
             />
           </a>
         </Link>
+
+        <div className="md:block hidden">
+          <ul className="flex">
+            <li className="p-2 text-2xl hover:text-[#595252]">
+              <Link href="/#solutions">Soluções</Link>
+            </li>
+            <li className="p-2 text-2xl hover:text-[#595252]">
+              <Link href="/#precos">Planos</Link>
+            </li>
+            <li className="p-2 text-2xl hover:text-[#595252]">
+              <Link href="/contact">Contato</Link>
+            </li>
+          </ul>
+        </div>
+
         {/* Mobile button */}
-        <div onClick={handleNav} className="block z-10">
-          <Hamburger color="#595252" toggled={nav} toggle={setNav} />
+        <div onClick={handleNav} className="md:hidden block z-10">
+          <Hamburger color="white" toggled={nav} toggle={setNav} />
         </div>
         {/* Mobile menu */}
         <div
           className={
             nav
-              ? "absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-[#8949f1] text-center ease-in duration-300"
-              : "absolute top-0 left-[-100%] right-0 bottom-0 flex justify-center items-center w-full h-screen bg-[#8949f1] text-center ease-in duration-300"
+              ? "absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-[#39B6EB] text-center ease-in duration-300"
+              : "absolute top-0 left-[-100%] right-0 bottom-0 flex justify-center items-center w-full h-screen bg-[#39B6EB] text-center ease-in duration-300"
           }
         >
           <div className="flex flex-col sm:flex-row justify-around justify-items-center w-full p-4 sm:p-20 text-white text-start">
             <div className="prod" style={{ margin: "0 20px" }}>
+              {" "}
+              {/* desktop */}
               <ul>
                 <h2
                   className="p-2 text-1xl"
@@ -68,52 +85,25 @@ const Navbar = () => {
                     paddingBottom: "10px",
                   }}
                 >
-                  Sousas midia
+                  Web Makers
                 </h2>
                 <li
                   onClick={handleNav}
                   className="p-2 text-2xl hover:text-[#595252]"
                 >
-                  <Link href="/">Home</Link>
+                  <Link href="/#solutions">Soluções</Link>
                 </li>
                 <li
                   onClick={handleNav}
                   className="p-2 text-2xl hover:text-[#595252]"
                 >
-                  <Link href="/#basic">Planos</Link>
+                  <Link href="/#precos">Planos</Link>
                 </li>
                 <li
                   onClick={handleNav}
                   className="p-2 text-2xl mb-5 hover:text-[#595252]"
                 >
-                  <Link href="/#precos">Preços</Link>
-                </li>
-
-                {/* Outros itens da lista */}
-              </ul>
-            </div>
-            <div className="prod " style={{ margin: "0 20px" }}>
-              <ul>
-                <h2
-                  className="p-2  text-1xl"
-                  style={{
-                    borderBottom: "2px solid white",
-                    paddingBottom: "10px",
-                  }}
-                >
-                  Serviços
-                </h2>
-                <li
-                  onClick={handleNav}
-                  className="p-2 text-2xl hover:text-[#595252]"
-                >
-                  <Link href="/socialmedia">Social media</Link>
-                </li>
-                <li
-                  onClick={handleNav}
-                  className="p-2 text-2xl hover:text-[#595252]"
-                >
-                  <Link href="/site">Site</Link>
+                  <Link href="/#precos">Contato</Link>
                 </li>
 
                 {/* Outros itens da lista */}

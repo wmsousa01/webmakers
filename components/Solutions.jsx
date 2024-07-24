@@ -5,12 +5,12 @@ import { CiClock2, CiStar } from "react-icons/ci";
 import { LuActivitySquare } from "react-icons/lu";
 import { AiOutlineSafety } from "react-icons/ai";
 
-const PremiumPlan = () => {
+const Solutions = () => {
   return (
-    <div id="services" className="container mx-auto text-black p-5 ">
+    <div id="solutions" className="container mx-auto text-black py-20 ">
       <div className="grid ">
-        <div className="md:text-center">
-          <h2>Maximize seu alcance e engajamento com nosso Plano Premium</h2>
+        <div className="text-center">
+          <h1 className="text-center text-[#39B6EB] font-bold p-3">Soluções para impulsionar seu negócio</h1>
 
           <p className="mt-4">
             Entre em contato conosco hoje mesmo e descubra como a Sousas Mídia
@@ -19,7 +19,7 @@ const PremiumPlan = () => {
         </div>
         <div className="grid justify-center">
           <div className="grid md:grid-cols-4 text-center mt-10 justify-center gap-3">
-            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-blue-300">
+            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-blue-300 ease-in-out duration-500">
               <CiClock2 size={30} color="blue" fontSize={1.5} />
               <p className="p-2 font-bold">Otimização de conteúdo</p>
 
@@ -29,8 +29,8 @@ const PremiumPlan = () => {
               </p>
             </div>
 
-            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-yellow-300">
-              <AiOutlineSafety size={30} color="orange"/>
+            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-yellow-300 ease-in-out duration-500">
+              <AiOutlineSafety size={30} color="orange" />
               <p className="grid text-center p-2 font-bold">
                 Monitoramento de comportamento
               </p>
@@ -41,7 +41,7 @@ const PremiumPlan = () => {
               </p>
             </div>
 
-            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-purple-300">
+            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-purple-300 ease-in-out duration-500">
               <CiStar size={30} color="purple" />
               <p className="grid text-center p-2 font-bold">
                 Campanhas para crescimento
@@ -53,8 +53,8 @@ const PremiumPlan = () => {
               </p>
             </div>
 
-            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-red-300">
-              <LuActivitySquare size={30} color="red"/>
+            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-red-300 ease-in-out duration-500">
+              <LuActivitySquare size={30} color="red" />
               <p className="p-2 font-bold">Estratégia Digital</p>
 
               <p>
@@ -69,4 +69,4 @@ const PremiumPlan = () => {
   );
 };
 
-export default PremiumPlan;
+export default Solutions;

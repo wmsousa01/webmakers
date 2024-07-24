@@ -3,18 +3,18 @@ import Link from "next/link";
 
 const AllPlans = () => {
   return (
-    <div id="precos" className="container mx-auto p-5">
+    <div id="precos" className="container mx-auto p-3">
       <div className="">
         <div className=" ">
           <h2 className="mt-6 md:text-center"></h2>
 
-          <div className="flex flex-col items-center justify-center min-h-screen p-10 text-gray-700 bg-gray-100 md:p-20">
-            <h2 className="md:text-center text-black">
-              Pronto para transformar sua presença nas redes sociais?
-            </h2>
+          <div className="flex flex-col items-center justify-center min-h-screen  text-gray-700 bg-gray-100 md:p-20">
+            <h1 className="text-center text-[#39B6EB] p-5">
+              Preços simples e transparentes para a sua empresa
+            </h1>
 
             <div className="flex flex-wrap items-center justify-center w-full max-w-4xl mt-8">
-              <div className="flex flex-col flex-grow mt-8 overflow-hidden bg-white rounded-lg shadow-lg hover:scale-110">
+              <div className="flex flex-col flex-grow mt-8 overflow-hidden bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500">
                 <Link href="/socialmedia">
                   <div className="flex flex-col items-center p-10 bg-gray-200">
                     <span className="font-semibold text-2xl">Social media</span>
@@ -122,7 +122,7 @@ const AllPlans = () => {
                 </a>
               </div>
 
-              <div className=" flex flex-col flex-grow mt-8 overflow-hidden transform bg-white rounded-lg shadow-lg  hover:scale-110 ">
+              <div className=" flex flex-col flex-grow mt-8 overflow-hidden transform bg-white rounded-lg shadow-lg  hover:scale-110 ease-in duration-500">
                 <Link href="/site">
                   <div className="flex flex-col items-center p-10 bg-gray-200 ">
                     <span className="font-semibold text-2xl">Site</span>
@@ -228,7 +228,7 @@ const AllPlans = () => {
                 </a>
               </div>
 
-              <div className="flex flex-col mt-8 flex-grow overflow-hidden bg-white rounded-lg shadow-lg  hover:scale-110">
+              <div className="flex flex-col mt-8 flex-grow overflow-hidden bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500">
                 <div className="flex flex-col items-center p-10 bg-gray-200">
                   <span className="font-semibold text-2xl">Consultoria</span>
                   <div className="text-center text-lg">
