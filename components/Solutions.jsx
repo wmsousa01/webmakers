@@ -3,59 +3,70 @@ import { IoIosArrowDown } from "react-icons/io";
 import Image from "next/image";
 import { CiClock2, CiStar } from "react-icons/ci";
 import { LuActivitySquare } from "react-icons/lu";
-import { AiOutlineSafety } from "react-icons/ai";
+import {
+  AiOutlineDesktop,
+  AiOutlineDeploymentUnit,
+  AiOutlineShoppingCart,
+  AiOutlineRobot,
+} from "react-icons/ai";
 
 const Solutions = () => {
   return (
     <div id="solutions" className="container mx-auto text-black py-20 ">
-      <div className="grid ">
+      <div className="grid">
         <div className="text-center">
-          <h1 className="text-center text-[#39B6EB] font-bold p-3">Soluções para impulsionar seu negócio</h1>
+          <h1 className="text-center text-[#39B6EB] font-bold p-3">
+            Soluções para impulsionar seu negócio
+          </h1>
 
           <p className="mt-4">
-            Entre em contato conosco hoje mesmo e descubra como a Sousas Mídia
-            pode ajudar a sua empresa a crescer através das redes sociais.
+            Entre em contato conosco hoje mesmo e descubra como a nossa equipe
+            pode ajudar a sua empresa.
           </p>
         </div>
         <div className="grid justify-center">
           <div className="grid md:grid-cols-4 text-center mt-10 justify-center gap-3">
-            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-blue-300 ease-in-out duration-500">
-              <CiClock2 size={30} color="blue" fontSize={1.5} />
-              <p className="p-2 font-bold">Otimização de conteúdo</p>
-
-              <p>
-                Com a criação e otimização de perfis em múltiplas plataformas,
-                publicação de conteúdo várias vezes ao dia.
-              </p>
-            </div>
-
-            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-yellow-300 ease-in-out duration-500">
-              <AiOutlineSafety size={30} color="orange" />
-              <p className="grid text-center p-2 font-bold">
-                Monitoramento de comportamento
+            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-gray-200 ease-in-out duration-500">
+              <AiOutlineDesktop size={30} color="#39B6EB" />
+              <p className="p-2 font-bold text-lg">
+                Presença online de impacto
               </p>
 
               <p>
-                Monitoramento e resposta a comentários e mensagens 24/7, gestão
-                de crises e reputação online.
+                Crie um site institucional moderno e responsivo que reflita a
+                identidade da sua empresa e atraia novos clientes.
               </p>
             </div>
 
-            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-purple-300 ease-in-out duration-500">
-              <CiStar size={30} color="purple" />
-              <p className="grid text-center p-2 font-bold">
-                Campanhas para crescimento
+            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-gray-200 ease-in-out duration-500">
+              <AiOutlineDeploymentUnit size={30} color="#39B6EB" />
+              <p className="text-center p-2 font-bold text-lg">
+                Conectividade Eficiente{" "}
               </p>
 
               <p>
-                Criação de campanhas de engajamento e crescimento de seguidores,
-                um relatório semanal detalhado de desempenho.
+                Integre seus sistemas web para aumentar a eficiência
+                operacional, reduzir erros e melhorar a tomada de decisões.
               </p>
             </div>
 
-            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-red-300 ease-in-out duration-500">
-              <LuActivitySquare size={30} color="red" />
-              <p className="p-2 font-bold">Estratégia Digital</p>
+            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-gray-200 ease-in-out duration-500">
+              <AiOutlineRobot size={30} color="#39B6EB" />
+              <p className="text-center p-2 font-bold text-lg">
+                Produtividade Automatizada
+              </p>
+
+              <p>
+                Implemente soluções de automação que otimizam processos
+                repetitivos, liberando tempo para atividades estratégicas.
+              </p>
+            </div>
+
+            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-gray-200 ease-in-out duration-500">
+              <AiOutlineShoppingCart size={30} color="#39B6EB" />
+              <p className="text-center p-2 font-bold text-lg">
+                Comércio Eletrônico Simplificado
+              </p>
 
               <p>
                 Consultoria estratégica mensal. Com este plano, o retorno sobre

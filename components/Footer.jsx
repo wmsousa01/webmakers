@@ -46,24 +46,11 @@ function Footer() {
               <FaInstagram />
             </div>
           </a>
-          <a
-            href="https://www.linkedin.com/company/agenciasousasmidia/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div className="text-2xl text-white cursor-pointer hover:text-gray-300">
-              <FaLinkedin />
-            </div>
-          </a>
         </div>
       </div>
 
       <div className="flex flex-col justify-center items-center text-center p-5 ">
-        <p className=" ">
-          Copyright Web Makers. Todos os direitos reservados. CNPJ:
-          40.128.915/0001-00{" "}
-        </p>
-        Politica de privacidade | Politica de vendas | Avisos legais 
+        Copyright Web Makers. Todos os direitos reservados.
       </div>
     </div>
   );

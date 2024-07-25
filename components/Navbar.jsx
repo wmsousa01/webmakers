@@ -47,15 +47,16 @@ const Navbar = () => {
           </a>
         </Link>
 
+        {/* desktop */}
         <div className="md:block hidden">
-          <ul className="flex">
-            <li className="p-2 text-2xl hover:text-[#595252]">
+          <ul className="flex gap-2">
+            <li className="p-2 text-2xl hover:text-gray-300">
               <Link href="/#solutions">Soluções</Link>
             </li>
-            <li className="p-2 text-2xl hover:text-[#595252]">
+            <li className="p-2 text-2xl hover:text-gray-300">
               <Link href="/#precos">Planos</Link>
             </li>
-            <li className="p-2 text-2xl hover:text-[#595252]">
+            <li className="p-2 text-2xl hover:text-gray-300">
               <Link href="/contact">Contato</Link>
             </li>
           </ul>
@@ -73,10 +74,8 @@ const Navbar = () => {
               : "absolute top-0 left-[-100%] right-0 bottom-0 flex justify-center items-center w-full h-screen bg-[#39B6EB] text-center ease-in duration-300"
           }
         >
-          <div className="flex flex-col sm:flex-row justify-around justify-items-center w-full p-4 sm:p-20 text-white text-start">
+          <div className="flex flex-col sm:flex-row justify-around justify-items-center w-full p-4 sm:p-20 text-white text-center">
             <div className="prod" style={{ margin: "0 20px" }}>
-              {" "}
-              {/* desktop */}
               <ul>
                 <h2
                   className="p-2 text-1xl"
@@ -103,7 +102,7 @@ const Navbar = () => {
                   onClick={handleNav}
                   className="p-2 text-2xl mb-5 hover:text-[#595252]"
                 >
-                  <Link href="/#precos">Contato</Link>
+                  <Link href="/contact">Contato</Link>
                 </li>
 
                 {/* Outros itens da lista */}
