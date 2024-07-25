@@ -187,7 +187,7 @@ const AllPlans = () => {
                           />
                         </svg>
                         <span className="ml-2">
-                          Suporte técnico prioritário.
+                          Suporte técnico prioritário
                         </span>
                       </li>
                     </ul>

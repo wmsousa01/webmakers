@@ -29,7 +29,7 @@ function Footer() {
         </div>
         <div className="flex  gap-12">
           <a
-            href="https://www.facebook.com/agenciasousasmidia"
+            href="https://web.facebook.com/profile.php?id=61563044076990"
             target="_blank"
             rel="noreferrer"
           >
@@ -38,7 +38,7 @@ function Footer() {
             </div>
           </a>
           <a
-            href="https://www.instagram.com/agenciasousasmidia/"
+            href="https://www.instagram.com/webmakersbr/"
             target="_blank"
             rel="noreferrer"
           >
