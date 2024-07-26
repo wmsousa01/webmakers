@@ -23,9 +23,11 @@ const Hero = () => {
           </div>
 
           <div className="hover:scale-110 ease-out duration-300">
-            <button className="p-2 h-12 w-52 rounded-full">
-              Iniciar Sessão
-            </button>
+            <Link href="/#precos">
+              <button className="p-2 h-12 w-52 rounded-full">
+                Confira nossos planos
+              </button>
+            </Link>
           </div>
         </div>
       </div>
