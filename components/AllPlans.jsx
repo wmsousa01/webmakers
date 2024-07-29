@@ -45,9 +45,9 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">
-                        Site institucional responsivo
-                      </span>
+                      <p className="ml-2">
+                        Site institucional responsivo (Até 5 páginas)
+                      </p>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -79,7 +79,9 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">Automação basica</span>
+                      <span className="ml-2">
+                        Automação de precessos simples
+                      </span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -142,9 +144,9 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">
-                        Site institucional responsivo{" "}
-                      </span>
+                      <p className="ml-2">
+                        Site institucional responsivo (Até 10 páginas)
+                      </p>
                     </li>
 
                     <li className="flex items-center">
@@ -161,7 +163,7 @@ const AllPlans = () => {
                         />
                       </svg>
                       <span className="ml-2">
-                        Integração multiplo de sistemas
+                        Integração de múltiplos sistemas
                       </span>
                     </li>
                     <li className="flex items-center">
@@ -177,7 +179,9 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">Automação intermediaria</span>
+                      <span className="ml-2">
+                        Automação de processos intermediários
+                      </span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -247,7 +251,7 @@ const AllPlans = () => {
                         />
                       </svg>
                       <span className="ml-2 text-base">
-                        Site institucional responsivo
+                        Site institucional completo e personalizado
                       </span>
                     </li>
                     <li className="flex items-center">
@@ -270,7 +274,7 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">Integração completa</span>
+                      <span className="ml-2">Integração total de sistemas</span>
                     </li>
                     <li className="flex items-center">
                       <svg
@@ -285,7 +289,7 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">Automação avançada</span>
+                      <span className="ml-2">Automação avançada de processos</span>
                     </li>
                     <li className="flex items-center">
                       <span className="ml-7"></span>
@@ -303,7 +307,7 @@ const AllPlans = () => {
                           clip-rule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">Suporte técnico consultoria</span>
+                      <span className="ml-2">Suporte técnico premium e consultoria contínua</span>
                     </li>
                   </ul>
                 </div>
