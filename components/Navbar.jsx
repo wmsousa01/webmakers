@@ -28,7 +28,7 @@ const Navbar = () => {
     <div
       id="navbar"
       style={{ backgroundColor: `${color}` }}
-      className="fixed  left-0 top-0 w-full z-10 ease-in duration-300 shadow-xl"
+      className="fixed  left-0 top-0 w-full z-50 ease-in duration-300 shadow-xl"
     >
       <div className=" m-auto flex justify-between items-center p-4 text-white md:mx-20">
         <Link legacyBehavior href="/">

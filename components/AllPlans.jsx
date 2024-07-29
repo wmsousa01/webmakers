@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { FaCheck } from "react-icons/fa6";
 
 const AllPlans = () => {
   return (
@@ -13,15 +14,14 @@ const AllPlans = () => {
               Preços simples e transparentes para a sua empresa
             </h1>
 
-            <div className="flex flex-row md:flex-nowrap flex-wrap flex-grow items-center justify-center w-full max-w-4xl mt-8">
-              <div className="flex flex-col flex-grow mt-8 overflow-hidden bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500">
+            <div className="flex flex-row md:flex-nowrap flex-wrap flex-grow items-center justify-center w-full max-w-5xl mt-8">
+              <div className="flex flex-col flex-grow mt-8 overflow-hidden bg-white rounded-lg  shadow-lg hover:scale-110 ease-in duration-500">
                 <div className="flex flex-col items-center p-10 bg-gray-200">
                   <span className="font-semibold text-2xl">Web Start</span>
                   <p className="text-gray-500 text-xl line-through">R$ 249</p>
                   <div className="flex items-center">
                     <span className="text-3xl">R$</span>
                     <span className="text-5xl font-bold">199</span>
-                    <span className="text-2xl text-gray-500">/mês</span>
                   </div>
                   <p className="text-gray-500 text-sm">Parcelado em 12x</p>
                   <p className="text-gray-500 text-sm line-through">
@@ -30,73 +30,25 @@ const AllPlans = () => {
                   <p className="text-gray-500 text-xl">R$ 2.390/ano</p>
                 </div>
 
-                <div className="p-10">
-                  <ul>
+                <div className="p-10 text-sm">
+                  <ul className="">
                     <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <p className="ml-2">
+                      <FaCheck size={0} color="green" />
+                      <p className="ml-2 p-2">
                         Site institucional responsivo (Até 5 páginas)
                       </p>
                     </li>
                     <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">
-                        Integração básica de sistemas
-                      </span>
+                      <FaCheck size={0} color="green" />
+                      <p className="ml-2 p-2">Integração básica de sistemas</p>
                     </li>
                     <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">
-                        Automação de precessos simples
-                      </span>
+                      <FaCheck size={0} color="green" />
+                      <p className="ml-2 p-2">Automação de precessos simples</p>
                     </li>
                     <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">Suporte técnico básico</span>
+                      <FaCheck size={0} color="green" />
+                      <p className="ml-2 p-2">Suporte técnico básico</p>
                     </li>
                   </ul>
                 </div>
@@ -114,14 +66,13 @@ const AllPlans = () => {
                 </a>
               </div>
 
-              <div className=" flex flex-col flex-grow mt-8 overflow-hidden transform bg-white rounded-lg shadow-lg  hover:scale-110 ease-in duration-500">
-                <div className="flex flex-col items-center p-10 bg-gray-200 ">
+              <div className=" flex flex-col flex-grow mt-8 overflow-hidden transform  bg-white rounded-lg shadow-lg  hover:scale-110 ease-in duration-500">
+                <div className="flex flex-col items-center p-10 bg-gray-200">
                   <span className="font-semibold text-2xl">Web Boost</span>
                   <p className="text-gray-500 text-xl line-through">R$ 419</p>
                   <div className="flex items-center">
                     <span className="text-3xl">R$</span>
                     <span className="text-6xl font-bold">335</span>
-                    <span className="text-2xl text-gray-500">/mês</span>
                   </div>
                   <p className="text-gray-500 text-sm">Parcelado em 12x</p>
                   <p className="text-gray-500 text-sm line-through">
@@ -130,73 +81,29 @@ const AllPlans = () => {
                   <p className="text-gray-500 text-xl">R$ 4022/ano</p>
                 </div>
                 <div className="p-10 ">
-                  <ul>
+                  <ul className="text-sm">
                     <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20  "
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <p className="ml-2">
+                      <FaCheck size={0} color="green" />
+                      <p className="ml-2 p-2">
                         Site institucional responsivo (Até 10 páginas)
                       </p>
                     </li>
 
                     <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">
+                      <FaCheck size={0} color="green" />
+                      <p className="ml-2 p-2">
                         Integração de múltiplos sistemas
-                      </span>
+                      </p>
                     </li>
                     <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">
+                      <FaCheck size={0} color="green" />
+                      <p className="ml-2 p-2">
                         Automação de processos intermediários
-                      </span>
+                      </p>
                     </li>
                     <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">Suporte técnico prioritário</span>
+                      <FaCheck size={0} color="green" />
+                      <p className="ml-2 p-2">Suporte técnico prioritário</p>
                     </li>
                   </ul>
                 </div>
@@ -214,14 +121,13 @@ const AllPlans = () => {
                 </a>
               </div>
 
-              <div className="flex flex-col mt-8 flex-grow overflow-hidden bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500">
+              <div className="flex flex-col mt-8 flex-grow overflow-hidden z-10 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500">
                 <div className="flex flex-col items-center p-10 bg-gray-200">
                   <span className="font-semibold text-2xl">Web Mastery</span>
                   <p className="text-gray-500 text-xl line-through">R$ 769</p>
                   <div className="flex items-center">
                     <span className="text-3xl">R$</span>
                     <span className="text-6xl font-bold">615</span>
-                    <span className="text-2xl text-gray-500">/mês</span>
                   </div>
                   <p className="text-gray-500 text-sm">Parcelado em 12x</p>
                   <p className="text-gray-500 text-sm line-through">
@@ -236,78 +142,30 @@ const AllPlans = () => {
                   </div>
                 </div>
                 <div className="p-10">
-                  <ul>
+                  <ul className="text-sm">
                     <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2 text-base">
+                      <FaCheck size={0} color="green" />
+                      <p className="ml-2 p-2">
                         Site institucional completo e personalizado
-                      </span>
-                    </li>
-                    <li className="flex items-center">
-                      <span className="ml-7"></span>
+                      </p>
                     </li>
 
                     <li className="flex items-center">
-                      <span className="ml-7"></span>
+                      <FaCheck size={0} color="green" />
+                      <p className="ml-2 p-2">Integração total de sistemas</p>
                     </li>
                     <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">Integração total de sistemas</span>
+                      <FaCheck size={0} color="green" />
+                      <p className="ml-2 p-2">
+                        Automação avançada de processos
+                      </p>
                     </li>
+
                     <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">Automação avançada de processos</span>
-                    </li>
-                    <li className="flex items-center">
-                      <span className="ml-7"></span>
-                    </li>
-                    <li className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-green-600 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span className="ml-2">Suporte técnico premium e consultoria contínua</span>
+                      <FaCheck size={0} color="green" />
+                      <p className="ml-2 p-2">
+                        Suporte técnico premium e consultoria contínua
+                      </p>
                     </li>
                   </ul>
                 </div>
