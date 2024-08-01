@@ -28,6 +28,7 @@
     "react-player": "^2.14.1",
     "react-responsive-carousel": "^3.2.23",
     "react-simple-card": "^2.0.2",
+    "react-toastify": "^10.0.5",
     "redux": "^5.0.1",
     "swiper": "^8.4.4",
     "video-react": "^0.16.0"
