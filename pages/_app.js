@@ -53,7 +53,7 @@ function MyApp({ Component, pageProps }) {
         theme="colored"
       />
       <Navbar />
-      <Component {...pageProps} />
+      <Component {...pageProps} />t 
       <Footer />
     </div>
   );
