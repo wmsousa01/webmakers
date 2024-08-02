@@ -2,11 +2,23 @@ import React, { useEffect } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import "../styles/globals.css";
-import Whatsapp from "../components/Whatsapp";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 function MyApp({ Component, pageProps }) {
+
+  useEffect(() => {
+    // Tawk.to Script
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/66acb00032dca6db2cb9249c/1i498v0jd';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    })();
+  }, []);
 
   useEffect(() => {
     toast(
@@ -15,7 +27,7 @@ function MyApp({ Component, pageProps }) {
       </div>,
       {
         position: "top-center",
-        autoClose: 15000,
+        autoClose: 20000,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -30,7 +42,7 @@ function MyApp({ Component, pageProps }) {
     <div>
       <ToastContainer 
         position="top-right"
-        autoClose={15000}
+        autoClose={20000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -42,7 +54,6 @@ function MyApp({ Component, pageProps }) {
       />
       <Navbar />
       <Component {...pageProps} />
-      <Whatsapp />
       <Footer />
     </div>
   );
