@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     toast(
       <div style={{ fontSize: "20px", fontWeight: "bold", fontFamily: "Montserrat, sans-serif", textAlign: "center", color: "#000" }}>
-        Aproveite <span style={{ color: "#38b6ff" }}>20%</span> de Desconto no Seu Novo Site Durante o Mês de Agosto!
+        Aproveite <span style={{ color: "#38b6ff" }}>20%</span> de Desconto no Seu Novo Site!
       </div>,
       {
         position: "top-center",
