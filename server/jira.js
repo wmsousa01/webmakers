@@ -84,7 +84,7 @@ app.post('/send-to-jira', async (req, res) => {
     });
 
     console.log('Resposta do Jira:', response.data);
-    res.status(200).send('Dados enviados para o Jira com sucesso.');
+    res.status(200).send('Dados enviados para o Jira com sucesso..');
   } catch (error) {
     console.error('Erro ao enviar dados para o Jira:', error.response ? error.response.data : error.message);
     res.status(500).send('Erro ao enviar dados para o Jira.');
