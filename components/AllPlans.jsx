@@ -1,190 +1,176 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { FaCheck } from "react-icons/fa6";
+import ChatGPTChat from "./gpt/ChatGptChat"; // Importando o componente do chat
 
 const AllPlans = () => {
+  const [showChat, setShowChat] = useState(false); // Estado para controlar a abertura do chat
+
+  // Função para abrir o modal com o chat
+  const handleOpenChat = () => {
+    setShowChat(true);
+  };
+
+  // Função para fechar o modal
+  const handleCloseChat = () => {
+    setShowChat(false);
+  };
+
   return (
     <div id="precos" className="container mx-auto p-3">
       <div className="">
         <div className=" ">
           <h2 className="mt-6 md:text-center"></h2>
 
-          <div className="flex flex-col items-center justify-center min-h-screen  text-gray-700 bg-gray-100 md:p-20">
-            <h1 className="text-center text-[#39B6EB] p-5">
-              Preços simples e transparentes para a sua empresa
+          <div className="flex flex-col items-center justify-center min-h-screen text-gray-700 bg-gray-100 md:p-20">
+            {/* Tamanho do H1 ajustado */}
+            <h1 className="text-center text-[#39B6EB] text-3xl md:text-4xl font-bold p-5">
+              Escolha o plano que se adapta ao seu negócio
             </h1>
 
-            <div className="flex flex-row md:flex-nowrap flex-wrap flex-grow items-center justify-center w-full max-w-5xl mt-8">
-              <div className="flex flex-col flex-grow mt-8 overflow-hidden bg-white rounded-lg  shadow-lg hover:scale-110 ease-in duration-500">
+            <p className="text-center max-w-2xl text-gray-500">
+              Cada plano foi pensado para atender as necessidades específicas do seu negócio. Clique em um plano para falar com nossa assistente virtual e receber mais detalhes.
+            </p>
+
+            {/* Cards de Planos */}
+            <div className="flex flex-row md:flex-nowrap flex-wrap flex-grow items-center justify-center w-full max-w-5xl mt-8 space-x-6">
+              {/* Card Web Start */}
+              <div
+                className="flex flex-col flex-grow mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[550px] w-[350px]" // Tamanho fixo para todos os cards
+                onClick={handleOpenChat}
+              >
                 <div className="flex flex-col items-center p-10 bg-gray-200">
                   <span className="font-semibold text-2xl">Web Start</span>
-                  <p className="text-gray-500 text-xl line-through">R$ 249</p>
-                  <div className="flex items-center">
-                    <span className="text-3xl">R$</span>
-                    <span className="text-5xl font-bold">199</span>
-                  </div>
-                  <p className="text-gray-500 text-sm">Parcelado em 12x</p>
-                  <p className="text-gray-500 text-sm line-through">
-                    R$ 2.988/ano
-                  </p>
-                  <p className="text-gray-500 text-xl">R$ 2.390/ano</p>
+                  <p className="text-gray-500 text-sm">Ideal para pequenas empresas</p>
                 </div>
 
-                <div className="p-10 text-sm">
+                <div className="p-10 text-sm flex-grow">
                   <ul className="">
                     <li className="flex items-center">
-                      <FaCheck size={0} color="green" />
+                      <FaCheck size={16} color="green" />
                       <p className="ml-2 p-2">
                         Site institucional responsivo (Até 5 páginas)
                       </p>
                     </li>
                     <li className="flex items-center">
-                      <FaCheck size={0} color="green" />
+                      <FaCheck size={16} color="green" />
                       <p className="ml-2 p-2">Integração básica de sistemas</p>
                     </li>
                     <li className="flex items-center">
-                      <FaCheck size={0} color="green" />
-                      <p className="ml-2 p-2">Automação de precessos simples</p>
+                      <FaCheck size={16} color="green" />
+                      <p className="ml-2 p-2">Automação de processos simples</p>
                     </li>
                     <li className="flex items-center">
-                      <FaCheck size={0} color="green" />
+                      <FaCheck size={16} color="green" />
                       <p className="ml-2 p-2">Suporte técnico básico</p>
                     </li>
                   </ul>
                 </div>
-
-                <a
-                  href="https://api.whatsapp.com/send?phone=%2B5519989331908&data=ARCfCoqXL6rAuAeRtb11yu7mTAXVzpS7R-2_bWpHOkmckPOwx0hkFkFkgz-usYQHRMW1Gv6hwxJJW5jf6QICCMa1Ai7DswvlKNoDCxIo7m3JyQMo6vGDsRLT7nqWawnb6lpO0OwsK_ogxLzd4PWyeVbuFg&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwAR2_qJkpPjDi8B5_waq26qjrRJtYiMSLxylP7l0HrF8X-6u7Lt1xfI_3T5o"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <div className="flex px-10 pb-10 justfy-center">
-                    <button className="flex items-center justify-center w-full h-12 px-6 text-sm uppercase  rounded-lg">
-                      Assine agora!
-                    </button>
-                  </div>
-                </a>
               </div>
 
-              <div className=" flex flex-col flex-grow mt-8 overflow-hidden transform  bg-white rounded-lg shadow-lg  hover:scale-110 ease-in duration-500">
+              {/* Card Web Boost */}
+              <div
+                className="flex flex-col flex-grow mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[550px] w-[350px]" // Tamanho fixo para todos os cards
+                onClick={handleOpenChat}
+              >
                 <div className="flex flex-col items-center p-10 bg-gray-200">
                   <span className="font-semibold text-2xl">Web Boost</span>
-                  <p className="text-gray-500 text-xl line-through">R$ 419</p>
-                  <div className="flex items-center">
-                    <span className="text-3xl">R$</span>
-                    <span className="text-6xl font-bold">335</span>
-                  </div>
-                  <p className="text-gray-500 text-sm">Parcelado em 12x</p>
-                  <p className="text-gray-500 text-sm line-through">
-                    R$ 5028/ano
-                  </p>
-                  <p className="text-gray-500 text-xl">R$ 4022/ano</p>
+                  <p className="text-gray-500 text-sm">Para empresas em crescimento</p>
                 </div>
-                <div className="p-10 ">
-                  <ul className="text-sm">
+
+                <div className="p-10 text-sm flex-grow">
+                  <ul className="">
                     <li className="flex items-center">
-                      <FaCheck size={0} color="green" />
+                      <FaCheck size={16} color="green" />
                       <p className="ml-2 p-2">
                         Site institucional responsivo (Até 10 páginas)
                       </p>
                     </li>
-
                     <li className="flex items-center">
-                      <FaCheck size={0} color="green" />
-                      <p className="ml-2 p-2">
-                        Integração de múltiplos sistemas
-                      </p>
+                      <FaCheck size={16} color="green" />
+                      <p className="ml-2 p-2">Integração de múltiplos sistemas</p>
                     </li>
                     <li className="flex items-center">
-                      <FaCheck size={0} color="green" />
-                      <p className="ml-2 p-2">
-                        Automação de processos intermediários
-                      </p>
+                      <FaCheck size={16} color="green" />
+                      <p className="ml-2 p-2">Automação de processos intermediários</p>
                     </li>
                     <li className="flex items-center">
-                      <FaCheck size={0} color="green" />
+                      <FaCheck size={16} color="green" />
                       <p className="ml-2 p-2">Suporte técnico prioritário</p>
                     </li>
                   </ul>
                 </div>
-
-                <a
-                  href="https://api.whatsapp.com/send?phone=%2B5519989331908&data=ARCfCoqXL6rAuAeRtb11yu7mTAXVzpS7R-2_bWpHOkmckPOwx0hkFkFkgz-usYQHRMW1Gv6hwxJJW5jf6QICCMa1Ai7DswvlKNoDCxIo7m3JyQMo6vGDsRLT7nqWawnb6lpO0OwsK_ogxLzd4PWyeVbuFg&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwAR2_qJkpPjDi8B5_waq26qjrRJtYiMSLxylP7l0HrF8X-6u7Lt1xfI_3T5o"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <div className="flex px-10 pb-10 justfy-center">
-                    <button className="flex items-center justify-center w-full h-12 px-6 text-sm uppercase rounded-lg">
-                      Assine agora!
-                    </button>
-                  </div>
-                </a>
               </div>
 
-              <div className="flex flex-col mt-8 flex-grow overflow-hidden z-10 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500">
+              {/* Card Web Mastery */}
+              <div
+                className="flex flex-col flex-grow mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[550px] w-[350px]" // Tamanho fixo para todos os cards
+                onClick={handleOpenChat}
+              >
                 <div className="flex flex-col items-center p-10 bg-gray-200">
                   <span className="font-semibold text-2xl">Web Mastery</span>
-                  <p className="text-gray-500 text-xl line-through">R$ 769</p>
-                  <div className="flex items-center">
-                    <span className="text-3xl">R$</span>
-                    <span className="text-6xl font-bold">615</span>
-                  </div>
-                  <p className="text-gray-500 text-sm">Parcelado em 12x</p>
-                  <p className="text-gray-500 text-sm line-through">
-                    R$ 9228/ano
-                  </p>
-                  <p className="text-gray-500 text-xl">R$ 7382/ano</p>
-
-                  <div className="flex items-center">
-                    <span className="text-3xl"></span>
-                    <span className="text-5xl font-bold"></span>
-                    <span className="text-2xl text-gray-500"></span>
-                  </div>
+                  <p className="text-gray-500 text-sm">Para negócios avançados</p>
                 </div>
-                <div className="p-10">
-                  <ul className="text-sm">
+
+                <div className="p-10 text-sm flex-grow">
+                  <ul className="">
                     <li className="flex items-center">
-                      <FaCheck size={0} color="green" />
+                      <FaCheck size={16} color="green" />
                       <p className="ml-2 p-2">
                         Site institucional completo e personalizado
                       </p>
                     </li>
-
                     <li className="flex items-center">
-                      <FaCheck size={0} color="green" />
+                      <FaCheck size={16} color="green" />
                       <p className="ml-2 p-2">Integração total de sistemas</p>
                     </li>
                     <li className="flex items-center">
-                      <FaCheck size={0} color="green" />
-                      <p className="ml-2 p-2">
-                        Automação avançada de processos
-                      </p>
+                      <FaCheck size={16} color="green" />
+                      <p className="ml-2 p-2">Automação avançada de processos</p>
                     </li>
-
                     <li className="flex items-center">
-                      <FaCheck size={0} color="green" />
+                      <FaCheck size={16} color="green" />
                       <p className="ml-2 p-2">
-                        Suporte técnico premium e consultoria contínua
+                        Suporte premium e consultoria contínua
                       </p>
                     </li>
                   </ul>
                 </div>
-                <a
-                  href="https://api.whatsapp.com/send?phone=%2B5519989331908&data=ARCfCoqXL6rAuAeRtb11yu7mTAXVzpS7R-2_bWpHOkmckPOwx0hkFkFkgz-usYQHRMW1Gv6hwxJJW5jf6QICCMa1Ai7DswvlKNoDCxIo7m3JyQMo6vGDsRLT7nqWawnb6lpO0OwsK_ogxLzd4PWyeVbuFg&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwAR2_qJkpPjDi8B5_waq26qjrRJtYiMSLxylP7l0HrF8X-6u7Lt1xfI_3T5o"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <div className="flex px-10 pb-10 justfy-center">
-                    <button className="flex items-center justify-center w-full h-12 px-6 text-sm uppercase rounded-lg">
-                      Assine agora!
-                    </button>
-                  </div>
-                </a>
               </div>
+            </div>
+
+            <div className="mt-10 text-center">
+              <p className="text-gray-500">
+                Precisa de algo mais personalizado? Entre em contato e crie uma solução sob medida para o seu negócio.
+              </p>
+              <a
+                href="https://api.whatsapp.com/send?phone=5519989331908&text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="mt-4 px-6 py-2 bg-[#39B6EB] text-white rounded-lg hover:bg-blue-600">
+                  Fale com um especialista
+                </button>
+              </a>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modal do Chat */}
+      {showChat && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-5 w-full max-w-3xl relative">
+            <button
+              onClick={handleCloseChat}
+              className="absolute top-4 right-8 bg-red-500 text-white p-2 rounded-full"
+            >
+              X
+            </button>
+            <ChatGPTChat />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
