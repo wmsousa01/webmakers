@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { FaRegCommentDots } from 'react-icons/fa'; // Ícone de chat
 import 'tailwindcss/tailwind.css';
+import { FaComments } from 'react-icons/fa'; // Ícone do chat
 
 const ChatGPTChat = () => {
   const [messages, setMessages] = useState([{ text: 'Olá! Qual é o seu nome?', sender: 'bot' }]);
   const [input, setInput] = useState('');
   const [step, setStep] = useState(0);
-  const [isTyping, setIsTyping] = useState(false); // Para controlar o estado de "digitando"
-  const [isChatOpen, setIsChatOpen] = useState(false); // Controla a visibilidade do chat
-  const chatContainerRef = useRef(null); // Para rolagem automática
+  const [isTyping, setIsTyping] = useState(false);
+  const [showChat, setShowChat] = useState(false); // Controla a exibição do chat
   const [userData, setUserData] = useState({
     name: '',
     email: '',
@@ -20,17 +19,14 @@ const ChatGPTChat = () => {
   const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
   // Regex para validar o e-mail
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const validateEmail = (email) => {
+    const cleanedEmail = email.trim().toLowerCase();
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(cleanedEmail);
+  };
 
   // Regex para validar o telefone no formato XXXXXXXXXXX
   const phoneRegex = /^\d{11}$/;
-
-  // Função para rolar automaticamente para a última mensagem
-  useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-    }
-  }, [messages]);
 
   // Função para simular um delay na resposta do bot
   const addBotMessageWithDelay = (message, delay = 1500) => {
@@ -44,7 +40,7 @@ const ChatGPTChat = () => {
   // Função para enviar os dados para o Jira
   const sendDataToJira = async (userData) => {
     try {
-      const response = await axios.post('https://webmaker-back-production.up.railway.app', userData);
+      const response = await axios.post('https://webmaker-back-production.up.railway.app/send-to-jira', userData); // Corrigido o URL
       console.log(response.data);
     } catch (error) {
       console.error('Erro ao enviar dados para o Jira:', error);
@@ -59,9 +55,10 @@ const ChatGPTChat = () => {
       addBotMessageWithDelay(`Prazer em te conhecer, ${value}! Qual é o seu e-mail?`);
       setStep(1);
     } else if (step === 1) {
-      if (emailRegex.test(value)) {
-        setUserData({ ...userData, email: value });
-        setMessages([...messages, { text: value, sender: 'user' }]);
+      const cleanedEmail = value.trim().toLowerCase();
+      if (validateEmail(cleanedEmail)) {
+        setUserData({ ...userData, email: cleanedEmail });
+        setMessages([...messages, { text: cleanedEmail, sender: 'user' }]);
         addBotMessageWithDelay(`Obrigado, ${userData.name}. E qual o seu telefone?`);
         setStep(2);
       } else {
@@ -88,7 +85,7 @@ const ChatGPTChat = () => {
   // Função para enviar a mensagem
   const sendMessage = async () => {
     if (input.trim()) {
-      handleNextStep(input);
+      handleNextStep(input.trim());
       setInput('');
     }
   };
@@ -100,79 +97,78 @@ const ChatGPTChat = () => {
     }
   };
 
-  // Controla a abertura do chat
+  // Função para abrir e fechar o chat
   const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
+    setShowChat(!showChat);
   };
 
   return (
-    <div className="relative">
-      {/* Botão de ícone de chat no canto inferior direito */}
-      <button
-        onClick={toggleChat}
-        className="fixed bottom-5 right-5 bg-[#39B6EB] text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition duration-300 z-50"
-      >
-        <FaRegCommentDots size={24} />
-      </button>
-
-      {/* Modal de Chat */}
-      {isChatOpen && (
-        <div
-          className="fixed bottom-0 right-0 w-full md:w-[400px] h-[90vh] bg-white shadow-lg rounded-t-lg z-50 flex flex-col"
+    <div className="fixed bottom-4 right-4 z-50">
+      {/* Ícone do chat no canto inferior direito */}
+      {!showChat && (
+        <button
+          onClick={toggleChat}
+          className="bg-[#39B6EB] text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition duration-300"
         >
-          {/* Título */}
-          <div className="bg-[#39B6EB] text-white p-4 rounded-t-lg flex justify-between items-center">
-            <h2 className="text-xl font-bold">Fale com nossa assistente virtual!</h2>
-            <button onClick={toggleChat} className="text-white font-bold text-lg">X</button>
+          <FaComments size={24} />
+        </button>
+      )}
+
+      {/* Janela do chat */}
+      {showChat && (
+        <div className="fixed bottom-0 right-0 w-full max-w-md h-[80vh] bg-white shadow-lg rounded-t-lg">
+          <div className="flex justify-between items-center p-4 bg-[#39B6EB] text-white rounded-t-lg">
+            <h2 className="text-lg font-bold">Fale com nossa assistente virtual</h2>
+            <button onClick={toggleChat} className="text-white">X</button>
           </div>
 
-          {/* Área do Chat */}
-          <div ref={chatContainerRef} className="flex-grow p-4 overflow-y-auto">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`my-2 p-2 rounded-lg max-w-[80%] ${
-                  msg.sender === 'user'
-                    ? 'bg-[#DCF8C6] text-black self-end'
-                    : 'bg-white text-black self-start border border-gray-200'
-                } shadow-md`}
+          <div className="p-4 overflow-y-auto h-full">
+            <div className="w-full bg-white shadow-lg rounded-lg p-4 h-[60vh] overflow-y-auto mb-4">
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`my-2 p-2 rounded-lg max-w-[80%] ${
+                    msg.sender === 'user'
+                      ? 'bg-[#DCF8C6] text-black self-end'
+                      : 'bg-white text-black self-start border border-gray-200'
+                  } shadow-md`}
+                >
+                  <p className="text-sm">{msg.sender === 'user' ? 'Você' : 'Assistente Virtual'}</p>
+                  <p>{msg.text}</p>
+                </div>
+              ))}
+              {isTyping && (
+                <div className="my-2 p-2 bg-white text-gray-700 rounded-lg self-start border border-gray-200">
+                  <strong>Assistente Virtual está digitando...</strong>
+                </div>
+              )}
+            </div>
+
+            {/* Campo de texto e botão de envio */}
+            <div className="w-full flex items-center bg-white border border-gray-300 rounded-full px-2 py-1 shadow-md">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="flex-grow p-2 text-sm rounded-full focus:outline-none"
+                placeholder={
+                  step === 0
+                    ? 'Digite seu nome...'
+                    : step === 1
+                    ? 'Digite seu e-mail...'
+                    : step === 2
+                    ? 'Digite seu telefone...'
+                    : 'Digite sua pergunta...'
+                }
+              />
+              <button
+                onClick={sendMessage}
+                className="ml-2 bg-[#39B6EB] text-white p-2 rounded-full hover:bg-blue-600 transition duration-300"
               >
-                <p className="text-sm">{msg.sender === 'user' ? 'Você' : 'Assistente Virtual'}</p>
-                <p>{msg.text}</p>
-              </div>
-            ))}
-            {/* Animação de digitando */}
-            {isTyping && (
-              <div className="my-2 p-2 bg-white text-gray-700 rounded-lg self-start border border-gray-200">
-                <strong>Assistente Virtual está digitando...</strong>
-              </div>
-            )}
-          </div>
-
-          {/* Campo de texto e botão de envio */}
-          <div className="w-full flex items-center bg-white border border-gray-300 rounded-full px-2 py-1 shadow-md">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown} // Detecta o pressionamento da tecla Enter
-              className="flex-grow p-2 text-sm rounded-full focus:outline-none transition-transform duration-500 transform hover:scale-105"
-              placeholder={
-                step === 0
-                  ? 'Digite seu nome...'
-                  : step === 1
-                  ? 'Digite seu e-mail...'
-                  : step === 2
-                  ? 'Digite seu telefone...'
-                  : 'Digite sua pergunta...'
-              }
-            />
-            <button
-              onClick={sendMessage}
-              className="ml-2 bg-[#39B6EB] text-white p-2 rounded-full hover:bg-blue-600 transition duration-300"
-            >
-              Enviar
-            </button>
+                Enviar
+              </button>
+            </div>
           </div>
         </div>
       )}

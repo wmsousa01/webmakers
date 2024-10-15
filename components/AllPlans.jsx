@@ -27,15 +27,15 @@ const AllPlans = () => {
               Escolha o plano que se adapta ao seu negócio
             </h1>
 
-            <p className="text-center max-w-2xl text-gray-500">
+            <p className="text-center max-w-2xl text-lg text-gray-500">
               Cada plano foi pensado para atender as necessidades específicas do seu negócio. Clique em um plano para falar com nossa assistente virtual e receber mais detalhes.
             </p>
 
             {/* Cards de Planos */}
-            <div className="flex flex-row md:flex-nowrap flex-wrap flex-grow items-center justify-center w-full max-w-5xl mt-8 space-x-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center justify-center w-full max-w-5xl mt-8">
               {/* Card Web Start */}
               <div
-                className="flex flex-col flex-grow mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[550px] w-[350px]" // Tamanho fixo para todos os cards
+                className="flex flex-col mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[450px] w-full md:w-[350px]" // Altura reduzida para 450px
                 onClick={handleOpenChat}
               >
                 <div className="flex flex-col items-center p-10 bg-gray-200">
@@ -43,7 +43,7 @@ const AllPlans = () => {
                   <p className="text-gray-500 text-sm">Ideal para pequenas empresas</p>
                 </div>
 
-                <div className="p-10 text-sm flex-grow">
+                <div className="p-8 text-base flex-grow"> {/* Aumentei o tamanho da fonte para 'text-base' */}
                   <ul className="">
                     <li className="flex items-center">
                       <FaCheck size={16} color="green" />
@@ -69,7 +69,7 @@ const AllPlans = () => {
 
               {/* Card Web Boost */}
               <div
-                className="flex flex-col flex-grow mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[550px] w-[350px]" // Tamanho fixo para todos os cards
+                className="flex flex-col mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[450px] w-full md:w-[350px]" // Altura reduzida para 450px
                 onClick={handleOpenChat}
               >
                 <div className="flex flex-col items-center p-10 bg-gray-200">
@@ -77,7 +77,7 @@ const AllPlans = () => {
                   <p className="text-gray-500 text-sm">Para empresas em crescimento</p>
                 </div>
 
-                <div className="p-10 text-sm flex-grow">
+                <div className="p-8 text-base flex-grow"> {/* Aumentei o tamanho da fonte para 'text-base' */}
                   <ul className="">
                     <li className="flex items-center">
                       <FaCheck size={16} color="green" />
@@ -103,7 +103,7 @@ const AllPlans = () => {
 
               {/* Card Web Mastery */}
               <div
-                className="flex flex-col flex-grow mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[550px] w-[350px]" // Tamanho fixo para todos os cards
+                className="flex flex-col mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[450px] w-full md:w-[350px]" // Altura reduzida para 450px
                 onClick={handleOpenChat}
               >
                 <div className="flex flex-col items-center p-10 bg-gray-200">
@@ -111,7 +111,7 @@ const AllPlans = () => {
                   <p className="text-gray-500 text-sm">Para negócios avançados</p>
                 </div>
 
-                <div className="p-10 text-sm flex-grow">
+                <div className="p-8 text-base flex-grow"> {/* Aumentei o tamanho da fonte para 'text-base' */}
                   <ul className="">
                     <li className="flex items-center">
                       <FaCheck size={16} color="green" />
@@ -139,7 +139,7 @@ const AllPlans = () => {
             </div>
 
             <div className="mt-10 text-center">
-              <p className="text-gray-500">
+              <p className="text-gray-500 text-lg">
                 Precisa de algo mais personalizado? Entre em contato e crie uma solução sob medida para o seu negócio.
               </p>
               <a
