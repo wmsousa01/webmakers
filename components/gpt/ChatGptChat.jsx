@@ -44,7 +44,7 @@ const ChatGPTChat = () => {
   // Função para enviar os dados para o Jira
   const sendDataToJira = async (userData) => {
     try {
-      const response = await axios.post('https://webmaker-back-production.up.railway.app', userData);
+      const response = await axios.post('https://webmaker-back-production.up.railway.app/send-to-jira', userData);
       console.log(response.data);
     } catch (error) {
       console.error('Erro ao enviar dados para o Jira:', error);

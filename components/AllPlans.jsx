@@ -1,180 +1,153 @@
-import React, { useState } from "react";
-import { FaCheck } from "react-icons/fa6";
-import ChatGPTChat from "./gpt/ChatGptChat"; // Importando o componente do chat
+import React, { useState } from 'react';
+import axios from 'axios';
+import 'tailwindcss/tailwind.css';
 
-const AllPlans = () => {
-  const [showChat, setShowChat] = useState(false); // Estado para controlar a abertura do chat
+const ChatGPTChat = () => {
+  const [messages, setMessages] = useState([{ text: 'Olá! Qual é o seu nome?', sender: 'bot' }]);
+  const [input, setInput] = useState('');
+  const [step, setStep] = useState(0);
+  const [isTyping, setIsTyping] = useState(false);
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    interest: ''
+  });
 
-  // Função para abrir o modal com o chat
-  const handleOpenChat = () => {
-    setShowChat(true);
+  const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
+
+  // Regex para validar o e-mail
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Regex para validar o telefone no formato XXXXXXXXXXX
+  const phoneRegex = /^\d{11}$/;
+
+  // Função para simular um delay na resposta do bot
+  const addBotMessageWithDelay = (message, delay = 1500) => {
+    setIsTyping(true);
+    setTimeout(() => {
+      setMessages(prev => [...prev, { text: message, sender: 'bot' }]);
+      setIsTyping(false);
+    }, delay);
   };
 
-  // Função para fechar o modal
-  const handleCloseChat = () => {
-    setShowChat(false);
+  // Função para enviar os dados para o Jira
+  const sendDataToJira = async (userData) => {
+    try {
+      const response = await axios.post('https://webmaker-back-production.up.railway.app', userData);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Erro ao enviar dados para o Jira:', error);
+    }
+  };
+
+  // Função que gerencia o fluxo de coleta de dados
+  const handleNextStep = (value) => {
+    if (step === 0) {
+      setUserData({ ...userData, name: value });
+      setMessages([...messages, { text: value, sender: 'user' }]);
+      addBotMessageWithDelay(`Prazer em te conhecer, ${value}! Qual é o seu e-mail?`);
+      setStep(1);
+    } else if (step === 1) {
+      const trimmedValue = value.trim(); // Remove espaços no início e no fim
+      if (emailRegex.test(trimmedValue)) {
+        setUserData({ ...userData, email: trimmedValue });
+        setMessages([...messages, { text: trimmedValue, sender: 'user' }]);
+        addBotMessageWithDelay(`Obrigado, ${userData.name}. E qual o seu telefone?`);
+        setStep(2);
+      } else {
+        addBotMessageWithDelay('Por favor, insira um e-mail válido.');
+      }
+    } else if (step === 2) {
+      if (phoneRegex.test(value)) {
+        setUserData({ ...userData, phone: value });
+        setMessages([...messages, { text: value, sender: 'user' }]);
+        addBotMessageWithDelay(`O que você está buscando, ${userData.name}? Como podemos te ajudar?`);
+        setStep(3);
+      } else {
+        addBotMessageWithDelay('Por favor, insira um telefone no formato XXXXXXXXXXX.');
+      }
+    } else if (step === 3) {
+      setUserData({ ...userData, interest: value });
+      setMessages([...messages, { text: value, sender: 'user' }]);
+      addBotMessageWithDelay(`Obrigado, ${userData.name}! Entraremos em contato em breve com a melhor solução para você.`);
+      sendDataToJira({ name: userData.name, email: userData.email, phone: userData.phone, interest: value });
+      setStep(4);
+    }
+  };
+
+  // Função para enviar a mensagem
+  const sendMessage = async () => {
+    if (input.trim()) {
+      handleNextStep(input.trim()); // Remove espaços antes de enviar
+      setInput('');
+    }
+  };
+
+  // Função para detectar a tecla "Enter" e enviar a mensagem
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      sendMessage();
+    }
   };
 
   return (
-    <div id="precos" className="container mx-auto p-3">
-      <div className="">
-        <div className=" ">
-          <h2 className="mt-6 md:text-center"></h2>
+    <div id="chat" className="flex flex-col items-center p-20 bg-gray-100 min-h-screen">
+      {/* Título */}
+      <h2 className="text-center text-3xl font-bold text-[#39B6EB] mb-4">
+        Fale com nossa assistente virtual!
+      </h2>
 
-          <div className="flex flex-col items-center justify-center min-h-screen text-gray-700 bg-gray-100 md:p-20">
-            {/* Tamanho do H1 ajustado */}
-            <h1 className="text-center text-[#39B6EB] text-3xl md:text-4xl font-bold p-5">
-              Escolha o plano que se adapta ao seu negócio
-            </h1>
-
-            <p className="text-center max-w-2xl text-gray-500">
-              Cada plano foi pensado para atender as necessidades específicas do seu negócio. Clique em um plano para falar com nossa assistente virtual e receber mais detalhes.
-            </p>
-
-            {/* Cards de Planos */}
-            <div className="flex flex-row md:flex-nowrap flex-wrap flex-grow items-center justify-center w-full max-w-5xl mt-8 space-x-6">
-              {/* Card Web Start */}
-              <div
-                className="flex flex-col flex-grow mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[550px] w-[350px]" // Tamanho fixo para todos os cards
-                onClick={handleOpenChat}
-              >
-                <div className="flex flex-col items-center p-10 bg-gray-200">
-                  <span className="font-semibold text-2xl">Web Start</span>
-                  <p className="text-gray-500 text-sm">Ideal para pequenas empresas</p>
-                </div>
-
-                <div className="p-10 text-sm flex-grow">
-                  <ul className="">
-                    <li className="flex items-center">
-                      <FaCheck size={16} color="green" />
-                      <p className="ml-2 p-2">
-                        Site institucional responsivo (Até 5 páginas)
-                      </p>
-                    </li>
-                    <li className="flex items-center">
-                      <FaCheck size={16} color="green" />
-                      <p className="ml-2 p-2">Integração básica de sistemas</p>
-                    </li>
-                    <li className="flex items-center">
-                      <FaCheck size={16} color="green" />
-                      <p className="ml-2 p-2">Automação de processos simples</p>
-                    </li>
-                    <li className="flex items-center">
-                      <FaCheck size={16} color="green" />
-                      <p className="ml-2 p-2">Suporte técnico básico</p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Card Web Boost */}
-              <div
-                className="flex flex-col flex-grow mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[550px] w-[350px]" // Tamanho fixo para todos os cards
-                onClick={handleOpenChat}
-              >
-                <div className="flex flex-col items-center p-10 bg-gray-200">
-                  <span className="font-semibold text-2xl">Web Boost</span>
-                  <p className="text-gray-500 text-sm">Para empresas em crescimento</p>
-                </div>
-
-                <div className="p-10 text-sm flex-grow">
-                  <ul className="">
-                    <li className="flex items-center">
-                      <FaCheck size={16} color="green" />
-                      <p className="ml-2 p-2">
-                        Site institucional responsivo (Até 10 páginas)
-                      </p>
-                    </li>
-                    <li className="flex items-center">
-                      <FaCheck size={16} color="green" />
-                      <p className="ml-2 p-2">Integração de múltiplos sistemas</p>
-                    </li>
-                    <li className="flex items-center">
-                      <FaCheck size={16} color="green" />
-                      <p className="ml-2 p-2">Automação de processos intermediários</p>
-                    </li>
-                    <li className="flex items-center">
-                      <FaCheck size={16} color="green" />
-                      <p className="ml-2 p-2">Suporte técnico prioritário</p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Card Web Mastery */}
-              <div
-                className="flex flex-col flex-grow mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[550px] w-[350px]" // Tamanho fixo para todos os cards
-                onClick={handleOpenChat}
-              >
-                <div className="flex flex-col items-center p-10 bg-gray-200">
-                  <span className="font-semibold text-2xl">Web Mastery</span>
-                  <p className="text-gray-500 text-sm">Para negócios avançados</p>
-                </div>
-
-                <div className="p-10 text-sm flex-grow">
-                  <ul className="">
-                    <li className="flex items-center">
-                      <FaCheck size={16} color="green" />
-                      <p className="ml-2 p-2">
-                        Site institucional completo e personalizado
-                      </p>
-                    </li>
-                    <li className="flex items-center">
-                      <FaCheck size={16} color="green" />
-                      <p className="ml-2 p-2">Integração total de sistemas</p>
-                    </li>
-                    <li className="flex items-center">
-                      <FaCheck size={16} color="green" />
-                      <p className="ml-2 p-2">Automação avançada de processos</p>
-                    </li>
-                    <li className="flex items-center">
-                      <FaCheck size={16} color="green" />
-                      <p className="ml-2 p-2">
-                        Suporte premium e consultoria contínua
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-10 text-center">
-              <p className="text-gray-500">
-                Precisa de algo mais personalizado? Entre em contato e crie uma solução sob medida para o seu negócio.
-              </p>
-              <a
-                href="https://api.whatsapp.com/send?phone=5519989331908&text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista."
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button className="mt-4 px-6 py-2 bg-[#39B6EB] text-white rounded-lg hover:bg-blue-600">
-                  Fale com um especialista
-                </button>
-              </a>
-            </div>
+      {/* Área do Chat */}
+      <div className="w-full max-w-lg bg-white shadow-lg rounded-lg p-4 h-[32rem] overflow-y-auto mb-4"> {/* Aumentado para 32rem */}
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            className={`my-2 p-2 rounded-lg max-w-[80%] ${
+              msg.sender === 'user'
+                ? 'bg-[#DCF8C6] text-black self-end' // Verde claro semelhante ao WhatsApp
+                : 'bg-white text-black self-start border border-gray-200'
+            } shadow-md`}
+          >
+            <p className="text-sm">{msg.sender === 'user' ? 'Você' : 'Assistente Virtual'}</p>
+            <p>{msg.text}</p>
           </div>
-        </div>
+        ))}
+        {/* Animação de digitando */}
+        {isTyping && (
+          <div className="my-2 p-2 bg-white text-gray-700 rounded-lg self-start border border-gray-200">
+            <strong>Assistente Virtual está digitando...</strong>
+          </div>
+        )}
       </div>
 
-      {/* Modal do Chat */}
-      {showChat && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-5 w-full max-w-3xl relative">
-            <button
-              onClick={handleCloseChat}
-              className="absolute top-4 right-8 bg-red-500 text-white p-2 rounded-full"
-            >
-              X
-            </button>
-            {/* Certifique-se de que o componente de chat é exibido corretamente */}
-            <div className="h-[500px] w-full overflow-y-auto">
-              <ChatGPTChat />
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Campo de texto e botão de envio */}
+      <div className="w-full max-w-lg flex items-center bg-white border border-gray-300 rounded-full px-2 py-1 shadow-md">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown} // Detecta o pressionamento da tecla Enter
+          className="flex-grow p-2 text-sm rounded-full focus:outline-none"
+          placeholder={
+            step === 0
+              ? 'Digite seu nome...'
+              : step === 1
+              ? 'Digite seu e-mail...'
+              : step === 2
+              ? 'Digite seu telefone...'
+              : 'Digite sua pergunta...'
+          }
+        />
+        <button
+          onClick={sendMessage}
+          className="ml-2 bg-[#39B6EB] text-white p-2 rounded-full hover:bg-blue-600 transition duration-300"
+        >
+          Enviar
+        </button>
+      </div>
     </div>
   );
 };
 
-export default AllPlans;
+export default ChatGPTChat;
