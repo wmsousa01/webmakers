@@ -104,14 +104,21 @@ const ChatGPTChat = () => {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      {/* Ícone do chat no canto inferior direito */}
+      {/* Ícone do chat no canto inferior direito com alerta de 20% OFF */}
       {!showChat && (
-        <button
-          onClick={toggleChat}
-          className="bg-[#39B6EB] text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition duration-300"
-        >
-          <FaComments size={24} />
-        </button>
+        <div className="relative">
+          <button
+            onClick={toggleChat}
+            className="bg-[#39B6EB] text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition duration-300 animate-pulse"
+          >
+            <FaComments size={24} />
+          </button>
+
+          {/* Alerta de 20% OFF centralizado */}
+          <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-bounce text-center">
+            20% OFF
+          </div>
+        </div>
       )}
 
       {/* Janela do chat */}

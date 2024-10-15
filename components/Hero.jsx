@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Hero = () => {
   const [displayedText, setDisplayedText] = useState("");
-  const [showParagraph, setShowParagraph] = useState(false); // Controle para exibir o parágrafo
+  const [showParagraph, setShowParagraph] = useState(false);
   const fullText = "Websites eficientes que cabem no seu bolso";
 
   // Função para simular o efeito de digitação
@@ -52,10 +52,11 @@ const Hero = () => {
           </div>
 
           <div className="hover:scale-110 ease-out duration-300">
-            {/* Botão agora redireciona para o chat */}
-            <Link href="/#chat">
-              <button className="bg-[#39B6EB] text-white p-2 h-12 w-64 text-lg rounded-full flex items-center justify-center gap-2 hover:bg-[#2A94B5] transition-colors duration-300">
+            {/* Botão agora redireciona para o componente AllPlans */}
+            <Link href="/#precos">
+              <button className="bg-[#39B6EB] text-white p-2 h-12 w-64 text-lg rounded-full flex items-center justify-center gap-2 hover:bg-[#2A94B5] transition-transform duration-300 animate-pulse">
                 Clique para economizar
+                <MdArrowRightAlt size={24} />
               </button>
             </Link>
           </div>

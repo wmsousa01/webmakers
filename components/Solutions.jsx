@@ -6,7 +6,7 @@ const Solutions = () => {
     <div id="solutions" className="container mx-auto text-black py-20">
       <div className="grid">
         <div className="text-center">
-          <h1 className="text-center text-[#39B6EB] text-5xl md:text-4xl font-bold p-3">
+          <h1 className="text-center text-[#39B6EB] text-4xl md:text-4xl font-bold p-3">
             Soluções para impulsionar seu negócio
           </h1>
 
