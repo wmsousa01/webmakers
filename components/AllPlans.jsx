@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Link from "next/link";
 import { FaCheck } from "react-icons/fa6";
 import ChatGPTChat from "./gpt/ChatGptChat"; // Importando o componente do chat
 
@@ -167,7 +166,10 @@ const AllPlans = () => {
             >
               X
             </button>
-            <ChatGPTChat />
+            {/* Certifique-se de que o componente de chat é exibido corretamente */}
+            <div className="h-[500px] w-full overflow-y-auto">
+              <ChatGPTChat />
+            </div>
           </div>
         </div>
       )}

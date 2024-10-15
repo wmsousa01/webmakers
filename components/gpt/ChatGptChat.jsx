@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import { FaRegCommentDots } from 'react-icons/fa'; // Ícone de chat
 import 'tailwindcss/tailwind.css';
 
 const ChatGPTChat = () => {
@@ -7,6 +8,8 @@ const ChatGPTChat = () => {
   const [input, setInput] = useState('');
   const [step, setStep] = useState(0);
   const [isTyping, setIsTyping] = useState(false); // Para controlar o estado de "digitando"
+  const [isChatOpen, setIsChatOpen] = useState(false); // Controla a visibilidade do chat
+  const chatContainerRef = useRef(null); // Para rolagem automática
   const [userData, setUserData] = useState({
     name: '',
     email: '',
@@ -21,6 +24,13 @@ const ChatGPTChat = () => {
 
   // Regex para validar o telefone no formato XXXXXXXXXXX
   const phoneRegex = /^\d{11}$/;
+
+  // Função para rolar automaticamente para a última mensagem
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   // Função para simular um delay na resposta do bot
   const addBotMessageWithDelay = (message, delay = 1500) => {
@@ -90,62 +100,82 @@ const ChatGPTChat = () => {
     }
   };
 
+  // Controla a abertura do chat
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
+  };
+
   return (
-    <div id="chat" className="flex flex-col items-center p-20 bg-gray-100 min-h-screen">
-      {/* Título */}
-      <h2 className="text-center text-3xl font-bold text-[#39B6EB] mb-4">
-        Fale com nossa assistente virtual! <br />
-        Tire suas dúvidas sobre nossos planos e como um site pode ajudar nas suas vendas.
-      </h2>
+    <div className="relative">
+      {/* Botão de ícone de chat no canto inferior direito */}
+      <button
+        onClick={toggleChat}
+        className="fixed bottom-5 right-5 bg-[#39B6EB] text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition duration-300 z-50"
+      >
+        <FaRegCommentDots size={24} />
+      </button>
 
-      {/* Área do Chat */}
-      <div className="w-full max-w-lg bg-white shadow-lg rounded-lg p-4 h-[32rem] overflow-y-auto mb-4"> {/* Aumentado para 32rem */}
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`my-2 p-2 rounded-lg max-w-[80%] ${
-              msg.sender === 'user'
-                ? 'bg-[#DCF8C6] text-black self-end' // Verde claro semelhante ao WhatsApp
-                : 'bg-white text-black self-start border border-gray-200'
-            } shadow-md`}
-          >
-            <p className="text-sm">{msg.sender === 'user' ? 'Você' : 'Assistente Virtual'}</p>
-            <p>{msg.text}</p>
-          </div>
-        ))}
-        {/* Animação de digitando */}
-        {isTyping && (
-          <div className="my-2 p-2 bg-white text-gray-700 rounded-lg self-start border border-gray-200">
-            <strong>Assistente Virtual está digitando...</strong>
-          </div>
-        )}
-      </div>
-
-      {/* Campo de texto e botão de envio */}
-      <div className="w-full max-w-lg flex items-center bg-white border border-gray-300 rounded-full px-2 py-1 shadow-md">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown} // Detecta o pressionamento da tecla Enter
-          className="flex-grow p-2 text-sm rounded-full focus:outline-none"
-          placeholder={
-            step === 0
-              ? 'Digite seu nome...'
-              : step === 1
-              ? 'Digite seu e-mail...'
-              : step === 2
-              ? 'Digite seu telefone...'
-              : 'Digite sua pergunta...'
-          }
-        />
-        <button
-          onClick={sendMessage}
-          className="ml-2 bg-[#39B6EB] text-white p-2 rounded-full hover:bg-blue-600 transition duration-300"
+      {/* Modal de Chat */}
+      {isChatOpen && (
+        <div
+          className="fixed bottom-0 right-0 w-full md:w-[400px] h-[90vh] bg-white shadow-lg rounded-t-lg z-50 flex flex-col"
         >
-          Enviar
-        </button>
-      </div>
+          {/* Título */}
+          <div className="bg-[#39B6EB] text-white p-4 rounded-t-lg flex justify-between items-center">
+            <h2 className="text-xl font-bold">Fale com nossa assistente virtual!</h2>
+            <button onClick={toggleChat} className="text-white font-bold text-lg">X</button>
+          </div>
+
+          {/* Área do Chat */}
+          <div ref={chatContainerRef} className="flex-grow p-4 overflow-y-auto">
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`my-2 p-2 rounded-lg max-w-[80%] ${
+                  msg.sender === 'user'
+                    ? 'bg-[#DCF8C6] text-black self-end'
+                    : 'bg-white text-black self-start border border-gray-200'
+                } shadow-md`}
+              >
+                <p className="text-sm">{msg.sender === 'user' ? 'Você' : 'Assistente Virtual'}</p>
+                <p>{msg.text}</p>
+              </div>
+            ))}
+            {/* Animação de digitando */}
+            {isTyping && (
+              <div className="my-2 p-2 bg-white text-gray-700 rounded-lg self-start border border-gray-200">
+                <strong>Assistente Virtual está digitando...</strong>
+              </div>
+            )}
+          </div>
+
+          {/* Campo de texto e botão de envio */}
+          <div className="w-full flex items-center bg-white border border-gray-300 rounded-full px-2 py-1 shadow-md">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown} // Detecta o pressionamento da tecla Enter
+              className="flex-grow p-2 text-sm rounded-full focus:outline-none transition-transform duration-500 transform hover:scale-105"
+              placeholder={
+                step === 0
+                  ? 'Digite seu nome...'
+                  : step === 1
+                  ? 'Digite seu e-mail...'
+                  : step === 2
+                  ? 'Digite seu telefone...'
+                  : 'Digite sua pergunta...'
+              }
+            />
+            <button
+              onClick={sendMessage}
+              className="ml-2 bg-[#39B6EB] text-white p-2 rounded-full hover:bg-blue-600 transition duration-300"
+            >
+              Enviar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
