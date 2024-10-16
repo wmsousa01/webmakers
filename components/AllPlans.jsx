@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { FaCheck } from "react-icons/fa6";
+import { FaCheck, FaCommentDots } from "react-icons/fa6"; // Ícone de chat
 import ChatGPTChat from "./gpt/ChatGptChat"; // Importando o componente do chat
 
 const AllPlans = () => {
+  const [showChat, setShowChat] = useState(false); // Estado para controlar a abertura do chat
   const [selectedPlan, setSelectedPlan] = useState(null); // Estado para controlar o plano selecionado
-  const [showChat, setShowChat] = useState(false); // Estado para controlar a abertura do modal
 
   // Função para abrir o modal e definir o plano selecionado
   const handleOpenChat = (plan) => {
@@ -60,6 +60,11 @@ const AllPlans = () => {
 
   return (
     <div id="precos" className="container mx-auto p-3">
+      {/* Alerta de 20% Off */}
+      <div className="bg-yellow-400 text-black text-center p-3 font-bold">
+        🏷️ 20% OFF em todos os planos! Garanta agora e aproveite essa promoção limitada!
+      </div>
+
       <div className="flex flex-col items-center justify-center min-h-screen text-gray-700 bg-gray-100 md:p-20">
         <h1 className="text-center text-[#39B6EB] text-3xl md:text-4xl font-bold p-5">
           Escolha o plano que se adapta ao seu negócio
@@ -215,6 +220,16 @@ const AllPlans = () => {
               </a>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Ícone de Chat com Animação de Pulso */}
+      {!showChat && (
+        <div
+          onClick={handleOpenChat}
+          className="fixed bottom-5 right-5 bg-[#39B6EB] text-white p-4 rounded-full shadow-lg cursor-pointer animate-pulse hover:animate-none transition-all duration-300"
+        >
+          <FaCommentDots size={30} />
         </div>
       )}
     </div>

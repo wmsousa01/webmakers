@@ -19,8 +19,19 @@ const BlogIndex = () => {
   ];
 
   return (
-    <div className="container mx-auto p-5">
-      <h1 className="text-4xl font-bold text-center mb-10">Nosso Blog</h1>
+    <div className="container mx-auto p-5" style={{ paddingTop: '100px' }}> {/* Adicionando padding para evitar o navbar */}
+      {/* Título do Blog */}
+      <h1 className="text-4xl font-bold text-center text-[#39B6EB] mb-5"> {/* Reduzido de 5xl para 4xl */}
+        Fique por Dentro das Melhores Dicas!
+      </h1>
+      
+      {/* Descrição do Blog */}
+      <p className="text-lg text-gray-600 text-center mb-10"> {/* Reduzido de xl para lg */}
+        Acompanhe nossas últimas postagens e descubra como otimizar o seu site, 
+        melhorar a experiência do cliente e impulsionar suas vendas com as melhores práticas de tecnologia e marketing.
+      </p>
+
+      {/* Posts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {posts.map((post, index) => (
           <Link key={index} href={`/blog/${post.slug}`} legacyBehavior>
