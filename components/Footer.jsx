@@ -12,28 +12,32 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <div>
-      <div className="bg-[#39B6EB] h-[200px] w-full flex md:flex-row justify-around items-center flex-col p-10">
-        <div className="">
-          <ul>
+    <footer>
+      <div className="bg-[#39B6EB] py-10 w-full flex md:flex-row justify-around items-center flex-col p-6">
+        {/* Logo */}
+        <div className="mb-6 md:mb-0">
+          <Link legacyBehavior href="/">
             <a>
               <Image
                 src={NavLogo}
-                alt="/"
+                alt="Web Makers Logo"
                 width="170"
                 height="70"
                 className="cursor-pointer"
               />
             </a>
-          </ul>
+          </Link>
         </div>
-        <div className="flex  gap-12">
+
+        {/* Social Links */}
+        <div className="flex gap-8">
           <a
             href="https://web.facebook.com/profile.php?id=61563044076990"
             target="_blank"
             rel="noreferrer"
+            aria-label="Facebook"
           >
-            <div className="text-2xl text-white cursor-pointer hover:text-gray-300 ">
+            <div className="text-2xl text-white cursor-pointer hover:text-gray-300">
               <FaFacebook />
             </div>
           </a>
@@ -41,18 +45,41 @@ function Footer() {
             href="https://www.instagram.com/webmakersbr/"
             target="_blank"
             rel="noreferrer"
+            aria-label="Instagram"
           >
             <div className="text-2xl text-white cursor-pointer hover:text-gray-300">
               <FaInstagram />
             </div>
           </a>
+          <a
+            href="https://www.linkedin.com/company/webmakersbr/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
+            <div className="text-2xl text-white cursor-pointer hover:text-gray-300">
+              <FaLinkedin />
+            </div>
+          </a>
+          <a href="https://wa.me/5519989331908" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+            <div className="text-2xl text-white cursor-pointer hover:text-gray-300">
+              <FaWhatsapp />
+            </div>
+          </a>
         </div>
       </div>
 
-      <div className="flex flex-col justify-center items-center text-center p-5 ">
-        Copyright Web Makers. Todos os direitos reservados.
+      <div className="bg-gray-200 py-4 text-center">
+        <p className="text-gray-700">
+          © {new Date().getFullYear()} Web Makers. Todos os direitos reservados.
+        </p>
+        <p>
+          <Link legacyBehavior href="/politica-de-privacidade">
+            <a className="text-[#39B6EB] hover:underline">Política de Privacidade</a>
+          </Link>
+        </p>
       </div>
-    </div>
+    </footer>
   );
 }
 
