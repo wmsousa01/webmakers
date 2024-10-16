@@ -7,6 +7,7 @@ import { Sling as Hamburger } from "hamburger-react";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [color, setColor] = useState("#39B6EB");
+  
   const handleNav = () => {
     setNav(!nav);
   };
@@ -27,10 +28,10 @@ const Navbar = () => {
   return (
     <div
       id="navbar"
-      style={{ backgroundColor: `${color}` }}
-      className="fixed  left-0 top-0 w-full z-50 ease-in duration-300 shadow-xl"
+      style={{ backgroundColor: `${color}`, height: "70px" }} // Definir a altura aqui
+      className="fixed left-0 top-0 w-full z-50 ease-in duration-300 shadow-xl"
     >
-      <div className=" m-auto flex justify-between items-center p-4 text-white md:mx-20">
+      <div className="m-auto flex justify-between items-center p-4 text-white md:mx-20">
         <Link legacyBehavior href="/">
           <a>
             <Image
@@ -38,7 +39,7 @@ const Navbar = () => {
               alt="/"
               width="220"
               height="70"
-              className="cursor-pointer "
+              className="cursor-pointer"
               style={{
                 maxWidth: "70%",
                 height: "auto",
@@ -47,7 +48,7 @@ const Navbar = () => {
           </a>
         </Link>
 
-        {/* desktop */}
+        {/* Versão Desktop */}
         <div className="md:block hidden">
           <ul className="flex gap-2">
             <li className="p-2 text-2xl hover:text-gray-300">
@@ -59,14 +60,19 @@ const Navbar = () => {
             <li className="p-2 text-2xl hover:text-gray-300">
               <Link href="/contact">Contato</Link>
             </li>
+            {/* Novo link para o Blog */}
+            <li className="p-2 text-2xl hover:text-gray-300">
+              <Link href="/blog">Blog</Link>
+            </li>
           </ul>
         </div>
 
-        {/* Mobile button */}
+        {/* Botão Mobile */}
         <div onClick={handleNav} className="md:hidden block z-10">
           <Hamburger color="white" toggled={nav} toggle={setNav} />
         </div>
-        {/* Mobile menu */}
+
+        {/* Menu Mobile */}
         <div
           className={
             nav
@@ -86,26 +92,19 @@ const Navbar = () => {
                 >
                   Web Makers
                 </h2>
-                <li
-                  onClick={handleNav}
-                  className="p-2 text-2xl hover:text-[#595252]"
-                >
+                <li onClick={handleNav} className="p-2 text-2xl hover:text-[#595252]">
                   <Link href="/#solutions">Soluções</Link>
                 </li>
-                <li
-                  onClick={handleNav}
-                  className="p-2 text-2xl hover:text-[#595252]"
-                >
+                <li onClick={handleNav} className="p-2 text-2xl hover:text-[#595252]">
                   <Link href="/#precos">Planos</Link>
                 </li>
-                <li
-                  onClick={handleNav}
-                  className="p-2 text-2xl mb-5 hover:text-[#595252]"
-                >
+                <li onClick={handleNav} className="p-2 text-2xl hover:text-[#595252]">
                   <Link href="/contact">Contato</Link>
                 </li>
-
-                {/* Outros itens da lista */}
+                {/* Novo link para o Blog no menu mobile */}
+                <li onClick={handleNav} className="p-2 text-2xl mb-5 hover:text-[#595252]">
+                  <Link href="/blog">Blog</Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -114,4 +113,5 @@ const Navbar = () => {
     </div>
   );
 };
+
 export default Navbar;

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import ChatGPTChat from "../components/gpt/ChatGptChat"; // Importe o componente do chat
 import "../styles/globals.css";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,18 +23,25 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     toast(
-      <div style={{ fontSize: "20px", fontWeight: "bold", fontFamily: "Montserrat, sans-serif", textAlign: "center", color: "#000" }}>
-        Aproveite <span style={{ color: "#38b6ff" }}>20%</span> de Desconto no Seu Novo Site!
+      <div style={{ fontSize: "18px", fontWeight: "bold", fontFamily: "Montserrat, sans-serif", textAlign: "center", color: "#333" }}>
+        Aproveite <span style={{ color: "#39B6EB" }}>20% de Desconto</span> no Seu Novo Site!
       </div>,
       {
         position: "top-center",
-        autoClose: 20000,
+        autoClose: 15000,  // Fecha automaticamente em 15 segundos
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         style: {
-          background: "#FFF",
+          background: "#FFF", // Fundo branco
+          borderRadius: "12px",  // Bordas arredondadas
+          boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",  // Sombra suave
+          border: "1px solid #39B6EB",  // Borda azul suave
+          padding: "15px",  // Padding para uma sensação mais "arejada"
         },
+        progressStyle: {
+          background: "#39B6EB",  // Cor do progresso para combinar com a marca
+        }
       }
     );
   }, []);
@@ -42,7 +50,7 @@ function MyApp({ Component, pageProps }) {
     <div>
       <ToastContainer 
         position="top-right"
-        autoClose={20000}
+        autoClose={15000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -50,10 +58,11 @@ function MyApp({ Component, pageProps }) {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="colored"
+        theme="light"  // Tema mais leve e claro
       />
       <Navbar />
-      <Component {...pageProps} />t 
+      <Component {...pageProps} />
+      <ChatGPTChat /> {/* Chat exibido em todas as telas */}
       <Footer />
     </div>
   );
