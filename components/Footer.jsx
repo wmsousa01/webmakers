@@ -52,7 +52,7 @@ function Footer() {
             </div>
           </a>
           <a
-            href="https://www.linkedin.com/company/webmakersbr/"
+            href="https://www.linkedin.com/company/web-makersbr"
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
