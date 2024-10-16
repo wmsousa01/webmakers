@@ -2130,7 +2130,7 @@ next-image-zoom@^1.1.7:
   resolved "https://registry.npmjs.org/next-image-zoom/-/next-image-zoom-1.1.7.tgz"
   integrity sha512-dSXA/c7z6SZQQvwoCP+JK9s0A5Nx1ZtGwIM7p/j7dP2gsLhdkwrTlShkQw+SvXDKgU5iVB2XoUKS+DFBGm49og==
 
-next@^14.0.4:
+next@^14.0.4, next@>=11.0.0:
   version "14.0.4"
   resolved "https://registry.npmjs.org/next/-/next-14.0.4.tgz"
   integrity sha512-qbwypnM7327SadwFtxXnQdGiKpkuhaRLE2uq62/nRul9cj9KhQ5LhHmlziTNqUidZotw/Q1I9OjirBROdUJNgA==
@@ -2153,6 +2153,13 @@ next@^14.0.4:
     "@next/swc-win32-arm64-msvc" "14.0.4"
     "@next/swc-win32-ia32-msvc" "14.0.4"
     "@next/swc-win32-x64-msvc" "14.0.4"
+
+nextjs-google-analytics@^2.3.7:
+  version "2.3.7"
+  resolved "https://registry.npmjs.org/nextjs-google-analytics/-/nextjs-google-analytics-2.3.7.tgz"
+  integrity sha512-kuE5OcqmAg1qh9J6LskoDLybj8WmLyfxD+KsVGGvRe5zZg6bGQ/QM/1/7TdJq/u7hIeVqFqcloadD0pcosRXUw==
+  optionalDependencies:
+    fsevents "^2.3.2"
 
 node-releases@^2.0.8:
   version "2.0.10"
@@ -2642,7 +2649,7 @@ react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@*, "react@^15.0.0 || ^16.0.0", "react@^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", react@^16.3.0, "react@^16.8 || ^17 || ^18", react@^16.8.0, "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", react@^18.2.0, "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", react@>=0.14.0, react@>=15.0.0, react@>=16.14.0, react@>=16.6.0, react@>=16.8.0, react@>=16.x.x, react@>=18, react@>=18.0.0:
+react@*, "react@^15.0.0 || ^16.0.0", "react@^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", react@^16.3.0, "react@^16.8 || ^17 || ^18", react@^16.8.0, "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", react@^18.2.0, "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", react@>=0.14.0, react@>=15.0.0, react@>=16.14.0, react@>=16.6.0, react@>=16.8.0, react@>=16.x.x, react@>=17.0.0, react@>=18, react@>=18.0.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
