@@ -1,30 +1,27 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import '../styles/globals.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Script from 'next/script';
+import ChatGPTChat from '../components/gpt/ChatGptChat'; // Importa o componente do chat
 
 function MyApp({ Component, pageProps }) {
+  const [showOffer, setShowOffer] = useState(true); // Controla a exibição do alerta
 
   useEffect(() => {
-    // Toast notification
-    toast(
-      <div style={{ fontSize: "20px", fontWeight: "bold", fontFamily: "Montserrat, sans-serif", textAlign: "center", color: "#000" }}>
-        Aproveite <span style={{ color: "#38b6ff" }}>20%</span> de Desconto no Seu Novo Site!
-      </div>,
-      {
-        position: "top-right",
-        autoClose: 15000, // Fechamento automático após 15 segundos
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        style: {
-          background: "#FFF", // Fundo claro
-        },
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setShowOffer(false); // Esconde a label se o scroll for maior que 50px
+      } else {
+        setShowOffer(true); // Mostra a label novamente se o usuário voltar ao topo
       }
-    );
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll); // Limpa o listener ao desmontar
+    };
   }, []);
 
   return (
@@ -47,23 +44,26 @@ function MyApp({ Component, pageProps }) {
         }}
       />
 
-      {/* ToastContainer com ajustes */}
-      <ToastContainer 
-        position="top-right"
-        autoClose={15000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"  // Tema mais leve e claro
-      />
-
+      {/* Navbar */}
       <Navbar />
-      <Component {...pageProps} />
+
+      {/* Label de oferta - com ajustes de posicionamento */}
+      {showOffer && (
+        <div className="bg-yellow-400 text-black text-center p-4 font-bold text-lg cursor-pointer fixed top-[70px] w-full z-50" onClick={() => window.location.href = '/#precos'}>
+          🏷️ Aproveite 20% OFF em todos os planos! Clique aqui e saiba mais.
+        </div>
+      )}
+
+      {/* Conteúdo da página */}
+      <div className={showOffer ? "mt-[70px]" : "mt-[0px]"}>
+        <Component {...pageProps} />
+      </div>
+
+      {/* Rodapé */}
       <Footer />
+
+      {/* Chat renderizado em todas as telas */}
+      <ChatGPTChat />
     </div>
   );
 }

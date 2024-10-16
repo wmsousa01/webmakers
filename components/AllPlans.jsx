@@ -1,21 +1,17 @@
 import React, { useState } from "react";
-import { FaCheck, FaCommentDots } from "react-icons/fa6"; // Ícone de chat
-import ChatGPTChat from "./gpt/ChatGptChat"; // Importando o componente do chat
+import { FaCheck } from "react-icons/fa6"; // Ícone de checagem
 
 const AllPlans = () => {
-  const [showChat, setShowChat] = useState(false); // Estado para controlar a abertura do chat
   const [selectedPlan, setSelectedPlan] = useState(null); // Estado para controlar o plano selecionado
 
   // Função para abrir o modal e definir o plano selecionado
-  const handleOpenChat = (plan) => {
+  const handleOpenPlan = (plan) => {
     setSelectedPlan(plan);
-    setShowChat(true);
   };
 
   // Função para fechar o modal
-  const handleCloseChat = () => {
+  const handleClosePlan = () => {
     setSelectedPlan(null);
-    setShowChat(false);
   };
 
   // Função para gerar o link do WhatsApp com o nome do plano
@@ -61,7 +57,10 @@ const AllPlans = () => {
   return (
     <div id="precos" className="container mx-auto p-3">
       {/* Alerta de 20% Off */}
-      <div className="bg-yellow-400 text-black text-center p-3 font-bold">
+      <div 
+        className="bg-yellow-400 text-black text-center p-3 font-bold cursor-pointer"
+        onClick={() => handleOpenPlan("WebStart")} // Abre o plano WebStart ao clicar no banner de 20% OFF
+      >
         🏷️ 20% OFF em todos os planos! Garanta agora e aproveite essa promoção limitada!
       </div>
 
@@ -71,22 +70,22 @@ const AllPlans = () => {
         </h1>
 
         <p className="text-center max-w-2xl text-lg text-gray-500">
-          Cada plano foi pensado para atender as necessidades específicas do seu negócio. Clique em um plano para saber mais e falar com nossa assistente virtual.
+          Cada plano foi pensado para atender as necessidades específicas do seu negócio. Clique em um plano para saber mais detalhes e fechar negócio pelo WhatsApp.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center justify-center w-full max-w-5xl mt-8">
           {/* Card Web Start */}
           <div
-            className="flex flex-col mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[450px] w-full md:w-[350px]" // Altura reduzida para 450px
-            onClick={() => handleOpenChat("WebStart")}
+            className="flex flex-col mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[450px] w-full md:w-[350px]"
+            onClick={() => handleOpenPlan("WebStart")}
           >
             <div className="flex flex-col items-center p-10 bg-gray-200">
               <span className="font-semibold text-2xl">Web Start</span>
               <p className="text-gray-500 text-sm">Ideal para pequenas empresas</p>
             </div>
 
-            <div className="p-8 text-base flex-grow"> {/* Texto e benefícios mantidos */}
-              <ul className="">
+            <div className="p-8 text-base flex-grow">
+              <ul>
                 <li className="flex items-center">
                   <FaCheck size={16} color="green" />
                   <p className="ml-2 p-2">Site institucional responsivo (Até 5 páginas)</p>
@@ -110,7 +109,7 @@ const AllPlans = () => {
           {/* Card Web Boost */}
           <div
             className="flex flex-col mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[450px] w-full md:w-[350px]"
-            onClick={() => handleOpenChat("WebBoost")}
+            onClick={() => handleOpenPlan("WebBoost")}
           >
             <div className="flex flex-col items-center p-10 bg-gray-200">
               <span className="font-semibold text-2xl">Web Boost</span>
@@ -118,7 +117,7 @@ const AllPlans = () => {
             </div>
 
             <div className="p-8 text-base flex-grow">
-              <ul className="">
+              <ul>
                 <li className="flex items-center">
                   <FaCheck size={16} color="green" />
                   <p className="ml-2 p-2">Site institucional responsivo (Até 10 páginas)</p>
@@ -142,7 +141,7 @@ const AllPlans = () => {
           {/* Card Web Mastery */}
           <div
             className="flex flex-col mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[450px] w-full md:w-[350px]"
-            onClick={() => handleOpenChat("WebMastery")}
+            onClick={() => handleOpenPlan("WebMastery")}
           >
             <div className="flex flex-col items-center p-10 bg-gray-200">
               <span className="font-semibold text-2xl">Web Mastery</span>
@@ -150,7 +149,7 @@ const AllPlans = () => {
             </div>
 
             <div className="p-8 text-base flex-grow">
-              <ul className="">
+              <ul>
                 <li className="flex items-center">
                   <FaCheck size={16} color="green" />
                   <p className="ml-2 p-2">Site institucional completo e personalizado</p>
@@ -188,21 +187,21 @@ const AllPlans = () => {
         </div>
       </div>
 
-      {/* Modal do Chat com Argumentos de Venda */}
-      {showChat && selectedPlan && (
+      {/* Modal para detalhes do plano selecionado */}
+      {selectedPlan && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-5 w-full max-w-3xl relative">
             <button
-              onClick={handleCloseChat}
+              onClick={handleClosePlan}
               className="absolute top-4 right-8 bg-red-500 text-white p-2 rounded-full"
             >
               X
             </button>
             <div className="h-[500px] w-full overflow-y-auto">
-              <h2 className="text-2xl font-bold mb-4">{planDetails[selectedPlan].name}</h2>
-              <p className="mb-4">{planDetails[selectedPlan].description}</p>
+              <h2 className="text-2xl font-bold mb-4">{planDetails[selectedPlan]?.name}</h2>
+              <p className="mb-4">{planDetails[selectedPlan]?.description}</p>
               <ul className="mb-8">
-                {planDetails[selectedPlan].advantages.map((advantage, index) => (
+                {planDetails[selectedPlan]?.advantages.map((advantage, index) => (
                   <li key={index} className="flex items-center mb-2">
                     <FaCheck size={16} color="green" />
                     <p className="ml-2">{advantage}</p>
@@ -210,7 +209,7 @@ const AllPlans = () => {
                 ))}
               </ul>
               <a
-                href={getWhatsAppLink(planDetails[selectedPlan].name)}
+                href={getWhatsAppLink(planDetails[selectedPlan]?.name)}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -220,16 +219,6 @@ const AllPlans = () => {
               </a>
             </div>
           </div>
-        </div>
-      )}
-
-      {/* Ícone de Chat com Animação de Pulso */}
-      {!showChat && (
-        <div
-          onClick={handleOpenChat}
-          className="fixed bottom-5 right-5 bg-[#39B6EB] text-white p-4 rounded-full shadow-lg cursor-pointer animate-pulse hover:animate-none transition-all duration-300"
-        >
-          <FaCommentDots size={30} />
         </div>
       )}
     </div>

@@ -2,7 +2,6 @@ import Head from "next/head";
 import Hero from "../components/Hero";
 import Solutions from "../components/Solutions";
 import AllPlans from "../components/AllPlans";
-import ChatGPTChat from "../components/gpt/ChatGptChat";
 
 export default function Home() {
   return (
@@ -16,7 +15,6 @@ export default function Home() {
         <link rel="icon" href="/logo-1.png" />
       </Head>
       <Hero />
-      <ChatGPTChat />
       <Solutions />
       <AllPlans />
     </div>
