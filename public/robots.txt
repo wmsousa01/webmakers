@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://webmakers.dev.br
+
+# Sitemaps
+Sitemap: https://webmakers.dev.br/sitemap.xml
