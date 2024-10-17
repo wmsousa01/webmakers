@@ -32,6 +32,26 @@ class MyDocument extends Document {
             }}
           />
           {/* End Google Ads Tag */}
+
+          {/* Custom Conversion Event for Google Ads */}
+          <script>
+            {`
+              function gtagSendEvent() {
+                var callback = function () {
+                  window.location = window.location.href;
+                };
+                gtag('event', 'conversion_event_contact', {
+                  'event_category': 'Form Submission',
+                  'event_label': 'Chat Submission',
+                  'value': 1,
+                  'event_callback': callback,
+                  'event_timeout': 2000,
+                });
+                return false;
+              }
+            `}
+          </script>
+          {/* End Custom Conversion Event */}
         </Head>
         <body>
           {/* Google Tag Manager (noscript) */}
@@ -44,7 +64,7 @@ class MyDocument extends Document {
             ></iframe>
           </noscript>
           {/* End Google Tag Manager (noscript) */}
-          
+
           <Main />
           <NextScript />
         </body>

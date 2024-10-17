@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import 'tailwindcss/tailwind.css';
-import { FaComments } from 'react-icons/fa'; // Ícone do chat
+import React, { useState } from "react";
+import axios from "axios";
+import "tailwindcss/tailwind.css";
+import { FaComments } from "react-icons/fa"; // Ícone do chat
 
 const ChatGPTChat = () => {
-  const [messages, setMessages] = useState([{ text: 'Olá! Qual é o seu nome?', sender: 'bot' }]);
-  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState([
+    { text: "Olá! Qual é o seu nome?", sender: "bot" },
+  ]);
+  const [input, setInput] = useState("");
   const [step, setStep] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
   const [showChat, setShowChat] = useState(false); // Controla a exibição do chat
   const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    interest: ''
+    name: "",
+    email: "",
+    phone: "",
+    interest: "",
   });
 
   const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
@@ -32,7 +34,7 @@ const ChatGPTChat = () => {
   const addBotMessageWithDelay = (message, delay = 1500) => {
     setIsTyping(true);
     setTimeout(() => {
-      setMessages(prev => [...prev, { text: message, sender: 'bot' }]);
+      setMessages((prev) => [...prev, { text: message, sender: "bot" }]);
       setIsTyping(false);
     }, delay);
   };
@@ -40,10 +42,13 @@ const ChatGPTChat = () => {
   // Função para enviar os dados para o Jira
   const sendDataToJira = async (userData) => {
     try {
-      const response = await axios.post('https://webmaker-back-production.up.railway.app/send-to-jira', userData); // Corrigido o URL
+      const response = await axios.post(
+        "https://webmaker-back-production.up.railway.app/send-to-jira",
+        userData
+      ); // Corrigido o URL
       console.log(response.data);
     } catch (error) {
-      console.error('Erro ao enviar dados para o Jira:', error);
+      console.error("Erro ao enviar dados para o Jira:", error);
     }
   };
 
@@ -51,33 +56,48 @@ const ChatGPTChat = () => {
   const handleNextStep = (value) => {
     if (step === 0) {
       setUserData({ ...userData, name: value });
-      setMessages([...messages, { text: value, sender: 'user' }]);
-      addBotMessageWithDelay(`Prazer em te conhecer, ${value}! Qual é o seu e-mail?`);
+      setMessages([...messages, { text: value, sender: "user" }]);
+      addBotMessageWithDelay(
+        `Prazer em te conhecer, ${value}! Qual é o seu e-mail?`
+      );
       setStep(1);
     } else if (step === 1) {
       const cleanedEmail = value.trim().toLowerCase();
       if (validateEmail(cleanedEmail)) {
         setUserData({ ...userData, email: cleanedEmail });
-        setMessages([...messages, { text: cleanedEmail, sender: 'user' }]);
-        addBotMessageWithDelay(`Obrigado, ${userData.name}. E qual o seu telefone?`);
+        setMessages([...messages, { text: cleanedEmail, sender: "user" }]);
+        addBotMessageWithDelay(
+          `Obrigado, ${userData.name}. E qual o seu telefone?`
+        );
         setStep(2);
       } else {
-        addBotMessageWithDelay('Por favor, insira um e-mail válido.');
+        addBotMessageWithDelay("Por favor, insira um e-mail válido.");
       }
     } else if (step === 2) {
       if (phoneRegex.test(value)) {
         setUserData({ ...userData, phone: value });
-        setMessages([...messages, { text: value, sender: 'user' }]);
-        addBotMessageWithDelay(`O que você está buscando, ${userData.name}? Como podemos te ajudar?`);
+        setMessages([...messages, { text: value, sender: "user" }]);
+        addBotMessageWithDelay(
+          `O que você está buscando, ${userData.name}? Como podemos te ajudar?`
+        );
         setStep(3);
       } else {
-        addBotMessageWithDelay('Por favor, insira um telefone no formato XXXXXXXXXXX.');
+        addBotMessageWithDelay(
+          "Por favor, insira um telefone no formato XXXXXXXXXXX."
+        );
       }
     } else if (step === 3) {
       setUserData({ ...userData, interest: value });
-      setMessages([...messages, { text: value, sender: 'user' }]);
-      addBotMessageWithDelay(`Obrigado, ${userData.name}! Entraremos em contato em breve com a melhor solução para você.`);
-      sendDataToJira({ name: userData.name, email: userData.email, phone: userData.phone, interest: value });
+      setMessages([...messages, { text: value, sender: "user" }]);
+      addBotMessageWithDelay(
+        `Obrigado, ${userData.name}! Entraremos em contato em breve com a melhor solução para você.`
+      );
+      sendDataToJira({
+        name: userData.name,
+        email: userData.email,
+        phone: userData.phone,
+        interest: value,
+      });
       setStep(4);
     }
   };
@@ -86,13 +106,13 @@ const ChatGPTChat = () => {
   const sendMessage = async () => {
     if (input.trim()) {
       handleNextStep(input.trim());
-      setInput('');
+      setInput("");
     }
   };
 
   // Função para detectar a tecla "Enter" e enviar a mensagem
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       sendMessage();
     }
   };
@@ -125,8 +145,12 @@ const ChatGPTChat = () => {
       {showChat && (
         <div className="fixed bottom-0 right-0 w-full max-w-md h-[80vh] bg-white shadow-lg rounded-t-lg">
           <div className="flex justify-between items-center p-4 bg-[#39B6EB] text-white rounded-t-lg">
-            <h2 className="text-lg font-bold">Fale com nossa assistente virtual</h2>
-            <button onClick={toggleChat} className="text-white">X</button>
+            <h2 className="text-lg font-bold">
+              Fale com nossa assistente virtual
+            </h2>
+            <button onClick={toggleChat} className="text-white">
+              X
+            </button>
           </div>
 
           <div className="p-4 overflow-y-auto h-full">
@@ -135,12 +159,14 @@ const ChatGPTChat = () => {
                 <div
                   key={index}
                   className={`my-2 p-2 rounded-lg max-w-[80%] ${
-                    msg.sender === 'user'
-                      ? 'bg-[#DCF8C6] text-black self-end'
-                      : 'bg-white text-black self-start border border-gray-200'
+                    msg.sender === "user"
+                      ? "bg-[#DCF8C6] text-black self-end"
+                      : "bg-white text-black self-start border border-gray-200"
                   } shadow-md`}
                 >
-                  <p className="text-sm">{msg.sender === 'user' ? 'Você' : 'Assistente Virtual'}</p>
+                  <p className="text-sm">
+                    {msg.sender === "user" ? "Você" : "Assistente Virtual"}
+                  </p>
                   <p>{msg.text}</p>
                 </div>
               ))}
@@ -161,16 +187,19 @@ const ChatGPTChat = () => {
                 className="flex-grow p-2 text-sm rounded-full focus:outline-none"
                 placeholder={
                   step === 0
-                    ? 'Digite seu nome...'
+                    ? "Digite seu nome..."
                     : step === 1
-                    ? 'Digite seu e-mail...'
+                    ? "Digite seu e-mail..."
                     : step === 2
-                    ? 'Digite seu telefone...'
-                    : 'Digite sua pergunta...'
+                    ? "Digite seu telefone..."
+                    : "Digite sua pergunta..."
                 }
               />
               <button
-                onClick={sendMessage}
+                onClick={() => {
+                  sendMessage();
+                  gtagSendEvent(); // Chama o evento de conversão aqui
+                }}
                 className="ml-2 bg-[#39B6EB] text-white p-2 rounded-full hover:bg-blue-600 transition duration-300"
               >
                 Enviar
