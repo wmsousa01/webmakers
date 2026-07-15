@@ -86,7 +86,11 @@ export const heroStats = [
   { k: "100%", v: "responsivo em qualquer tela" },
 ];
 
-export const logos = ["Aurora", "Meridian", "Nordeste Co.", "Vértice", "Campo Belo"];
+export const logos = [
+  { name: "Contenta AI", url: "https://www.contentaai.com.br/" },
+  { name: "PFC TV", url: "https://www.pfctv.com.br/" },
+  { name: "Canaã Pallets", url: "https://www.canaapallets.com.br/" },
+];
 
 export const bullets = [
   "Site institucional que representa sua marca com profissionalismo.",

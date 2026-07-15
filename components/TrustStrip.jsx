@@ -9,12 +9,15 @@ const TrustStrip = () => {
           Empresas que crescem com a gente
         </span>
         {logos.map((logo) => (
-          <span
-            key={logo}
-            className="font-display font-extrabold text-lg text-[#B3BAC5] tracking-tight"
+          <a
+            key={logo.name}
+            href={logo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-display font-extrabold text-lg text-[#B3BAC5] tracking-tight hover:text-brand-600 transition-colors"
           >
-            {logo}
-          </span>
+            {logo.name}
+          </a>
         ))}
       </div>
     </section>
