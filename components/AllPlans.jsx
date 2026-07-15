@@ -16,7 +16,77 @@ const AllPlans = () => {
         </p>
       </div>
 
-      <div className="mt-14 border border-line rounded-[20px] overflow-hidden shadow-table">
+      {/* Mobile: cards empilhados (um por plano) */}
+      <div className="md:hidden mt-10 flex flex-col gap-5">
+        {plans.map((p, idx) => (
+          <div
+            key={p.name}
+            className={`rounded-[18px] border p-6 ${
+              p.popular
+                ? "border-brand-600 bg-surface-tint shadow-card"
+                : "border-line bg-white"
+            }`}
+          >
+            {p.popular && (
+              <span className="inline-block mb-3 px-3 py-1 rounded-full bg-brand-50 text-brand-700 font-bold text-xs tracking-[.04em]">
+                MAIS ESCOLHIDO
+              </span>
+            )}
+            <div className="font-display font-extrabold text-[22px] text-brand-900">
+              {p.name}
+            </div>
+            <div className="text-sm text-ink-soft font-medium mt-[6px]">
+              {p.tag}
+            </div>
+            <div className="mt-3">
+              {p.pricePrefix && (
+                <span className="block text-xs text-ink-soft font-medium">
+                  {p.pricePrefix}
+                </span>
+              )}
+              <span className="font-display font-extrabold text-[28px] text-brand-900 leading-none">
+                {p.priceMonthly}
+              </span>
+              <span className="text-sm text-ink-soft font-semibold">/mês</span>
+              <span className="block text-[13px] text-ink-soft mt-1">
+                {p.priceSetup}
+              </span>
+            </div>
+
+            <ul className="mt-5 border-t border-line">
+              {planRows.map((row) => (
+                <li
+                  key={row.label}
+                  className="flex items-start justify-between gap-4 py-[11px] border-b border-line last:border-b-0"
+                >
+                  <span className="text-ink-subtle text-sm">{row.label}</span>
+                  <span
+                    className={`text-right text-sm font-semibold ${
+                      row.values[idx] === "—" ? "text-ink-faint" : "text-ink"
+                    }`}
+                  >
+                    {row.values[idx]}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <Link
+              href="/#contato"
+              className={`mt-6 inline-block w-full text-center px-4 py-3 rounded-[9px] font-bold text-[15px] transition-colors duration-200 ${
+                p.popular
+                  ? "text-white bg-brand-600 hover:bg-brand-700"
+                  : "text-brand-600 bg-white border border-[#B6E3F6] hover:bg-brand-50"
+              }`}
+            >
+              Falar com especialista
+            </Link>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop: tabela comparativa */}
+      <div className="hidden md:block mt-14 border border-line rounded-[20px] overflow-hidden shadow-table">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-[15px] min-w-[760px]">
             <thead>
