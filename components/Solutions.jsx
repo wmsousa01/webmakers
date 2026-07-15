@@ -1,66 +1,49 @@
 import React from "react";
-import { AiOutlineDesktop, AiOutlineDeploymentUnit, AiOutlineShoppingCart, AiOutlineRobot } from "react-icons/ai";
+import Link from "next/link";
+import { solutions } from "./data/siteData";
 
 const Solutions = () => {
   return (
-    <div id="solutions" className="container mx-auto text-black py-20">
-      <div className="grid">
-        <div className="text-center">
-          <h1 className="text-center text-[#39B6EB] text-4xl md:text-4xl font-bold p-3">
-            Soluções para impulsionar seu negócio
-          </h1>
-
-          <p className="mt-4">
-            Entre em contato conosco hoje mesmo e descubra como a nossa equipe
-            pode ajudar a sua empresa.
-          </p>
-        </div>
-        <div className="grid justify-center">
-          <div className="grid md:grid-cols-4 text-center mt-10 justify-center gap-3">
-            {/* Card 1 */}
-            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-gray-200 ease-in-out duration-500">
-              <AiOutlineDesktop size={30} color="#39B6EB" />
-              <p className="p-2 font-bold text-lg">Presença online de impacto</p>
-              <p>
-                Crie um site institucional moderno e responsivo que reflita a
-                identidade da sua empresa e atraia novos clientes.
-              </p>
-            </div>
-
-            {/* Card 2 */}
-            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-gray-200 ease-in-out duration-500">
-              <AiOutlineDeploymentUnit size={30} color="#39B6EB" />
-              <p className="text-center p-2 font-bold text-lg">Conectividade Eficiente</p>
-              <p>
-                Integre seus sistemas web para aumentar a eficiência
-                operacional, reduzir erros e melhorar a tomada de decisões.
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-gray-200 ease-in-out duration-500">
-              <AiOutlineRobot size={30} color="#39B6EB" />
-              <p className="text-center p-2 font-bold text-lg">Produtividade Automatizada</p>
-              <p>
-                Implemente soluções de automação que otimizam processos
-                repetitivos, liberando tempo para atividades estratégicas.
-              </p>
-            </div>
-
-            {/* Card 4 (ajustado) */}
-            <div className="grid justify-items-center p-8 border shadow-2xl rounded-lg w-[250px] hover:scale-110 hover:bg-gray-200 ease-in-out duration-500">
-              <AiOutlineShoppingCart size={30} color="#39B6EB" />
-              <p className="text-center p-2 font-bold text-lg">
-                Comércio Eletrônico Simplificado
-              </p>
-              <p>
-                Crie uma loja virtual eficiente e fácil de gerenciar, conectando seu produto a clientes em todo o país.
-              </p>
-            </div>
-          </div>
-        </div>
+    <section id="solucoes" className="max-w-[1200px] mx-auto px-4 md:px-8 pt-20 md:pt-24 pb-10">
+      <div className="max-w-[720px] mx-auto text-center">
+        <div className="eyebrow mb-[14px]">Soluções</div>
+        <h2 className="section-title mb-4" style={{ textWrap: "balance" }}>
+          Soluções para impulsionar seu negócio
+        </h2>
+        <p className="text-lg md:text-[19px] text-ink-subtle">
+          Nossa equipe cuida da parte técnica para você focar no que faz
+          melhor: atender seus clientes.
+        </p>
       </div>
-    </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-14">
+        {solutions.map(({ icon: Icon, ...s }) => (
+          <div
+            key={s.title}
+            className="border border-line rounded-[18px] p-8 bg-white transition-all duration-200 hover:shadow-card-hover hover:-translate-y-1"
+          >
+            <div className="flex items-center gap-4 mb-[18px]">
+              <span
+                className="flex-none w-14 h-14 rounded-[14px] inline-flex items-center justify-center"
+                style={{ background: s.tint }}
+              >
+                <Icon size={26} style={{ color: s.color }} />
+              </span>
+              <h3 className="font-display font-bold text-[22px] text-brand-900 m-0">
+                {s.title}
+              </h3>
+            </div>
+            <p className="text-base text-ink-subtle mb-[18px]">{s.long}</p>
+            <Link
+              href="/#contato"
+              className="font-bold text-[15px] text-brand-600 hover:text-brand-700"
+            >
+              Saiba mais →
+            </Link>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 

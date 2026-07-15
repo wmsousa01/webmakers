@@ -129,7 +129,7 @@ const ChatGPTChat = () => {
         <div className="relative">
           <button
             onClick={toggleChat}
-            className="bg-[#39B6EB] text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition duration-300 animate-pulse"
+            className="bg-brand-600 text-white p-4 rounded-full shadow-overlay hover:bg-brand-700 transition duration-300 animate-pulse"
           >
             <FaComments size={24} />
           </button>
@@ -144,7 +144,7 @@ const ChatGPTChat = () => {
       {/* Janela do chat */}
       {showChat && (
         <div className="fixed bottom-0 right-0 w-full max-w-md h-[80vh] bg-white shadow-lg rounded-t-lg">
-          <div className="flex justify-between items-center p-4 bg-[#39B6EB] text-white rounded-t-lg">
+          <div className="flex justify-between items-center p-4 bg-brand-700 text-white rounded-t-lg">
             <h2 className="text-lg font-bold">
               Fale com nossa assistente virtual
             </h2>
@@ -200,7 +200,7 @@ const ChatGPTChat = () => {
                   sendMessage();
                   gtagSendEvent(); // Chama o evento de conversão aqui
                 }}
-                className="ml-2 bg-[#39B6EB] text-white p-2 rounded-full hover:bg-blue-600 transition duration-300"
+                className="ml-2 bg-brand-600 text-white p-2 rounded-full hover:bg-brand-700 transition duration-300"
               >
                 Enviar
               </button>

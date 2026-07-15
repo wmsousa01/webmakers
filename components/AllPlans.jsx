@@ -1,227 +1,121 @@
-import React, { useState } from "react";
-import { FaCheck } from "react-icons/fa6"; // Ícone de checagem
+import React from "react";
+import Link from "next/link";
+import { plans, planRows } from "./data/siteData";
 
 const AllPlans = () => {
-  const [selectedPlan, setSelectedPlan] = useState(null); // Estado para controlar o plano selecionado
-
-  // Função para abrir o modal e definir o plano selecionado
-  const handleOpenPlan = (plan) => {
-    setSelectedPlan(plan);
-  };
-
-  // Função para fechar o modal
-  const handleClosePlan = () => {
-    setSelectedPlan(null);
-  };
-
-  // Função para gerar o link do WhatsApp com o nome do plano
-  const getWhatsAppLink = (planName) => {
-    const message = encodeURIComponent(`Olá, vim do site e gostaria de comprar o plano ${planName}`);
-    return `https://api.whatsapp.com/send?phone=5519989331908&text=${message}`;
-  };
-
-  // Argumentos de venda com senso de urgência para cada plano
-  const planDetails = {
-    WebStart: {
-      name: "Web Start",
-      description: "Perfeito para pequenas empresas que querem iniciar sua presença digital sem perder tempo. Garanta um site profissional e conquiste novos clientes agora mesmo!",
-      advantages: [
-        "Site institucional responsivo (Até 5 páginas)",
-        "Integração básica de sistemas",
-        "Automação de processos simples",
-        "Suporte técnico básico"
-      ]
-    },
-    WebBoost: {
-      name: "Web Boost",
-      description: "Seu negócio está crescendo? Não perca oportunidades! Fortaleça sua presença digital com mais recursos e integração. Comece hoje a acelerar seus resultados!",
-      advantages: [
-        "Site institucional responsivo (Até 10 páginas)",
-        "Integração de múltiplos sistemas",
-        "Automação de processos intermediários",
-        "Suporte técnico prioritário"
-      ]
-    },
-    WebMastery: {
-      name: "Web Mastery",
-      description: "Seu negócio merece o melhor. Garanta um site completo, com integrações e automações avançadas. Transforme sua presença digital e domine seu mercado agora!",
-      advantages: [
-        "Site institucional completo e personalizado",
-        "Integração total de sistemas",
-        "Automação avançada de processos",
-        "Suporte premium e consultoria contínua"
-      ]
-    }
-  };
-
   return (
-    <div id="precos" className="container mx-auto p-3">
-      {/* Alerta de 20% Off */}
-      <div 
-        className="bg-yellow-400 text-black text-center p-3 font-bold cursor-pointer"
-        onClick={() => handleOpenPlan("WebStart")} // Abre o plano WebStart ao clicar no banner de 20% OFF
-      >
-        🏷️ 20% OFF em todos os planos! Garanta agora e aproveite essa promoção limitada!
-      </div>
-
-      <div className="flex flex-col items-center justify-center min-h-screen text-gray-700 bg-gray-100 md:p-20">
-        <h1 className="text-center text-[#39B6EB] text-3xl md:text-4xl font-bold p-5">
+    <section id="precos" className="max-w-[1200px] mx-auto px-4 md:px-8 pt-20 md:pt-24 pb-10">
+      <div className="max-w-[720px] mx-auto text-center">
+        <div className="eyebrow mb-[14px]">Planos</div>
+        <h2 className="section-title mb-4" style={{ textWrap: "balance" }}>
           Escolha o plano que se adapta ao seu negócio
-        </h1>
-
-        <p className="text-center max-w-2xl text-lg text-gray-500">
-          Cada plano foi pensado para atender as necessidades específicas do seu negócio. Clique em um plano para saber mais detalhes e fechar negócio pelo WhatsApp.
+        </h2>
+        <p className="text-lg md:text-[19px] text-ink-subtle">
+          Compare os planos lado a lado. Sem letras miúdas — só o que faz
+          sentido para o seu momento.
         </p>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center justify-center w-full max-w-5xl mt-8">
-          {/* Card Web Start */}
-          <div
-            className="flex flex-col mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[450px] w-full md:w-[350px]"
-            onClick={() => handleOpenPlan("WebStart")}
-          >
-            <div className="flex flex-col items-center p-10 bg-gray-200">
-              <span className="font-semibold text-2xl">Web Start</span>
-              <p className="text-gray-500 text-sm">Ideal para pequenas empresas</p>
-            </div>
-
-            <div className="p-8 text-base flex-grow">
-              <ul>
-                <li className="flex items-center">
-                  <FaCheck size={16} color="green" />
-                  <p className="ml-2 p-2">Site institucional responsivo (Até 5 páginas)</p>
-                </li>
-                <li className="flex items-center">
-                  <FaCheck size={16} color="green" />
-                  <p className="ml-2 p-2">Integração básica de sistemas</p>
-                </li>
-                <li className="flex items-center">
-                  <FaCheck size={16} color="green" />
-                  <p className="ml-2 p-2">Automação de processos simples</p>
-                </li>
-                <li className="flex items-center">
-                  <FaCheck size={16} color="green" />
-                  <p className="ml-2 p-2">Suporte técnico básico</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Card Web Boost */}
-          <div
-            className="flex flex-col mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[450px] w-full md:w-[350px]"
-            onClick={() => handleOpenPlan("WebBoost")}
-          >
-            <div className="flex flex-col items-center p-10 bg-gray-200">
-              <span className="font-semibold text-2xl">Web Boost</span>
-              <p className="text-gray-500 text-sm">Para empresas em crescimento</p>
-            </div>
-
-            <div className="p-8 text-base flex-grow">
-              <ul>
-                <li className="flex items-center">
-                  <FaCheck size={16} color="green" />
-                  <p className="ml-2 p-2">Site institucional responsivo (Até 10 páginas)</p>
-                </li>
-                <li className="flex items-center">
-                  <FaCheck size={16} color="green" />
-                  <p className="ml-2 p-2">Integração de múltiplos sistemas</p>
-                </li>
-                <li className="flex items-center">
-                  <FaCheck size={16} color="green" />
-                  <p className="ml-2 p-2">Automação de processos intermediários</p>
-                </li>
-                <li className="flex items-center">
-                  <FaCheck size={16} color="green" />
-                  <p className="ml-2 p-2">Suporte técnico prioritário</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Card Web Mastery */}
-          <div
-            className="flex flex-col mt-8 bg-white rounded-lg shadow-lg hover:scale-110 ease-in duration-500 cursor-pointer h-[450px] w-full md:w-[350px]"
-            onClick={() => handleOpenPlan("WebMastery")}
-          >
-            <div className="flex flex-col items-center p-10 bg-gray-200">
-              <span className="font-semibold text-2xl">Web Mastery</span>
-              <p className="text-gray-500 text-sm">Para negócios avançados</p>
-            </div>
-
-            <div className="p-8 text-base flex-grow">
-              <ul>
-                <li className="flex items-center">
-                  <FaCheck size={16} color="green" />
-                  <p className="ml-2 p-2">Site institucional completo e personalizado</p>
-                </li>
-                <li className="flex items-center">
-                  <FaCheck size={16} color="green" />
-                  <p className="ml-2 p-2">Integração total de sistemas</p>
-                </li>
-                <li className="flex items-center">
-                  <FaCheck size={16} color="green" />
-                  <p className="ml-2 p-2">Automação avançada de processos</p>
-                </li>
-                <li className="flex items-center">
-                  <FaCheck size={16} color="green" />
-                  <p className="ml-2 p-2">Suporte premium e consultoria contínua</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-10 text-center">
-          <p className="text-gray-500 text-lg">
-            Precisa de algo mais personalizado? Entre em contato e crie uma solução sob medida para o seu negócio.
-          </p>
-          <a
-            href="https://api.whatsapp.com/send?phone=5519989331908&text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista."
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="mt-4 px-6 py-2 bg-[#39B6EB] text-white rounded-lg hover:bg-blue-600">
-              Fale com um especialista
-            </button>
-          </a>
+      <div className="mt-14 border border-line rounded-[20px] overflow-hidden shadow-table">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-[15px] min-w-[760px]">
+            <thead>
+              <tr>
+                <th className="text-left p-6 md:px-6 md:py-7 align-bottom w-[26%] bg-surface-sunken" />
+                {plans.map((p) => (
+                  <th
+                    key={p.name}
+                    className={`text-left p-6 md:px-6 md:py-7 align-bottom ${
+                      p.popular
+                        ? "bg-surface-tint border-b-[3px] border-brand-600"
+                        : ""
+                    }`}
+                  >
+                    <div className="font-display font-extrabold text-[22px] text-brand-900">
+                      {p.name}
+                    </div>
+                    <div className="text-sm text-ink-soft font-medium mt-[6px]">
+                      {p.tag}
+                    </div>
+                    <div className="mt-3">
+                      {p.pricePrefix && (
+                        <span className="block text-xs text-ink-soft font-medium">
+                          {p.pricePrefix}
+                        </span>
+                      )}
+                      <span className="font-display font-extrabold text-[28px] text-brand-900 leading-none">
+                        {p.priceMonthly}
+                      </span>
+                      <span className="text-sm text-ink-soft font-semibold">
+                        /mês
+                      </span>
+                      <span className="block text-[13px] text-ink-soft mt-1">
+                        {p.priceSetup}
+                      </span>
+                    </div>
+                    {p.popular && (
+                      <span className="inline-block mt-3 px-3 py-1 rounded-full bg-brand-50 text-brand-700 font-bold text-xs tracking-[.04em]">
+                        MAIS ESCOLHIDO
+                      </span>
+                    )}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {planRows.map((row) => (
+                <tr key={row.label} className="border-t border-line">
+                  <td className="px-6 py-[18px] font-bold text-ink bg-surface-sunken">
+                    {row.label}
+                  </td>
+                  {row.values.map((value, i) => (
+                    <td
+                      key={i}
+                      className={`px-6 py-[18px] text-ink-subtle ${
+                        plans[i].popular ? "bg-surface-tint" : ""
+                      }`}
+                    >
+                      {value}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+              <tr className="border-t border-line">
+                <td className="p-6 bg-surface-sunken" />
+                {plans.map((p) => (
+                  <td
+                    key={p.name}
+                    className={`p-6 ${p.popular ? "bg-surface-tint" : ""}`}
+                  >
+                    <Link
+                      href="/#contato"
+                      className={`inline-block w-full text-center px-4 py-3 rounded-[9px] font-bold text-[15px] transition-colors duration-200 ${
+                        p.popular
+                          ? "text-white bg-brand-600 hover:bg-brand-700"
+                          : "text-brand-600 bg-white border border-[#B6E3F6] hover:bg-brand-50"
+                      }`}
+                    >
+                      Falar com especialista
+                    </Link>
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      {/* Modal para detalhes do plano selecionado */}
-      {selectedPlan && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-5 w-full max-w-3xl relative">
-            <button
-              onClick={handleClosePlan}
-              className="absolute top-4 right-8 bg-red-500 text-white p-2 rounded-full"
-            >
-              X
-            </button>
-            <div className="h-[500px] w-full overflow-y-auto">
-              <h2 className="text-2xl font-bold mb-4">{planDetails[selectedPlan]?.name}</h2>
-              <p className="mb-4">{planDetails[selectedPlan]?.description}</p>
-              <ul className="mb-8">
-                {planDetails[selectedPlan]?.advantages.map((advantage, index) => (
-                  <li key={index} className="flex items-center mb-2">
-                    <FaCheck size={16} color="green" />
-                    <p className="ml-2">{advantage}</p>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={getWhatsAppLink(planDetails[selectedPlan]?.name)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button className="px-6 py-2 bg-[#39B6EB] text-white rounded-lg hover:bg-blue-600">
-                  Quero Comprar
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+      <p className="text-center text-base text-ink-soft mt-7">
+        A mensalidade já inclui hospedagem, manutenção e suporte — sem
+        surpresas no fim do mês. Precisa de algo mais personalizado?{" "}
+        <Link
+          href="/#contato"
+          className="font-bold text-brand-600 hover:text-brand-700"
+        >
+          Crie uma solução sob medida →
+        </Link>
+      </p>
+    </section>
   );
 };
 
