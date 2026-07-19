@@ -1,0 +1,8 @@
+# Generated media — never commit
+out/
+# Brand raster assets are optional/local unless you decide to track them
+# (comment the next lines out to version them)
+config/brand/reference/*
+config/brand/logo/*
+!config/brand/reference/.gitkeep
+!config/brand/logo/.gitkeep
