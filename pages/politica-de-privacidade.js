@@ -19,6 +19,27 @@ const PoliticaDePrivacidade = () => {
         As informações fornecidas são utilizadas para responder às suas solicitações, enviar informações relevantes e
         melhorar os serviços da Web Makers. Não compartilhamos suas informações com terceiros sem seu consentimento.
       </p>
+      <h2 className="text-xl font-semibold mb-4">Uso de APIs do Google</h2>
+      <p className="mb-4">
+        A Web Makers utiliza APIs do Google — incluindo a Google Ads API — para gerenciar campanhas
+        publicitárias em contas de anúncios que possuímos ou administramos, sempre mediante autorização do
+        titular da conta via OAuth. Os dados acessados por essas APIs são usados exclusivamente para operar,
+        otimizar e gerar relatórios dessas campanhas em nossas ferramentas internas.
+      </p>
+      <p className="mb-4">
+        O uso e a transferência, pela Web Makers, de informações recebidas das APIs do Google seguem a{' '}
+        <a
+          href="https://developers.google.com/terms/api-services-user-data-policy"
+          className="text-[#39B6EB]"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Política de Dados do Usuário dos Serviços de API do Google
+        </a>
+        , incluindo os requisitos de Uso Limitado (Limited Use). Não vendemos esses dados, não os
+        compartilhamos com terceiros e não os utilizamos para fins diversos da prestação do serviço de gestão
+        de campanhas ao titular da conta.
+      </p>
       <h2 className="text-xl font-semibold mb-4">Segurança das Informações</h2>
       <p className="mb-4">
         Garantimos que as informações pessoais coletadas sejam armazenadas de forma segura. Implementamos medidas
