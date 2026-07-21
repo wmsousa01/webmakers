@@ -2,12 +2,12 @@
 // Roda server-side na Vercel usando as credenciais do .env (mesma instância do /painel).
 // Substitui o backend Express do Railway — o chat agora posta para /api/send-to-jira.
 
-// Base do Atlassian (https://xxx.atlassian.net), derivada de JIRA_BASE_URL ou JIRA_URL.
+// Base do Atlassian (só a origem, https://xxx.atlassian.net). Normaliza para o host
+// mesmo se JIRA_BASE_URL/JIRA_URL vier com o caminho completo (…/rest/api/3/issue),
+// senão a concatenação duplicaria o path e daria 404.
 function jiraBase() {
-  const explicit = process.env.JIRA_BASE_URL;
-  if (explicit) return explicit.replace(/\/$/, "");
-  const u = process.env.JIRA_URL || "";
-  const m = u.match(/^(https?:\/\/[^/]+)/);
+  const raw = process.env.JIRA_BASE_URL || process.env.JIRA_URL || "";
+  const m = raw.match(/^(https?:\/\/[^/]+)/);
   return m ? m[1] : "";
 }
 
