@@ -55,8 +55,10 @@ export default async function handler(req, res) {
   }
 
   const base = jiraBase();
-  const email = process.env.JIRA_EMAIL;
-  const token = process.env.JIRA_TOKEN;
+  // trim(): valores colados no painel da Vercel costumam trazer espaço/quebra de linha,
+  // o que corrompe o Basic auth e faz o Jira tratar a chamada como anônima.
+  const email = (process.env.JIRA_EMAIL || "").trim();
+  const token = (process.env.JIRA_TOKEN || "").trim();
   if (!base || !email || !token) {
     console.error("Jira env ausente (JIRA_BASE_URL/JIRA_EMAIL/JIRA_TOKEN).");
     return res.status(500).json({ ok: false, error: "Configuração indisponível." });
@@ -97,6 +99,19 @@ export default async function handler(req, res) {
   };
 
   const auth = Buffer.from(`${email}:${token}`).toString("base64");
+
+  // Diagnóstico: credencial válida? (200 = autentica; 401 = par email/token inválido)
+  const checkAuth = async () => {
+    try {
+      const r = await fetch(`${base}/rest/api/3/myself`, {
+        headers: { Authorization: `Basic ${auth}`, Accept: "application/json" },
+      });
+      return r.ok;
+    } catch {
+      return null;
+    }
+  };
+
   const post = (fields) =>
     fetch(`${base}/rest/api/3/issue`, {
       method: "POST",
@@ -136,8 +151,9 @@ export default async function handler(req, res) {
           error: "Falha ao criar o lead.",
           jiraStatus: response.status,
           detail,
-          // Diagnóstico (não sensível): o que o servidor realmente usou.
+          // Diagnóstico (não sensível): o que o servidor usou + se o Basic auth é válido.
           tried: { host: base, project: baseFields.project.key, issuetype: baseFields.issuetype.name },
+          authOk: await checkAuth(),
         });
       }
     }
