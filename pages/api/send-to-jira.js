@@ -131,7 +131,7 @@ export default async function handler(req, res) {
       } else {
         const detail = jiraDetail(errText);
         console.error("Jira respondeu erro:", response.status, errText);
-        return res.status(502).json({ ok: false, error: "Falha ao criar o lead.", detail });
+        return res.status(502).json({ ok: false, error: "Falha ao criar o lead.", jiraStatus: response.status, detail });
       }
     }
 
@@ -139,7 +139,7 @@ export default async function handler(req, res) {
       const errText = await response.text();
       const detail = jiraDetail(errText);
       console.error("Jira respondeu erro (retry):", response.status, errText);
-      return res.status(502).json({ ok: false, error: "Falha ao criar o lead.", detail });
+      return res.status(502).json({ ok: false, error: "Falha ao criar o lead.", jiraStatus: response.status, detail });
     }
 
     const data = await response.json();
