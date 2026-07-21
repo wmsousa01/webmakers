@@ -76,7 +76,7 @@ export default async function handler(req, res) {
   const summary = service ? `[${service}] Lead: ${name}` : `Novo contato de ${name}`;
 
   const baseFields = {
-    project: { key: process.env.JIRA_LEAD_PROJECT || "VEN" },
+    project: { key: process.env.JIRA_LEAD_PROJECT || "LEAD" },
     summary,
     description: {
       type: "doc",
@@ -108,25 +108,38 @@ export default async function handler(req, res) {
       body: JSON.stringify({ fields }),
     });
 
+  // Resume a mensagem de erro do Jira (errorMessages/errors) sem vazar nada sensível.
+  const jiraDetail = (txt) => {
+    try {
+      const j = JSON.parse(txt);
+      const msgs = [...(j.errorMessages || []), ...Object.values(j.errors || {})];
+      return msgs.join(" | ").slice(0, 300);
+    } catch {
+      return String(txt).slice(0, 300);
+    }
+  };
+
   try {
-    // Tenta com prioridade; se o campo não estiver na tela do VEN, refaz sem ela
+    // Tenta com prioridade; se o campo não estiver na tela do projeto, refaz sem ela
     // (o label de urgência preserva a triagem) — o lead nunca se perde por isso.
     let response = await post({ ...baseFields, priority: { name: priority } });
     if (!response.ok) {
       const errText = await response.text();
       if (errText.toLowerCase().includes("priority")) {
-        console.warn("Campo priority indisponível no VEN — recriando sem prioridade.");
+        console.warn("Campo priority indisponível — recriando sem prioridade.");
         response = await post(baseFields);
       } else {
+        const detail = jiraDetail(errText);
         console.error("Jira respondeu erro:", response.status, errText);
-        return res.status(502).json({ ok: false, error: "Falha ao criar o lead." });
+        return res.status(502).json({ ok: false, error: "Falha ao criar o lead.", detail });
       }
     }
 
     if (!response.ok) {
       const errText = await response.text();
+      const detail = jiraDetail(errText);
       console.error("Jira respondeu erro (retry):", response.status, errText);
-      return res.status(502).json({ ok: false, error: "Falha ao criar o lead." });
+      return res.status(502).json({ ok: false, error: "Falha ao criar o lead.", detail });
     }
 
     const data = await response.json();
