@@ -17,8 +17,15 @@ Big idea da marca: *"Coloque seu negócio para trabalhar online."*
 - Design system em `tailwind.config.js` (`brand.*` / `ink.*` / `surface.*`). Fontes
   **Plus Jakarta Sans** (títulos) + **Figtree** (corpo), auto-hospedadas via `next/font`.
 - **Sem banco de dados e sem auth** no app.
-- **Leads** vão para o **Jira, projeto VEN (issuetype `Lead`)** via um backend Express
-  separado no Railway (`server/jira.js`). O chat/formulário do site chama esse backend.
+- **Leads** vão para o **Jira, projeto `LEAD`** (issuetype `Tarefa`) na instância
+  `wdesousa.atlassian.net`, criados por uma **API route do Next** (`pages/api/send-to-jira.js`)
+  que lê o `.env`. O **chat de triagem** (`components/gpt/ChatGptChat.jsx`) posta em
+  `/api/send-to-jira`. Projeto/issuetype são configuráveis por env
+  (`JIRA_LEAD_PROJECT`/`JIRA_LEAD_ISSUETYPE`). A triagem (tipo/urgência/orçamento/segmento)
+  vira **summary categorizado + labels** (`lead-site`, `servico-*`, `urgencia-*`,
+  `orcamento-*`, `segmento-*`) **+ prioridade** (urgência→High/Medium/Low, com retry sem
+  prioridade se o campo não estiver na tela). O backend Express no Railway (`server/jira.js`)
+  virou **legado/redundante** — o caminho vivo é a API route.
 - Analytics: **GA** (`NEXT_PUBLIC_GOOGLE_ANALYTICS`), **GTM-NPJRJJX6**, **Google Ads
   AW-961364895** (conversão gtag já instalada em `_document.js`). **Não há Meta Pixel.**
 
@@ -70,9 +77,12 @@ Para gerar imagens reais é preciso `GOOGLE_AI_API_KEY` no `.env` da raiz.
 ### B) Painel de ops — `/painel`
 
 Dashboard interno da agência (`pages/painel/index.jsx`), **sem DB**:
-- `lib/panelData.js` (server-only): `fetchLeads()` lê o Jira VEN via REST (Basic auth),
-  `readContentPipeline()` lê os briefs do kit, `readAdsConfig()` lê a config de
-  distribuição. **Tudo degrada graciosamente — nunca lança exceção.**
+- `lib/panelData.js` (server-only): `fetchLeads()` lê os leads do Jira (projeto
+  `LEAD`, filtrando pela label `lead-site`) via `/rest/api/3/search/jql` — **o endpoint
+  antigo `/rest/api/3/search` foi removido pela Atlassian (410, CHANGE-2046)**; o total
+  vem do `/search/jql/../approximate-count`. `readContentPipeline()` lê os briefs do kit,
+  `readAdsConfig()` lê a config de distribuição. **Tudo degrada graciosamente — nunca lança
+  exceção.**
 - `middleware.js` — Basic Auth em `/painel` (`PANEL_USER` / `PANEL_PASSWORD`),
   **fail-closed** (sem env, o painel fica trancado).
 - `pages/_app.js` esconde Navbar/Footer/Chat/GA em `/painel` (superfície interna, sem
@@ -82,8 +92,9 @@ Dashboard interno da agência (`pages/painel/index.jsx`), **sem DB**:
 
 ## Variáveis de ambiente (Vercel + `.env` da raiz)
 
-- Painel: `PANEL_USER`, `PANEL_PASSWORD`, `JIRA_BASE_URL` (ou deriva de `JIRA_URL`),
-  `JIRA_EMAIL`, `JIRA_TOKEN`.
+- Painel + leads: `PANEL_USER`, `PANEL_PASSWORD`, `JIRA_BASE_URL` (ou deriva de `JIRA_URL`),
+  `JIRA_EMAIL`, `JIRA_TOKEN`, `JIRA_LEAD_PROJECT` (ex: `LEAD`), `JIRA_LEAD_ISSUETYPE`
+  (default `Tarefa`). Estes três últimos também são usados pela API route de leads.
 - Growth Kit: `GOOGLE_AI_API_KEY` (obrigatória p/ imagem), `META_ACCESS_TOKEN`,
   `IG_ACCESS_TOKEN` (cai p/ `META_ACCESS_TOKEN` se ausente), `ELEVENLABS_API_KEY` (reels),
   `R2_ENDPOINT`/`R2_BUCKET`/`R2_PUBLIC_BASE`/`R2_ACCESS_KEY_ID`/`R2_SECRET_ACCESS_KEY`

@@ -15,6 +15,12 @@ const STATUS_STYLE = {
   published: "bg-brand-900 text-white",
 };
 
+const PRIORITY_STYLE = {
+  High: "bg-[#FDECEC] text-[#C9372C]",
+  Medium: "bg-[#FFF4E5] text-[#974F0C]",
+  Low: "bg-surface-raised text-ink-soft",
+};
+
 function fmtDate(iso) {
   if (!iso) return "—";
   const d = new Date(iso);
@@ -90,7 +96,9 @@ export default function Painel({ leads, content, ads }) {
                       <thead>
                         <tr className="text-left text-ink-faint">
                           <th className="pb-2 font-medium">Contato</th>
+                          <th className="pb-2 font-medium">Serviço</th>
                           <th className="pb-2 font-medium">Interesse</th>
+                          <th className="pb-2 font-medium">Prioridade</th>
                           <th className="pb-2 font-medium">Status</th>
                           <th className="pb-2 font-medium">Data</th>
                         </tr>
@@ -101,8 +109,22 @@ export default function Painel({ leads, content, ads }) {
                             <td className="py-2 pr-3">
                               <div className="font-medium text-ink">{l.contact.nome || l.summary}</div>
                               <div className="text-xs text-ink-faint">{[l.contact.telefone, l.contact.email].filter(Boolean).join(" · ")}</div>
+                              {l.contact.segmento ? <div className="text-xs text-ink-faint">{l.contact.segmento}</div> : null}
+                            </td>
+                            <td className="py-2 pr-3 text-ink-subtle">
+                              <div>{l.contact.servico || "—"}</div>
+                              {l.contact.orcamento ? <div className="text-xs text-ink-faint">{l.contact.orcamento}</div> : null}
                             </td>
                             <td className="py-2 pr-3 text-ink-subtle">{l.contact.interesse || "—"}</td>
+                            <td className="py-2 pr-3">
+                              {l.priority ? (
+                                <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${PRIORITY_STYLE[l.priority] || "bg-surface-raised text-ink-soft"}`}>
+                                  {l.priority}
+                                </span>
+                              ) : (
+                                <span className="text-xs text-ink-faint">{l.contact.urgencia || "—"}</span>
+                              )}
+                            </td>
                             <td className="py-2 pr-3">
                               <span className="rounded-full bg-surface-raised px-2 py-0.5 text-xs text-ink-soft">{l.status}</span>
                             </td>
