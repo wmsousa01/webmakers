@@ -131,7 +131,14 @@ export default async function handler(req, res) {
       } else {
         const detail = jiraDetail(errText);
         console.error("Jira respondeu erro:", response.status, errText);
-        return res.status(502).json({ ok: false, error: "Falha ao criar o lead.", jiraStatus: response.status, detail });
+        return res.status(502).json({
+          ok: false,
+          error: "Falha ao criar o lead.",
+          jiraStatus: response.status,
+          detail,
+          // Diagnóstico (não sensível): o que o servidor realmente usou.
+          tried: { host: base, project: baseFields.project.key, issuetype: baseFields.issuetype.name },
+        });
       }
     }
 
