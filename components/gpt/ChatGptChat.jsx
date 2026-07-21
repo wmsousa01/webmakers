@@ -1,130 +1,217 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "tailwindcss/tailwind.css";
-import { FaComments } from "react-icons/fa"; // Ícone do chat
+import { FaComments, FaWhatsapp } from "react-icons/fa";
+
+const JIRA_ENDPOINT = "/api/send-to-jira";
+const WHATSAPP_NUMBER = "5519989331908";
+
+// Fluxo de triagem: contato (nome/e-mail/WhatsApp) + 4 dimensões de qualificação
+// em botões (tipo/urgência/orçamento/segmento) + detalhe livre. Cada passo vira
+// campo estruturado enviado ao backend, que traduz em summary + labels + prioridade
+// na issue do projeto VEN no Jira.
+const STEPS = [
+  {
+    key: "name",
+    type: "text",
+    placeholder: "Digite seu nome...",
+    prompt: () => "Olá! 👋 Sou a assistente da Web Makers. Qual é o seu nome?",
+  },
+  {
+    key: "email",
+    type: "email",
+    placeholder: "Digite seu e-mail...",
+    prompt: (d) => `Prazer, ${d.name}! Qual é o seu melhor e-mail?`,
+  },
+  {
+    key: "phone",
+    type: "phone",
+    placeholder: "Ex: 5519999999999",
+    prompt: () => "E qual o seu WhatsApp? (só números, com DDD)",
+  },
+  {
+    key: "service",
+    type: "choice",
+    prompt: () => "O que você procura hoje?",
+    options: [
+      "Site institucional",
+      "Loja virtual",
+      "Integração",
+      "Automação",
+      "Ainda não sei",
+    ],
+  },
+  {
+    key: "urgency",
+    type: "choice",
+    prompt: () => "Pra quando você precisa?",
+    options: ["Pra ontem 🔥", "Ainda este mês", "Só pesquisando"],
+  },
+  {
+    key: "budget",
+    type: "choice",
+    prompt: () => "Qual investimento você tem em mente?",
+    options: [
+      "Até R$ 1.000",
+      "R$ 1.000 a 3.000",
+      "Acima de R$ 3.000",
+      "Prefiro não dizer",
+    ],
+  },
+  {
+    key: "segment",
+    type: "choice",
+    prompt: () => "Seu negócio é mais de...",
+    options: ["Comércio / Loja", "Serviços", "Indústria", "Outro"],
+  },
+  {
+    key: "detail",
+    type: "text",
+    placeholder: "Escreva aqui...",
+    prompt: (d) => `Fechou, ${d.name}! Conta rapidinho o que você precisa:`,
+  },
+];
+
+const DONE = STEPS.length;
 
 const ChatGPTChat = () => {
   const [messages, setMessages] = useState([
-    { text: "Olá! Qual é o seu nome?", sender: "bot" },
+    { text: STEPS[0].prompt({}), sender: "bot" },
   ]);
   const [input, setInput] = useState("");
   const [step, setStep] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
-  const [showChat, setShowChat] = useState(false); // Controla a exibição do chat
+  const [showChat, setShowChat] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [userData, setUserData] = useState({
     name: "",
     email: "",
     phone: "",
-    interest: "",
+    service: "",
+    urgency: "",
+    budget: "",
+    segment: "",
+    detail: "",
   });
 
-  const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
-
-  // Regex para validar o e-mail
   const validateEmail = (email) => {
-    const cleanedEmail = email.trim().toLowerCase();
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(cleanedEmail);
+    return emailRegex.test(email.trim().toLowerCase());
   };
 
-  // Regex para validar o telefone no formato XXXXXXXXXXX
-  const phoneRegex = /^\d{11}$/;
+  const addBotMessage = (message) =>
+    setMessages((prev) => [...prev, { text: message, sender: "bot" }]);
 
-  // Função para simular um delay na resposta do bot
-  const addBotMessageWithDelay = (message, delay = 1500) => {
+  const addUserMessage = (message) =>
+    setMessages((prev) => [...prev, { text: message, sender: "user" }]);
+
+  const addBotMessageWithDelay = (message, delay = 1200) => {
     setIsTyping(true);
     setTimeout(() => {
-      setMessages((prev) => [...prev, { text: message, sender: "bot" }]);
+      addBotMessage(message);
       setIsTyping(false);
     }, delay);
   };
 
-  // Função para enviar os dados para o Jira
-  const sendDataToJira = async (userData) => {
+  // Dispara a conversão do Google Ads UMA vez, no sucesso — sem recarregar a página.
+  const fireConversion = () => {
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("event", "conversion_event_contact", {
+        event_category: "Form Submission",
+        event_label: "Chat Submission",
+        value: 1,
+      });
+    }
+  };
+
+  const whatsappFallbackHref = () => {
+    const d = userData;
+    const msg =
+      `Olá! Vim pelo site da Web Makers. Sou ${d.name}.` +
+      (d.service ? ` Procuro: ${d.service}.` : "") +
+      (d.detail ? ` ${d.detail}` : "");
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  };
+
+  const submitLead = async (finalData) => {
+    setIsTyping(true);
     try {
-      const response = await axios.post(
-        "https://webmaker-back-production.up.railway.app/send-to-jira",
-        userData
-      ); // Corrigido o URL
-      console.log(response.data);
+      await axios.post(JIRA_ENDPOINT, finalData, { timeout: 12000 });
+      setIsTyping(false);
+      addBotMessage(
+        `Obrigado, ${finalData.name}! 🎉 Recebemos seu pedido e nossa equipe entra em contato em breve.`
+      );
+      fireConversion();
     } catch (error) {
       console.error("Erro ao enviar dados para o Jira:", error);
+      setIsTyping(false);
+      addBotMessage(
+        "Ops, tive um probleminha pra registrar seu contato aqui. Me chama direto no WhatsApp que te respondo na hora 👇"
+      );
+      setFailed(true);
     }
   };
 
-  // Função que gerencia o fluxo de coleta de dados
-  const handleNextStep = (value) => {
-    if (step === 0) {
-      setUserData({ ...userData, name: value });
-      setMessages([...messages, { text: value, sender: "user" }]);
-      addBotMessageWithDelay(
-        `Prazer em te conhecer, ${value}! Qual é o seu e-mail?`
-      );
-      setStep(1);
-    } else if (step === 1) {
-      const cleanedEmail = value.trim().toLowerCase();
-      if (validateEmail(cleanedEmail)) {
-        setUserData({ ...userData, email: cleanedEmail });
-        setMessages([...messages, { text: cleanedEmail, sender: "user" }]);
-        addBotMessageWithDelay(
-          `Obrigado, ${userData.name}. E qual o seu telefone?`
-        );
-        setStep(2);
-      } else {
-        addBotMessageWithDelay("Por favor, insira um e-mail válido.");
-      }
-    } else if (step === 2) {
-      if (phoneRegex.test(value)) {
-        setUserData({ ...userData, phone: value });
-        setMessages([...messages, { text: value, sender: "user" }]);
-        addBotMessageWithDelay(
-          `O que você está buscando, ${userData.name}? Como podemos te ajudar?`
-        );
-        setStep(3);
-      } else {
-        addBotMessageWithDelay(
-          "Por favor, insira um telefone no formato XXXXXXXXXXX."
-        );
-      }
-    } else if (step === 3) {
-      setUserData({ ...userData, interest: value });
-      setMessages([...messages, { text: value, sender: "user" }]);
-      addBotMessageWithDelay(
-        `Obrigado, ${userData.name}! Entraremos em contato em breve com a melhor solução para você.`
-      );
-      sendDataToJira({
-        name: userData.name,
-        email: userData.email,
-        phone: userData.phone,
-        interest: value,
-      });
-      setStep(4);
+  // Avança um passo: guarda o valor, ecoa a resposta do usuário e faz a próxima pergunta
+  // (ou submete, se foi o último passo).
+  const advance = (key, value, displayValue) => {
+    const updated = { ...userData, [key]: value };
+    setUserData(updated);
+    addUserMessage(displayValue ?? value);
+
+    const next = step + 1;
+    setStep(next);
+    if (next < STEPS.length) {
+      addBotMessageWithDelay(STEPS[next].prompt(updated));
+    } else {
+      submitLead(updated);
     }
   };
 
-  // Função para enviar a mensagem
-  const sendMessage = async () => {
-    if (input.trim()) {
-      handleNextStep(input.trim());
+  const handleTextSubmit = () => {
+    const value = input.trim();
+    if (!value || step >= STEPS.length) return;
+    const current = STEPS[step];
+
+    if (current.type === "email") {
+      if (!validateEmail(value)) {
+        addBotMessageWithDelay("Hmm, esse e-mail não parece válido. Pode conferir? 🙂");
+        return;
+      }
       setInput("");
+      advance(current.key, value.trim().toLowerCase());
+      return;
     }
+
+    if (current.type === "phone") {
+      const digits = value.replace(/\D/g, "");
+      if (!/^\d{10,13}$/.test(digits)) {
+        addBotMessageWithDelay(
+          "Manda seu WhatsApp com DDD, só números. Ex: 5519999999999"
+        );
+        return;
+      }
+      setInput("");
+      advance(current.key, digits);
+      return;
+    }
+
+    setInput("");
+    advance(current.key, value);
   };
 
-  // Função para detectar a tecla "Enter" e enviar a mensagem
   const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      sendMessage();
-    }
+    if (event.key === "Enter") handleTextSubmit();
   };
 
-  // Função para abrir e fechar o chat
-  const toggleChat = () => {
-    setShowChat(!showChat);
-  };
+  const toggleChat = () => setShowChat(!showChat);
+
+  const current = step < STEPS.length ? STEPS[step] : null;
+  const showChoices = !!current && current.type === "choice" && !isTyping;
+  const showInput = !!current && current.type !== "choice";
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      {/* Ícone do chat no canto inferior direito com alerta de 20% OFF */}
       {!showChat && (
         <div className="relative">
           <button
@@ -133,21 +220,16 @@ const ChatGPTChat = () => {
           >
             <FaComments size={24} />
           </button>
-
-          {/* Alerta de 20% OFF centralizado */}
           <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-bounce text-center">
             20% OFF
           </div>
         </div>
       )}
 
-      {/* Janela do chat */}
       {showChat && (
         <div className="fixed bottom-0 right-0 w-full max-w-md h-[80vh] bg-white shadow-lg rounded-t-lg">
           <div className="flex justify-between items-center p-4 bg-brand-700 text-white rounded-t-lg">
-            <h2 className="text-lg font-bold">
-              Fale com nossa assistente virtual
-            </h2>
+            <h2 className="text-lg font-bold">Fale com nossa assistente virtual</h2>
             <button onClick={toggleChat} className="text-white">
               X
             </button>
@@ -175,36 +257,54 @@ const ChatGPTChat = () => {
                   <strong>Assistente Virtual está digitando...</strong>
                 </div>
               )}
+
+              {/* Botões de resposta rápida (passos de triagem) */}
+              {showChoices && (
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {current.options.map((option) => (
+                    <button
+                      key={option}
+                      onClick={() => advance(current.key, option)}
+                      className="border border-brand-600 text-brand-700 hover:bg-brand-600 hover:text-white text-sm font-medium px-3 py-2 rounded-full transition duration-200"
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Fallback: falha ao registrar → CTA direto no WhatsApp */}
+              {failed && (
+                <a
+                  href={whatsappFallbackHref()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-2 bg-[#25D366] text-white font-semibold px-4 py-2 rounded-full shadow-md hover:brightness-95 transition"
+                >
+                  <FaWhatsapp size={18} /> Falar no WhatsApp
+                </a>
+              )}
             </div>
 
-            {/* Campo de texto e botão de envio */}
-            <div className="w-full flex items-center bg-white border border-gray-300 rounded-full px-2 py-1 shadow-md">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="flex-grow p-2 text-sm rounded-full focus:outline-none"
-                placeholder={
-                  step === 0
-                    ? "Digite seu nome..."
-                    : step === 1
-                    ? "Digite seu e-mail..."
-                    : step === 2
-                    ? "Digite seu telefone..."
-                    : "Digite sua pergunta..."
-                }
-              />
-              <button
-                onClick={() => {
-                  sendMessage();
-                  gtagSendEvent(); // Chama o evento de conversão aqui
-                }}
-                className="ml-2 bg-brand-600 text-white p-2 rounded-full hover:bg-brand-700 transition duration-300"
-              >
-                Enviar
-              </button>
-            </div>
+            {/* Campo de texto (passos de contato + detalhe) */}
+            {showInput && (
+              <div className="w-full flex items-center bg-white border border-gray-300 rounded-full px-2 py-1 shadow-md">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  className="flex-grow p-2 text-sm rounded-full focus:outline-none"
+                  placeholder={current.placeholder}
+                />
+                <button
+                  onClick={handleTextSubmit}
+                  className="ml-2 bg-brand-600 text-white p-2 rounded-full hover:bg-brand-700 transition duration-300"
+                >
+                  Enviar
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
