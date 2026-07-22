@@ -11,7 +11,10 @@ export function middleware(req) {
   const deny = (msg) =>
     new NextResponse(msg, {
       status: 401,
-      headers: { "WWW-Authenticate": 'Basic realm="Web Makers — Painel"' },
+      // Sem travessão nem acento: cabeçalho HTTP é ByteString (latin-1) e um
+      // caractere fora de 0-255 faz o NextResponse lançar — o painel devolvia
+      // 500 em vez do 401 que abre o prompt de login do navegador.
+      headers: { "WWW-Authenticate": 'Basic realm="Web Makers Painel"' },
     });
 
   if (!user || !pass) return deny("Painel não configurado (defina PANEL_USER e PANEL_PASSWORD).");
