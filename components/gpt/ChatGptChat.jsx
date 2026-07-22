@@ -5,6 +5,8 @@ import { FaComments, FaWhatsapp, FaArrowLeft, FaPaperPlane } from "react-icons/f
 
 const JIRA_ENDPOINT = "/api/send-to-jira";
 const WHATSAPP_NUMBER = "5519989331908";
+// Ação de conversão "Lead do site (chat de triagem)" — conta Google Ads 4296394458.
+const GADS_CONVERSION = "AW-18280455023/OBeQCJaP9tQcEO-25oxE";
 
 // Fluxo de triagem: contato (nome/e-mail/WhatsApp) + 4 dimensões de qualificação
 // em botões (tipo/urgência/orçamento/segmento) + detalhe livre. Cada passo vira
@@ -183,12 +185,13 @@ const ChatGPTChat = () => {
   );
 
   // Dispara a conversão do Google Ads UMA vez, no sucesso — sem recarregar a página.
+  // send_to = ação "Lead do site (chat de triagem)" da conta 4296394458 (Web Makers).
   const fireConversion = () => {
     if (typeof window !== "undefined" && typeof window.gtag === "function") {
-      window.gtag("event", "conversion_event_contact", {
-        event_category: "Form Submission",
-        event_label: "Chat Submission",
-        value: 1,
+      window.gtag("event", "conversion", {
+        send_to: GADS_CONVERSION,
+        value: 1.0,
+        currency: "BRL",
       });
     }
   };

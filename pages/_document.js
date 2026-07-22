@@ -19,39 +19,21 @@ class MyDocument extends Document {
           />
           {/* End Google Tag Manager */}
 
-          {/* Google Ads Tag (gtag.js) */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=AW-961364895"></script>
+          {/* Google Ads Tag (gtag.js) — conta 4296394458 (Web Makers).
+              A conversão é disparada no chat (components/gpt/ChatGptChat.jsx) após o
+              lead ser criado no Jira, via gtag('event','conversion', {send_to: …}). */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18280455023"></script>
           <script
             dangerouslySetInnerHTML={{
               __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', 'AW-961364895');
+                gtag('config', 'AW-18280455023');
               `,
             }}
           />
           {/* End Google Ads Tag */}
-
-          {/* Custom Conversion Event for Google Ads */}
-          <script>
-            {`
-              function gtagSendEvent() {
-                var callback = function () {
-                  window.location = window.location.href;
-                };
-                gtag('event', 'conversion_event_contact', {
-                  'event_category': 'Form Submission',
-                  'event_label': 'Chat Submission',
-                  'value': 1,
-                  'event_callback': callback,
-                  'event_timeout': 2000,
-                });
-                return false;
-              }
-            `}
-          </script>
-          {/* End Custom Conversion Event */}
         </Head>
         <body>
           {/* Google Tag Manager (noscript) */}

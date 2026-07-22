@@ -16,7 +16,8 @@
     "hashtags": "#webmakers #mogiguacu #mogimirim #sitepraempresa #pequenaempresa #automacao #marketinglocal #paginadevendas"
   },
   "google_ads": {
-    "conversion_id": "AW-961364895",
+    "conversion_id": "AW-18280455023",
+    "conversion_send_to": "AW-18280455023/OBeQCJaP9tQcEO-25oxE",
     "customer_id": "4296394458",
     "manager_id": "7180669384",
     "_note": "Conversão gtag já instalada no site (_document.js). Ads via Google API exigem GADS_* no .env. customer_id é a conta Web Makers; manager_id é a MCC (a conta NÃO está vinculada à MCC, então o cliente omite login-customer-id automaticamente)."

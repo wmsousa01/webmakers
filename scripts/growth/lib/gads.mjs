@@ -182,6 +182,47 @@ export async function removeCampaign(customerId, campaignId, { validateOnly = fa
   );
 }
 
+/** Cria uma ação de conversão de SITE (o que o gtag do site dispara).
+ *  Aditiva e reversível (dá pra desativar depois). `validateOnly` valida sem criar.
+ *  category: SUBMIT_LEAD_FORM para lead; countingType ONE_PER_CLICK é o recomendado p/ lead. */
+export async function createConversionAction(
+  customerId,
+  { name, category = "SUBMIT_LEAD_FORM", countingType = "ONE_PER_CLICK", validateOnly = false, loginCustomerId } = {},
+) {
+  if (!name) throw new Error("Informe o nome da ação de conversão.");
+  const id = normalizeId(customerId);
+  return mutate(
+    `customers/${id}/conversionActions:mutate`,
+    {
+      operations: [
+        {
+          create: {
+            name,
+            type: "WEBPAGE",
+            category,
+            status: "ENABLED",
+            countingType,
+            primaryForGoal: true,
+          },
+        },
+      ],
+      validateOnly,
+    },
+    { loginCustomerId },
+  );
+}
+
+/** Snippets da tag (conversion id + label) de uma ação de conversão. */
+export async function conversionActionTag(customerId, conversionActionId, { loginCustomerId } = {}) {
+  const rows = await search(
+    customerId,
+    `SELECT conversion_action.id, conversion_action.name, conversion_action.tag_snippets
+     FROM conversion_action WHERE conversion_action.id = ${normalizeId(conversionActionId)}`,
+    { loginCustomerId },
+  );
+  return rows[0]?.conversionAction || null;
+}
+
 /** Desempenho por campanha nos últimos N dias — o que o /painel precisa. */
 export async function campaignPerformance(customerId, { days = 30 } = {}) {
   const rows = await search(
