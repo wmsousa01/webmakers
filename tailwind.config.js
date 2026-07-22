@@ -55,10 +55,28 @@ module.exports = {
           "0%, 100%": { transform: "translate(0, 0) rotate(0deg)" },
           "50%": { transform: "translate(0, -18px) rotate(6deg)" },
         },
+        // Entrada das bolhas do chat
+        wmpop: {
+          "0%": { opacity: "0", transform: "translateY(8px) scale(0.97)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
+        // Painel do chat subindo
+        wmslideup: {
+          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        // Pontinhos do "digitando"
+        wmdot: {
+          "0%, 60%, 100%": { opacity: "0.25", transform: "translateY(0)" },
+          "30%": { opacity: "1", transform: "translateY(-3px)" },
+        },
       },
       animation: {
         wmfloat: "wmfloat 6s ease-in-out infinite",
         wmdrift: "wmdrift 9s ease-in-out infinite",
+        wmpop: "wmpop 260ms cubic-bezier(0.22, 1, 0.36, 1) both",
+        wmslideup: "wmslideup 220ms cubic-bezier(0.22, 1, 0.36, 1) both",
+        wmdot: "wmdot 1.2s ease-in-out infinite",
       },
     },
     fontFamily: {

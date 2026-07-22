@@ -1,0 +1,22 @@
+{
+  "_note": "Config de distribuição da Web Makers. IDs não são segredo (o TOKEN vem de META_ACCESS_TOKEN no .env). Campos com 'SET_' são placeholders — preencher no setup (ver scripts/growth/README.md).",
+  "landing_url": "https://webmakers.dev.br",
+  "utm": { "source": "meta", "medium": "paid_social", "campaign": "captacao-local" },
+  "meta": {
+    "graph_version": "v21.0",
+    "ad_account_id": "SET_ACT_ID",
+    "business_id": "SET_BUSINESS_ID",
+    "page_id": "SET_PAGE_ID",
+    "pixel_id": "SET_PIXEL_ID",
+    "default_cta": "LEARN_MORE"
+  },
+  "instagram": {
+    "ig_user_id": "SET_IG_USER_ID",
+    "username": "webmakersbr",
+    "hashtags": "#webmakers #mogiguacu #mogimirim #sitepraempresa #pequenaempresa #automacao #marketinglocal #paginadevendas"
+  },
+  "google_ads": {
+    "conversion_id": "AW-961364895",
+    "_note": "Conversão gtag já instalada no site (_document.js). Ads via Google API exigem GADS_* no .env."
+  }
+}

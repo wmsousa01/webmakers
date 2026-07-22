@@ -1,0 +1,30 @@
+{
+  "id": "webmakers_automacao-whatsapp",
+  "slug": "webmakers_automacao_whatsapp",
+  "format": "carrossel-4x5",
+  "pillar": "automacao-processos",
+  "concept": "Automação de WhatsApp + integração para PME local: menos trabalho manual respondendo no braço, mais cliente atendido e agendado sozinho. Termina no CTA de diagnóstico.",
+  "copy": { "headline": "", "subhead": "", "cta": "" },
+  "cards": [
+    {
+      "headline": "Menos WhatsApp na mão.",
+      "body": "Mais cliente atendido.",
+      "art": "Card de CAPA — SEM número gigante. Título grande e o subtítulo menor abaixo. Um balão de WhatsApp estilizado em azul-céu. Nada além desses dois textos."
+    },
+    { "headline": "1. O cliente chama no WhatsApp", "body": "", "art": "Card de PASSO: número gigante em gradiente à esquerda + a headline ao lado. SEM subtítulo. Ícone de balão de mensagem." },
+    { "headline": "2. A automação responde e agenda", "body": "", "art": "Card de PASSO: número gigante + headline. SEM subtítulo. Ícone de engrenagem + relógio." },
+    { "headline": "3. Você fecha, sem digitar tudo", "body": "", "art": "Card de PASSO: número gigante + headline. SEM subtítulo. Ícone de check/aperto de mão." },
+    {
+      "headline": "Fale com a Web Makers",
+      "body": "",
+      "art": "Card FINAL de CTA — SEM número, SEM lista de passos. Apenas o título grande centralizado e, no rodapé, o selo pequeno da oferta. Muito espaço negativo."
+    }
+  ],
+  "art_direction": "Cada card minimalista e consistente: fundo branco/claro premium com glow sutil azul-céu → teal e formas geométricas leves. NÃO usar fundo escuro. Nos cards de passo, o número (1/2/3) gigante em gradiente ao lado da frase. Tipografia bold, muito respiro. O único texto na imagem é exatamente a copy pedida.",
+  "reference_images": [],
+  "destination": { "organic": ["instagram"], "ads": [] },
+  "status": "draft",
+  "outputs": [],
+  "validation": null,
+  "history": []
+}
