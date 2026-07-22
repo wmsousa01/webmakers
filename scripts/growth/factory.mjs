@@ -56,6 +56,7 @@ Stages: brief → generate → validate → approve → publish (orgânico/ads).
   node scripts/growth/factory.mjs publish-ig <id> [--dry-run]   # posta no Instagram (orgânico)
   node scripts/growth/factory.mjs gads-check                    # fumaça Google Ads (OAuth + dev token + MCC)
   node scripts/growth/factory.mjs gads-report [--customer=<id>] [--days=30]
+  node scripts/growth/factory.mjs gads-spec [--spec=pesquisa-local]  # valida a spec de campanha (limites de caractere)
 
 --dry-run roda offline (imprime prompts/payloads, sem GOOGLE_AI_API_KEY / sem criar nada no Meta).`;
 
@@ -346,6 +347,36 @@ async function cmdGadsReport(opts) {
   }
 }
 
+// Valida a spec de campanha de Pesquisa contra os limites do Google Ads antes
+// de a estrutura ser montada no painel — estourar caractere só apareceria lá,
+// um item por vez.
+async function cmdGadsSpec(opts) {
+  const { loadSpec, validateSpec } = await import("./lib/gadsspec.mjs");
+  const { spec, file } = loadSpec(opts.spec || "pesquisa-local");
+  const { erros, avisos, contagens } = validateSpec(spec);
+
+  console.log(`Spec: ${file}`);
+  console.log(`Campanha: ${spec.campanha?.nome || "?"}\n`);
+
+  console.log("INVENTÁRIO");
+  for (const [k, v] of Object.entries(contagens)) {
+    console.log(`  ${k.replace(/_/g, " ").padEnd(18)} ${v}`);
+  }
+
+  if (avisos.length) {
+    console.log("\nAVISOS");
+    avisos.forEach((a) => console.log(`  ~ ${a}`));
+  }
+
+  if (erros.length) {
+    console.log("\nERROS (bloqueiam a criação no painel)");
+    erros.forEach((e) => console.log(`  ✗ ${e}`));
+    process.exitCode = 1;
+    return;
+  }
+  console.log("\n✓ Nenhum limite de caractere estourado. Spec pronta para montar no painel.");
+}
+
 async function cmdMetaAdSets() {
   const sets = await listAdSets();
   if (!sets.length) return console.log("(nenhum ad set na conta)");
@@ -521,6 +552,7 @@ async function main() {
     card: flagVals.card,
     customer: flagVals.customer,
     days: flagVals.days,
+    spec: flagVals.spec,
   };
 
   switch (cmd) {
@@ -534,6 +566,7 @@ async function main() {
     case "meta-adsets": return cmdMetaAdSets();
     case "gads-check": return cmdGadsCheck();
     case "gads-report": return cmdGadsReport(opts);
+    case "gads-spec": return cmdGadsSpec(opts);
     case "publish": return cmdPublish(need(id), opts);
     case "activate": return cmdActivate(need(id), opts);
     case "publish-ig": return cmdPublishIg(need(id), opts);

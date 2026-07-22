@@ -1,0 +1,157 @@
+{
+  "_note": "Estrutura da campanha de Pesquisa da Web Makers. Especificação versionada: hoje é insumo para montar a campanha no painel do Google Ads (a conta está em modo Smart, que a API não cria nem edita); quando migrar para modo especialista, este mesmo arquivo alimenta a criação via API. Validar com: node scripts/growth/factory.mjs gads-spec",
+  "conta": {
+    "customer_id": "4296394458",
+    "modo_atual": "smart",
+    "modo_necessario": "especialista",
+    "_note": "A campanha anterior (Criação de Sites para Empresas, id 24046143972) está REMOVED. Não há nada no ar."
+  },
+
+  "campanha": {
+    "nome": "WM | Pesquisa | Mogi Guaçu e região",
+    "tipo": "SEARCH",
+    "rede_pesquisa_parceiros": false,
+    "rede_display": false,
+    "_note_redes": "Display e parceiros desligados: em orçamento pequeno eles consomem a verba com tráfego de baixa intenção e mascaram o desempenho da Pesquisa.",
+
+    "orcamento_diario_brl": 30,
+    "_note_orcamento": "A campanha removida rodava com R$ 17,20/dia. Abaixo de ~R$ 20/dia uma campanha de Pesquisa não junta cliques suficientes para sair do ruído. Confirme o CPC real das palavras no Planejador de Palavras-chave antes de fixar — não estimei CPC, precisa ser medido.",
+
+    "estrategia_lance": "MAXIMIZAR_CLIQUES",
+    "cpc_teto_brl": 4.0,
+    "_note_lance": "Começar em Maximizar cliques COM teto de CPC, não em Maximizar conversões. A conta tem zero conversões registradas e o rastreamento acabou de ser corrigido — Smart Bidding sem histórico gasta caro para aprender. Trocar para Maximizar conversões após ~30 conversões ou 3-4 semanas.",
+
+    "conversao_principal": {
+      "id": "7694288790",
+      "nome": "Lead do site (chat de triagem)",
+      "_note": "Marcar como única conversão principal da campanha. As ações de Smart Campaign (Clicks to call, Local actions - Directions, Smart campaign *) devem sair de 'Principal' — são resquício do modo Smart e poluem o sinal de otimização."
+    },
+
+    "localizacoes": [
+      { "cidade": "Mogi Guaçu", "uf": "SP", "raio_km": 20 },
+      { "cidade": "Mogi Mirim", "uf": "SP" },
+      { "cidade": "Itapira", "uf": "SP" },
+      { "cidade": "Aguaí", "uf": "SP" },
+      { "cidade": "Estiva Gerbi", "uf": "SP" },
+      { "cidade": "Conchal", "uf": "SP" },
+      { "cidade": "Espírito Santo do Pinhal", "uf": "SP" }
+    ],
+    "presenca": "PRESENCA_FISICA",
+    "_note_geo": "Obrigatório usar 'Pessoas que estão ou frequentam regularmente' — NÃO 'pessoas interessadas'. O padrão do Google inclui quem só pesquisou sobre a região e é o vazamento de verba mais comum em campanha local.",
+
+    "idiomas": ["pt"],
+    "url_final": "https://webmakers.dev.br",
+    "utm": "?utm_source=google&utm_medium=cpc&utm_campaign=pesquisa-local&utm_term={keyword}&utm_content={creative}"
+  },
+
+  "grupos": [
+    {
+      "nome": "Criação de site",
+      "tema": "Termo central de dinheiro. Maior volume e maior concorrência.",
+      "palavras_chave": [
+        { "texto": "criação de sites mogi guaçu", "correspondencia": "FRASE" },
+        { "texto": "criação de sites", "correspondencia": "FRASE" },
+        { "texto": "criar site para empresa", "correspondencia": "FRASE" },
+        { "texto": "fazer site para empresa", "correspondencia": "FRASE" },
+        { "texto": "empresa de criação de sites", "correspondencia": "FRASE" },
+        { "texto": "desenvolvimento de sites", "correspondencia": "FRASE" },
+        { "texto": "site para pequena empresa", "correspondencia": "FRASE" },
+        { "texto": "quanto custa um site para empresa", "correspondencia": "EXATA" },
+        { "texto": "agência de criação de sites", "correspondencia": "FRASE" }
+      ]
+    },
+    {
+      "nome": "Loja virtual",
+      "tema": "E-commerce. Tíquete maior, volume menor.",
+      "palavras_chave": [
+        { "texto": "criar loja virtual", "correspondencia": "FRASE" },
+        { "texto": "criação de loja virtual", "correspondencia": "FRASE" },
+        { "texto": "montar loja online", "correspondencia": "FRASE" },
+        { "texto": "criação de e-commerce", "correspondencia": "FRASE" },
+        { "texto": "loja virtual para empresa", "correspondencia": "EXATA" }
+      ]
+    },
+    {
+      "nome": "Automação e integração",
+      "tema": "Diferencial exclusivo — nenhum concorrente local oferece. Volume baixo, concorrência baixa, tíquete alto.",
+      "palavras_chave": [
+        { "texto": "automação de whatsapp para empresa", "correspondencia": "FRASE" },
+        { "texto": "chatbot para whatsapp", "correspondencia": "FRASE" },
+        { "texto": "integração de sistemas", "correspondencia": "FRASE" },
+        { "texto": "automação de processos empresa", "correspondencia": "FRASE" },
+        { "texto": "automatizar atendimento whatsapp", "correspondencia": "FRASE" }
+      ]
+    }
+  ],
+
+  "_note_grupos": "Três grupos, não seis. Com orçamento pequeno, espalhar em muitos grupos impede qualquer um de juntar dados suficientes para otimizar. Só correspondência de frase e exata — ampla queima verba sem histórico de conversão.",
+
+  "anuncio_responsivo": {
+    "_note": "Títulos: máx 30 caracteres. Descrições: máx 90. O Google exige no mínimo 3 títulos e 2 descrições; 15 e 4 é o ideal para dar combinações ao sistema.",
+    "titulos": [
+      "Criação de Sites em Mogi Guaçu",
+      "Site para Sua Empresa",
+      "Agência Local, DDD 19",
+      "Seu Site no Ar em 48h",
+      "Planos a Partir de R$ 149/mês",
+      "Diagnóstico Digital Grátis",
+      "Atendimento Presencial",
+      "Site + Google + WhatsApp",
+      "Fale Direto com Quem Faz",
+      "Loja Virtual que Vende",
+      "Automação de WhatsApp",
+      "Proposta em 1 Dia Útil",
+      "Sites para Pequenas Empresas",
+      "Preço Publicado no Site",
+      "Hospedagem e Suporte Inclusos"
+    ],
+    "descricoes": [
+      "Sites e automação para PMEs de Mogi Guaçu e região. Preço publicado, sem enrolação.",
+      "Agência local no DDD 19. Atendimento presencial e proposta em até 1 dia útil.",
+      "Planos com hospedagem, manutenção e suporte inclusos. Sem surpresa no fim do mês.",
+      "Diagnóstico digital grátis e sem compromisso. Fale no WhatsApp e veja o que falta."
+    ],
+    "caminho_exibicao": ["sites", "mogi-guacu"]
+  },
+
+  "recursos": {
+    "_note": "Extensões. Sitelinks e frases de destaque sobem a CTR sem custo adicional e ocupam mais área na página de resultados.",
+    "sitelinks": [
+      { "texto": "Planos e preços", "descricao1": "Compare os três planos", "descricao2": "Preço publicado, sem consulta", "url": "https://webmakers.dev.br/#precos" },
+      { "texto": "Automação de WhatsApp", "descricao1": "Atendimento no automático", "descricao2": "Integrado ao seu sistema", "url": "https://webmakers.dev.br/#solucoes" },
+      { "texto": "Diagnóstico grátis", "descricao1": "Sem compromisso", "descricao2": "Resposta no mesmo dia", "url": "https://webmakers.dev.br/#contato" },
+      { "texto": "Nossas soluções", "descricao1": "Site, loja e integração", "descricao2": "Um parceiro para tudo", "url": "https://webmakers.dev.br/#solucoes" }
+    ],
+    "frases_destaque": [
+      "Atendimento presencial",
+      "Proposta em 1 dia útil",
+      "Hospedagem inclusa",
+      "Suporte por WhatsApp",
+      "Preço publicado no site",
+      "Sem compromisso"
+    ],
+    "snippets_estruturados": {
+      "cabecalho": "Serviços",
+      "valores": ["Sites institucionais", "Lojas virtuais", "Automação de WhatsApp", "Integração de sistemas", "SEO local"]
+    },
+    "chamada": { "telefone": "+55 19 98933-1908", "_note": "Extensão de chamada — em mobile, ligação direta costuma converter melhor que clique para o site." },
+    "_note_local": "Extensão de local exige o Google Perfil de Empresa vinculado à conta. Se o perfil ainda não existe, criar antes: é o mesmo ativo que sustenta o SEO local e a prova social por avaliações."
+  },
+
+  "palavras_negativas": {
+    "_note": "Aplicar como lista negativa no nível da campanha. Corta as três famílias que mais queimam verba: quem quer de graça, quem quer aprender a fazer, e quem procura emprego.",
+    "gratis": ["grátis", "gratis", "gratuito", "gratuita", "de graça", "free"],
+    "aprender": ["curso", "cursos", "aula", "aulas", "como criar", "como fazer", "tutorial", "passo a passo", "apostila", "pdf", "faculdade", "aprender"],
+    "emprego": ["emprego", "vaga", "vagas", "estágio", "estagio", "salário", "salario", "concurso", "freelancer", "freela"],
+    "diy_e_outros": ["template", "templates", "modelo pronto", "wix", "wordpress", "download", "baixar", "hospedagem grátis", "programador"]
+  },
+
+  "checklist_antes_de_publicar": [
+    "Migrar a conta para modo especialista (Configurações → mudar de Smart para Especialista). Sem isso não existe campanha de Pesquisa.",
+    "Confirmar que 'Lead do site (chat de triagem)' é a ÚNICA conversão principal e que as ações de Smart Campaign foram rebaixadas para secundárias.",
+    "Rodar as palavras no Planejador de Palavras-chave e ajustar orçamento ao CPC real da região.",
+    "Conferir a segmentação de local em 'Presença física' — o padrão do Google é mais amplo.",
+    "Criar/vincular o Google Perfil de Empresa para habilitar extensão de local.",
+    "Validar esta spec: node scripts/growth/factory.mjs gads-spec"
+  ]
+}
