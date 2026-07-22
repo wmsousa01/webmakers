@@ -144,27 +144,21 @@ export default async function handler(req, res) {
         console.warn("Campo priority indisponível — recriando sem prioridade.");
         response = await post(baseFields);
       } else {
-        const detail = jiraDetail(errText);
-        console.error("Jira respondeu erro:", response.status, errText);
-        return res.status(502).json({
-          ok: false,
-          error: "Falha ao criar o lead.",
-          jiraStatus: response.status,
-          detail,
-          // Diagnóstico (não sensível): o que o servidor usou + se o Basic auth é válido.
-          tried: { host: base, project: baseFields.project.key, issuetype: baseFields.issuetype.name },
-          authOk: await checkAuth(),
-          // Tamanhos (não vazam o valor) para achar credencial truncada/errada.
-          cfg: { emailLen: email.length, tokenLen: token.length },
-        });
+        // Detalhe vai só para o log do servidor — a resposta pública fica genérica.
+        console.error(
+          "Jira respondeu erro:",
+          response.status,
+          jiraDetail(errText),
+          `| host=${base} project=${baseFields.project.key} authOk=${await checkAuth()}`
+        );
+        return res.status(502).json({ ok: false, error: "Falha ao criar o lead." });
       }
     }
 
     if (!response.ok) {
       const errText = await response.text();
-      const detail = jiraDetail(errText);
-      console.error("Jira respondeu erro (retry):", response.status, errText);
-      return res.status(502).json({ ok: false, error: "Falha ao criar o lead.", jiraStatus: response.status, detail });
+      console.error("Jira respondeu erro (retry):", response.status, jiraDetail(errText));
+      return res.status(502).json({ ok: false, error: "Falha ao criar o lead." });
     }
 
     const data = await response.json();
