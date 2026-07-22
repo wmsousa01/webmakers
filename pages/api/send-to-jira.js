@@ -154,6 +154,8 @@ export default async function handler(req, res) {
           // Diagnóstico (não sensível): o que o servidor usou + se o Basic auth é válido.
           tried: { host: base, project: baseFields.project.key, issuetype: baseFields.issuetype.name },
           authOk: await checkAuth(),
+          // Tamanhos (não vazam o valor) para achar credencial truncada/errada.
+          cfg: { emailLen: email.length, tokenLen: token.length },
         });
       }
     }
