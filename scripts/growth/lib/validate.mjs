@@ -14,6 +14,33 @@ export function pngSize(filePath) {
   return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) };
 }
 
+/** Largura/altura de um JPEG, varrendo os marcadores SOFn. Dep-free.
+ *  Necessário porque os modelos "pro" de imagem devolvem JPEG, não PNG — sem
+ *  isto a checagem de aspecto era silenciosamente pulada em toda peça. */
+export function jpegSize(filePath) {
+  const buf = fs.readFileSync(filePath);
+  if (buf.readUInt16BE(0) !== 0xffd8) return null; // não é JPEG
+  let off = 2;
+  while (off + 9 < buf.length) {
+    if (buf[off] !== 0xff) {
+      off++;
+      continue;
+    }
+    const marker = buf[off + 1];
+    // SOFn carregam as dimensões; SOF4/SOF8/SOFC não são frames de imagem.
+    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+      return { h: buf.readUInt16BE(off + 5), w: buf.readUInt16BE(off + 7) };
+    }
+    off += 2 + buf.readUInt16BE(off + 2); // pula para o próximo segmento
+  }
+  return null;
+}
+
+/** Dimensões independente do formato entregue pelo modelo. */
+export function imageSize(filePath) {
+  return pngSize(filePath) || jpegSize(filePath);
+}
+
 /** Technical checks that need no network. */
 export function technicalChecks(brief, filePath) {
   const spec = FORMATS[brief.format];
@@ -22,7 +49,7 @@ export function technicalChecks(brief, filePath) {
   const sizeMB = stat.size / (1024 * 1024);
   if (sizeMB > 30) problems.push(`arquivo grande (${sizeMB.toFixed(1)}MB > 30MB)`);
 
-  const dims = pngSize(filePath);
+  const dims = imageSize(filePath);
   let aspectOk = true;
   if (dims) {
     const want = spec.w / spec.h;
@@ -34,7 +61,7 @@ export function technicalChecks(brief, filePath) {
       );
     }
   } else {
-    problems.push("não foi possível ler dimensões (PNG?) — pulei checagem de aspecto");
+    problems.push("não foi possível ler dimensões (formato não reconhecido) — pulei checagem de aspecto");
   }
   return { dims, sizeMB: Number(sizeMB.toFixed(2)), aspectOk, problems };
 }
@@ -107,15 +134,19 @@ export async function brandChecks(brief, filePath, intendedTexts) {
     `Avalie este anúncio da marca ${BRAND.name}. Responda SOMENTE JSON com o schema:`,
     `{"text_in_image": string, "copy_matches": boolean, "legible": boolean, "on_brand": boolean, "spelling_ok": boolean, "issues": string[]}.`,
     `Estes são os textos PRETENDIDOS (todos corretos, é a referência): ${wantedCopy}.`,
-    `Toda palavra dessa lista está CERTA por definição — inclusive termos como "podcast" e "reframe".`,
+    `Toda palavra dessa lista está CERTA por definição, inclusive nomes de marca e termos técnicos.`,
     `NÃO sugira sinônimos nem traduções: só marque erro se o texto NA IMAGEM DIVERGIR desta lista.`,
     `Um erro é: palavra escrita diferente da lista (ex.: "clipes"→"clips"), acento errado/faltando`,
     `(ex.: "grátis"→"grátís", "créditos"→"creditos"), palavra duplicada ("e e"), faltando ou cortada.`,
     `copy_matches=false e spelling_ok=false se houver qualquer erro desses; senão true.`,
-    `Ignore texto decorativo/ilegível do mosaico de clipes ao fundo — não é copy.`,
+    `Ignore texto decorativo/ilegível de elementos de fundo (mockups, blocos, ícones) — não é copy.`,
     `Ignore diferença de: pontuação final, ponto após número de passo ("1" = "1."), tipo de traço`,
     `(– = —), tipo de separador (· = • = -), quebra de linha, caixa e espaçamento — nada disso é erro.`,
-    `on_brand: fundo escuro, gradiente roxo→azul→ciano, tipografia bold, estética premium e limpa.`,
+    // Derivado de config/brand/tokens.json. Estava hardcoded como "fundo escuro,
+    // gradiente roxo→azul→ciano" — identidade de OUTRO projeto, o oposto desta
+    // marca (fundo claro). Toda peça correta era reprovada por isso.
+    `on_brand: fundo ${BRAND.bgStyle} ${BRAND.bg}, gradiente ${BRAND.gradient.join(" → ")},`,
+    `tipografia bold, estética premium e limpa. Fundo claro é CORRETO para esta marca.`,
     `Em "issues" liste só os erros reais como "esperado X, apareceu Y".`,
   ].join(" ");
 

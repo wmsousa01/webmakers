@@ -8,8 +8,26 @@ import { getEnv } from "./env.mjs";
 const BASE = "https://generativelanguage.googleapis.com/v1beta";
 
 // Candidate models, best first — we fall through on 404 (not enabled on the key).
-const TEXT_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"];
-const IMAGE_MODELS = ["gemini-2.5-flash-image", "gemini-2.5-flash-image-preview"];
+// Os aliases "-latest" vêm primeiro de propósito: modelos com versão fixa vão
+// sendo fechados para novas chaves ("no longer available to new users") e ainda
+// assim continuam aparecendo no /models, então a lista fixa envelhece calada —
+// foi o que quebrou a validação por visão (404 em toda a cadeia até 1.5-flash).
+const TEXT_MODELS = [
+  "gemini-flash-latest",
+  "gemini-3.5-flash",
+  "gemini-2.5-flash",
+  "gemini-2.0-flash",
+];
+// Os modelos "pro" de imagem vêm primeiro por dois motivos medidos nesta conta:
+// o 2.5-flash-image entrega 896x1152 (abaixo do mínimo 1080x1350 do feed) e erra
+// tipografia em pt-BR — gerou "Fale coth a Web Makers" e "Diagnóstco digital
+// grátls". Como a peça é majoritariamente texto, tipografia é o critério.
+const IMAGE_MODELS = [
+  "gemini-3-pro-image",
+  "nano-banana-pro-preview",
+  "gemini-3.1-flash-image",
+  "gemini-2.5-flash-image",
+];
 
 function key() {
   return getEnv("GOOGLE_AI_API_KEY", { required: true });
@@ -69,14 +87,24 @@ export async function generateText(prompt, { temperature = 0.9 } = {}) {
  * Image generation (Nano Banana). Returns { model, buffer, mimeType }.
  * `referenceImages` = array of local file paths for style/logo consistency.
  */
-export async function generateImage(prompt, { referenceImages = [], aspectRatio = null } = {}) {
+export async function generateImage(
+  prompt,
+  { referenceImages = [], aspectRatio = null, imageSize = "2K" } = {}
+) {
   const parts = [{ text: prompt }];
   for (const ref of referenceImages) {
     if (fs.existsSync(ref)) parts.push(fileToInlineData(ref));
   }
   const generationConfig = { responseModalities: ["IMAGE"] };
   // Nano Banana honors an explicit aspect ratio via imageConfig (deterministic dims).
-  if (aspectRatio) generationConfig.imageConfig = { aspectRatio };
+  // imageSize é obrigatório para uso real: no default ("1K") o retorno é 928x1152,
+  // abaixo do mínimo 1080x1350 do feed. "2K" dá 1856x2304.
+  if (aspectRatio || imageSize) {
+    generationConfig.imageConfig = {
+      ...(aspectRatio ? { aspectRatio } : {}),
+      ...(imageSize ? { imageSize } : {}),
+    };
+  }
   const body = {
     contents: [{ role: "user", parts }],
     generationConfig,

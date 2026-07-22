@@ -176,16 +176,24 @@ async function cmdGenerate(id, { dryRun, card }) {
   const outputs = only != null ? [...(b.outputs || [])] : [];
   for (const u of chosen) {
     const prompt = buildImagePrompt(b, u.card, { includeOffer: u.includeOffer });
-    const dest = outputFile(b, { card: u.index });
     if (dryRun) {
-      console.log(`\n=== ${rel(dest)} ===\n${prompt}`);
+      console.log(`\n=== ${rel(outputFile(b, { card: u.index }))} ===\n${prompt}`);
       continue;
     }
-    console.log(`→ gerando ${rel(dest)} …`);
+    console.log(`→ gerando card ${u.index ?? "único"} …`);
     const img = await generateImage(prompt, {
       referenceImages: refPaths(b),
       aspectRatio: FORMATS[b.format].aspect,
     });
+    // A extensão segue o mime real: os modelos "pro" devolvem JPEG, e gravar
+    // JPEG com nome .png quebra quem confia na extensão (validate lê o header).
+    const ext = /jpe?g/i.test(img.mimeType || "") ? "jpg" : "png";
+    const dest = outputFile(b, { card: u.index, ext });
+    // Remove a versão em outro formato para não deixar par órfão .png + .jpg.
+    for (const outro of ["png", "jpg"]) {
+      const p = outputFile(b, { card: u.index, ext: outro });
+      if (p !== dest && fs.existsSync(p)) fs.unlinkSync(p);
+    }
     fs.writeFileSync(dest, img.buffer);
     console.log(`  ✔ ${rel(dest)} (${(img.buffer.length / 1024).toFixed(0)}KB, ${img.model})`);
     const entry = { file: rel(dest), model: img.model, card: u.index };
@@ -254,12 +262,11 @@ async function cmdIngest(id, { all }) {
     const faltando = [];
 
     for (const u of units(b)) {
-      const dest = outputFile(b, { card: u.index });
-      if (fs.existsSync(dest) && fs.statSync(dest).size > 0) {
-        achados.push({ file: rel(dest), model: "manual", card: u.index });
-      } else {
-        faltando.push(rel(dest));
-      }
+      // Aceita png ou jpg: geração manual costuma sair em qualquer um dos dois.
+      const cand = ["png", "jpg", "jpeg"].map((ext) => outputFile(b, { card: u.index, ext }));
+      const achado = cand.find((p) => fs.existsSync(p) && fs.statSync(p).size > 0);
+      if (achado) achados.push({ file: rel(achado), model: "manual", card: u.index });
+      else faltando.push(rel(cand[0]));
     }
 
     if (!achados.length) {

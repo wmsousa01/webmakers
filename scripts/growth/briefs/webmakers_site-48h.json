@@ -12,9 +12,97 @@
   "cards": [],
   "art_direction": "Mockup limpo de um site profissional numa tela de notebook flutuando, azul-céu #39B6EB e navy #0B3448 sobre fundo branco/claro. Muito respiro. Um selo/etiqueta '48h' em destaque. Sem texto denso, sem cara de template pronto.",
   "reference_images": [],
-  "destination": { "organic": ["instagram"], "ads": ["meta"] },
-  "status": "draft",
-  "outputs": [],
-  "validation": null,
-  "history": []
+  "destination": {
+    "organic": [
+      "instagram"
+    ],
+    "ads": [
+      "meta"
+    ]
+  },
+  "status": "validated",
+  "outputs": [
+    {
+      "file": "scripts/growth/out/statics/webmakers_site-48h_static-4x5_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": null
+    }
+  ],
+  "validation": {
+    "at": "2026-07-22T21:13:03.582Z",
+    "pass": true,
+    "results": [
+      {
+        "file": "scripts/growth/out/statics/webmakers_site-48h_static-4x5_v1.jpg",
+        "pass": true,
+        "problems": []
+      }
+    ]
+  },
+  "history": [
+    {
+      "at": "2026-07-22T20:10:40.003Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_site-48h_static-4x5_v1.png",
+          "model": "manual",
+          "card": null
+        }
+      ]
+    },
+    {
+      "at": "2026-07-22T20:18:14.908Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_site-48h_static-4x5_v1.png",
+          "model": "gemini-2.5-flash-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-22T21:01:42.407Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_site-48h_static-4x5_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-22T21:08:42.575Z",
+      "event": "validate:fail",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_site-48h_static-4x5_v1.jpg",
+          "pass": false,
+          "problems": [
+            "não foi possível ler dimensões (PNG?) — pulei checagem de aspecto",
+            "texto na imagem NÃO bate com a copy pretendida",
+            "erro de ortografia (pt-BR)",
+            "fora da identidade de marca",
+            "esperado 'compromisso', apareceu 'o' final apagado/cortado",
+            "esperado fundo escuro com gradiente roxo/azul/ciano, apareceu fundo claro"
+          ]
+        }
+      ]
+    },
+    {
+      "at": "2026-07-22T21:13:03.582Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_site-48h_static-4x5_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    }
+  ]
 }

@@ -4,16 +4,32 @@
   "format": "carrossel-4x5",
   "pillar": "automacao-processos",
   "concept": "Automação de WhatsApp + integração para PME local: menos trabalho manual respondendo no braço, mais cliente atendido e agendado sozinho. Termina no CTA de diagnóstico.",
-  "copy": { "headline": "", "subhead": "", "cta": "" },
+  "copy": {
+    "headline": "",
+    "subhead": "",
+    "cta": ""
+  },
   "cards": [
     {
       "headline": "Menos WhatsApp na mão.",
       "body": "Mais cliente atendido.",
       "art": "Card de CAPA — SEM número gigante. Título grande e o subtítulo menor abaixo. Um balão de WhatsApp estilizado em azul-céu. Nada além desses dois textos."
     },
-    { "headline": "1. O cliente chama no WhatsApp", "body": "", "art": "Card de PASSO: número gigante em gradiente à esquerda + a headline ao lado. SEM subtítulo. Ícone de balão de mensagem." },
-    { "headline": "2. A automação responde e agenda", "body": "", "art": "Card de PASSO: número gigante + headline. SEM subtítulo. Ícone de engrenagem + relógio." },
-    { "headline": "3. Você fecha, sem digitar tudo", "body": "", "art": "Card de PASSO: número gigante + headline. SEM subtítulo. Ícone de check/aperto de mão." },
+    {
+      "headline": "O cliente chama no WhatsApp",
+      "body": "",
+      "art": "Card de PASSO: número gigante em gradiente à esquerda + a headline ao lado. SEM subtítulo. Ícone de balão de mensagem."
+    },
+    {
+      "headline": "A automação responde e agenda",
+      "body": "",
+      "art": "Card de PASSO: número gigante + headline. SEM subtítulo. Ícone de engrenagem + relógio."
+    },
+    {
+      "headline": "Você fecha, sem digitar tudo",
+      "body": "",
+      "art": "Card de PASSO: número gigante + headline. SEM subtítulo. Ícone de check/aperto de mão."
+    },
     {
       "headline": "Fale com a Web Makers",
       "body": "",
@@ -22,9 +38,326 @@
   ],
   "art_direction": "Cada card minimalista e consistente: fundo branco/claro premium com glow sutil azul-céu → teal e formas geométricas leves. NÃO usar fundo escuro. Nos cards de passo, o número (1/2/3) gigante em gradiente ao lado da frase. Tipografia bold, muito respiro. O único texto na imagem é exatamente a copy pedida.",
   "reference_images": [],
-  "destination": { "organic": ["instagram"], "ads": [] },
-  "status": "draft",
-  "outputs": [],
-  "validation": null,
-  "history": []
+  "destination": {
+    "organic": [
+      "instagram"
+    ],
+    "ads": []
+  },
+  "status": "validated",
+  "outputs": [
+    {
+      "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": 1
+    },
+    {
+      "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": 2
+    },
+    {
+      "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": 3
+    },
+    {
+      "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": 4
+    },
+    {
+      "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": 5
+    }
+  ],
+  "validation": {
+    "at": "2026-07-22T21:12:55.506Z",
+    "pass": true,
+    "results": [
+      {
+        "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+        "pass": true,
+        "problems": []
+      },
+      {
+        "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+        "pass": true,
+        "problems": []
+      },
+      {
+        "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+        "pass": true,
+        "problems": []
+      },
+      {
+        "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+        "pass": true,
+        "problems": []
+      },
+      {
+        "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+        "pass": true,
+        "problems": []
+      }
+    ]
+  },
+  "history": [
+    {
+      "at": "2026-07-22T20:10:39.979Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.png",
+          "model": "manual",
+          "card": 1
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.png",
+          "model": "manual",
+          "card": 2
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.png",
+          "model": "manual",
+          "card": 3
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.png",
+          "model": "manual",
+          "card": 4
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.png",
+          "model": "manual",
+          "card": 5
+        }
+      ]
+    },
+    {
+      "at": "2026-07-22T20:16:03.727Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.png",
+          "model": "gemini-2.5-flash-image",
+          "card": 1
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.png",
+          "model": "gemini-2.5-flash-image",
+          "card": 2
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.png",
+          "model": "gemini-2.5-flash-image",
+          "card": 3
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.png",
+          "model": "gemini-2.5-flash-image",
+          "card": 4
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.png",
+          "model": "gemini-2.5-flash-image",
+          "card": 5
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-22T20:49:44.998Z",
+      "event": "validate:fail",
+      "results": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.png",
+          "pass": false,
+          "problems": [
+            "fora da identidade de marca"
+          ]
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.png",
+          "pass": false,
+          "problems": [
+            "fora da identidade de marca"
+          ]
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.png",
+          "pass": false,
+          "problems": [
+            "fora da identidade de marca"
+          ]
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.png",
+          "pass": false,
+          "problems": [
+            "texto na imagem NÃO bate com a copy pretendida",
+            "erro de ortografia (pt-BR)",
+            "fora da identidade de marca",
+            "esperado 'fecha', apareceu 'clesa'"
+          ]
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.png",
+          "pass": false,
+          "problems": [
+            "texto na imagem NÃO bate com a copy pretendida",
+            "erro de ortografia (pt-BR)",
+            "fora da identidade de marca",
+            "esperado 'com', apareceu 'coth'",
+            "esperado 'Diagnóstico', apareceu 'Diagnóstco'",
+            "esperado 'compromisso', apareceu 'compromihto'"
+          ]
+        }
+      ]
+    },
+    {
+      "at": "2026-07-22T20:51:57.015Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.png",
+          "model": "gemini-2.5-flash-image",
+          "card": 1
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.png",
+          "model": "gemini-2.5-flash-image",
+          "card": 2
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.png",
+          "model": "gemini-2.5-flash-image",
+          "card": 3
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.png",
+          "model": "gemini-2.5-flash-image",
+          "card": 4
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.png",
+          "model": "gemini-3-pro-image",
+          "card": 5
+        }
+      ],
+      "card": 5
+    },
+    {
+      "at": "2026-07-22T21:00:56.704Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 1
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 2
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 3
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 4
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 5
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-22T21:08:28.558Z",
+      "event": "validate:fail",
+      "results": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+          "pass": false,
+          "problems": [
+            "não foi possível ler dimensões (PNG?) — pulei checagem de aspecto",
+            "fora da identidade de marca"
+          ]
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+          "pass": false,
+          "problems": [
+            "não foi possível ler dimensões (PNG?) — pulei checagem de aspecto",
+            "fora da identidade de marca"
+          ]
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+          "pass": false,
+          "problems": [
+            "não foi possível ler dimensões (PNG?) — pulei checagem de aspecto",
+            "fora da identidade de marca",
+            "esperado fundo escuro com gradiente roxo-azul-ciano, apareceu fundo claro"
+          ]
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+          "pass": false,
+          "problems": [
+            "não foi possível ler dimensões (PNG?) — pulei checagem de aspecto",
+            "fora da identidade de marca"
+          ]
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+          "pass": false,
+          "problems": [
+            "não foi possível ler dimensões (PNG?) — pulei checagem de aspecto",
+            "fora da identidade de marca",
+            "esperado fundo escuro com gradiente roxo→azul→ciano, apareceu fundo claro"
+          ]
+        }
+      ]
+    },
+    {
+      "at": "2026-07-22T21:12:55.506Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+          "pass": true,
+          "problems": []
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+          "pass": true,
+          "problems": []
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+          "pass": true,
+          "problems": []
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+          "pass": true,
+          "problems": []
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    }
+  ]
 }
