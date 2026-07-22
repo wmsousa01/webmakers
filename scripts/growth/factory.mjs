@@ -10,6 +10,7 @@
 //   node scripts/growth/factory.mjs brief <id> [format]      # scaffold a blank brief
 //   node scripts/growth/factory.mjs author <id>              # LLM fills copy from concept (live)
 //   node scripts/growth/factory.mjs generate <id> [--dry-run]
+//   node scripts/growth/factory.mjs prompts <id> | --all    # prompts p/ geração manual
 //   node scripts/growth/factory.mjs validate <id> [--dry-run]
 //   node scripts/growth/factory.mjs approve <id> [--force]
 //
@@ -17,7 +18,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { REPO_ROOT, CONFIG_DIR, getEnv } from "./lib/env.mjs";
+import { REPO_ROOT, CONFIG_DIR, CREATIVES_DIR, getEnv } from "./lib/env.mjs";
 import { BRAND, BRAND_DIR, FORMATS, brandImagePreamble, brandReferenceImages } from "./lib/brand.mjs";
 import {
   listBriefs,
@@ -48,6 +49,8 @@ Stages: brief → generate → validate → approve → publish (orgânico/ads).
   node scripts/growth/factory.mjs brief <id> [static-1x1|static-4x5|carrossel-4x5]
   node scripts/growth/factory.mjs author <id>       # LLM preenche a copy (live)
   node scripts/growth/factory.mjs generate <id> [--dry-run]
+  node scripts/growth/factory.mjs prompts <id> | --all   # exporta prompts p/ geração manual + cria pastas
+  node scripts/growth/factory.mjs ingest <id> | --all    # adota imagens geradas fora do kit
   node scripts/growth/factory.mjs validate <id> [--dry-run]
   node scripts/growth/factory.mjs approve <id> [--force]
   node scripts/growth/factory.mjs meta-adsets                 # lista ad sets (precisa META_ACCESS_TOKEN)
@@ -195,6 +198,84 @@ async function cmdGenerate(id, { dryRun, card }) {
     setStatus(b, "generated", { outputs, card: only });
     console.log(`\n✔ ${id} → generated (${only != null ? "card " + only : outputs.length + " arquivo(s)"}). Rode: validate ${id}`);
   }
+}
+
+// Exporta os prompts para geração MANUAL da imagem (AI Studio, Whisk, etc.) e
+// prepara as pastas de destino. Existe porque a geração via API exige tier pago
+// no Gemini — o free tier tem cota ZERO para modelos de imagem. Com os arquivos
+// soltos nos caminhos exatos que o kit espera, validate/approve/publish seguem
+// funcionando como se a imagem tivesse sido gerada aqui.
+async function cmdPrompts(id, { all }) {
+  const briefs = all ? listBriefs().map((b) => loadBrief(b.id)) : [loadBrief(id)];
+  const packDir = path.join(CREATIVES_DIR, "_prompts");
+  fs.mkdirSync(packDir, { recursive: true });
+
+  const index = [
+    "# Prompts para geração manual",
+    "",
+    "Gere cada imagem com o prompt correspondente e salve **exatamente** no caminho",
+    "indicado em DESTINO — o nome do arquivo é o que liga a imagem de volta ao brief.",
+    "Depois: `node scripts/growth/factory.mjs validate <id>`",
+    "",
+  ];
+
+  for (const b of briefs) {
+    if (FORMATS[b.format].video) {
+      console.log(`· ${b.id}: formato de vídeo, sem prompt de imagem — pulando.`);
+      continue;
+    }
+    fs.mkdirSync(outputDir(b), { recursive: true });
+    index.push(`## ${b.id}  (${b.format})`, "");
+
+    for (const u of units(b)) {
+      const prompt = buildImagePrompt(b, u.card, { includeOffer: u.includeOffer });
+      const dest = outputFile(b, { card: u.index });
+      const nome = `${b.id}${u.index ? `_c${String(u.index).padStart(2, "0")}` : ""}.txt`;
+      fs.writeFileSync(path.join(packDir, nome), prompt, "utf8");
+      index.push(`### ${nome.replace(/\.txt$/, "")}`, "", `- PROMPT: \`_prompts/${nome}\``, `- DESTINO: \`${rel(dest)}\``, "");
+      console.log(`  ✔ _prompts/${nome}  →  ${rel(dest)}`);
+    }
+  }
+
+  fs.writeFileSync(path.join(packDir, "INDEX.md"), index.join("\n"), "utf8");
+  console.log(`\n✔ Pacote em ${rel(packDir)} — abra INDEX.md para o mapa prompt → destino.`);
+}
+
+// Adota imagens geradas fora do kit. `validate` lê brief.outputs, que só o
+// `generate` preenchia — sem isto, um PNG colocado à mão na pasta certa seria
+// ignorado pelo resto da pipeline. Varre os caminhos que o brief espera,
+// registra os que existirem e move o brief para "generated".
+async function cmdIngest(id, { all }) {
+  const briefs = all ? listBriefs().map((b) => loadBrief(b.id)) : [loadBrief(id)];
+
+  for (const b of briefs) {
+    if (FORMATS[b.format].video) continue;
+    const achados = [];
+    const faltando = [];
+
+    for (const u of units(b)) {
+      const dest = outputFile(b, { card: u.index });
+      if (fs.existsSync(dest) && fs.statSync(dest).size > 0) {
+        achados.push({ file: rel(dest), model: "manual", card: u.index });
+      } else {
+        faltando.push(rel(dest));
+      }
+    }
+
+    if (!achados.length) {
+      console.log(`· ${b.id}: nenhuma imagem encontrada — nada a fazer.`);
+      faltando.forEach((f) => console.log(`    falta: ${f}`));
+      continue;
+    }
+
+    b.outputs = achados;
+    setStatus(b, "generated", { outputs: achados });
+    console.log(`✔ ${b.id}: ${achados.length} imagem(ns) registrada(s) → generated`);
+    achados.forEach((a) => console.log(`    · ${a.file}`));
+    // Carrossel incompleto publica torto — avisar alto, não falhar em silêncio.
+    faltando.forEach((f) => console.log(`    ⚠ AINDA FALTA: ${f}`));
+  }
+  console.log(`\nPróximo: node scripts/growth/factory.mjs validate <id>`);
 }
 
 /** Video reel: per scene Veo (b-roll) + ElevenLabs VO, then ffmpeg assembly. */
@@ -553,6 +634,7 @@ async function main() {
     customer: flagVals.customer,
     days: flagVals.days,
     spec: flagVals.spec,
+    all: !!flagVals.all,
   };
 
   switch (cmd) {
@@ -567,6 +649,8 @@ async function main() {
     case "gads-check": return cmdGadsCheck();
     case "gads-report": return cmdGadsReport(opts);
     case "gads-spec": return cmdGadsSpec(opts);
+    case "prompts": return cmdPrompts(id, opts);
+    case "ingest": return cmdIngest(id, opts);
     case "publish": return cmdPublish(need(id), opts);
     case "activate": return cmdActivate(need(id), opts);
     case "publish-ig": return cmdPublishIg(need(id), opts);
