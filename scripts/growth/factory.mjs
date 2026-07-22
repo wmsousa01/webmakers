@@ -323,8 +323,11 @@ async function cmdGadsCheck() {
 /** Desempenho por campanha nos últimos N dias. */
 async function cmdGadsReport(opts) {
   const { campaignPerformance } = await import("./lib/gads.mjs");
-  const customer = opts.customer || getEnv("GADS_LOGIN_CUSTOMER_ID");
-  if (!customer) throw new Error("Informe --customer=<id> (ou defina GADS_LOGIN_CUSTOMER_ID).");
+  // Prioriza a conta configurada; a MCC não serve (métricas não existem em manager).
+  const customer = opts.customer || cfg().google_ads?.customer_id;
+  if (!customer) {
+    throw new Error("Informe --customer=<id> ou defina google_ads.customer_id em distribution.config.json.");
+  }
   const days = Number(opts.days || 30);
   const rows = await campaignPerformance(customer, { days });
   if (!rows.length) return console.log(`(sem dados nos últimos ${days} dias para ${customer})`);
@@ -499,16 +502,26 @@ function refPaths(b) {
 // ---------- entry ----------
 
 async function main() {
-  const [, , cmd, id, ...rest] = process.argv;
+  const [, , cmd, ...argv] = process.argv;
   const flagVals = {};
-  for (const a of rest) {
+  for (const a of argv) {
     if (a.startsWith("--")) {
       const [k, v] = a.slice(2).split("=");
       flagVals[k] = v === undefined ? true : v;
     }
   }
-  const positional = rest.filter((a) => !a.startsWith("--"));
-  const opts = { dryRun: !!flagVals["dry-run"], force: !!flagVals.force, to: flagVals.to, card: flagVals.card };
+  // Flags podem vir em qualquer posição: o <id> é o 1º argumento que não é flag.
+  const args = argv.filter((a) => !a.startsWith("--"));
+  const id = args[0];
+  const positional = args.slice(1);
+  const opts = {
+    dryRun: !!flagVals["dry-run"],
+    force: !!flagVals.force,
+    to: flagVals.to,
+    card: flagVals.card,
+    customer: flagVals.customer,
+    days: flagVals.days,
+  };
 
   switch (cmd) {
     case "list": return cmdList();

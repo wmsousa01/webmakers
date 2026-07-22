@@ -48,13 +48,17 @@ export async function accessToken() {
   return cached.token;
 }
 
-async function headers() {
-  return {
+/** `loginCustomerId: null` omite o header — necessário para contas que você acessa
+ *  diretamente (não vinculadas à MCC), onde mandar a MCC causa erro de permissão. */
+async function headers({ loginCustomerId } = {}) {
+  const h = {
     Authorization: `Bearer ${await accessToken()}`,
     "developer-token": getEnv("GADS_DEVELOPER_TOKEN", { required: true }),
-    "login-customer-id": normalizeId(getEnv("GADS_LOGIN_CUSTOMER_ID", { required: true })),
     "Content-Type": "application/json",
   };
+  const mcc = loginCustomerId === undefined ? getEnv("GADS_LOGIN_CUSTOMER_ID") : loginCustomerId;
+  if (mcc) h["login-customer-id"] = normalizeId(mcc);
+  return h;
 }
 
 /** Erros da Google Ads API vêm aninhados; extrai a mensagem útil. */
@@ -85,11 +89,26 @@ export async function listAccessibleCustomers() {
   return (json.resourceNames || []).map((r) => r.split("/")[1]);
 }
 
-/** Executa uma query GAQL numa conta. Pagina até o fim. */
-export async function search(customerId, query, { pageSize = 1000 } = {}) {
+/** Executa uma query GAQL numa conta. Pagina até o fim.
+ *  Obs.: a API não aceita pageSize — o tamanho da página é fixo (10.000 linhas). */
+export async function search(customerId, query, { loginCustomerId } = {}) {
+  const explicit = loginCustomerId !== undefined;
+  try {
+    return await runSearch(customerId, query, loginCustomerId);
+  } catch (e) {
+    // Conta acessada diretamente (não vinculada à MCC): mandar login-customer-id
+    // dispara erro de permissão. Refaz sem o header.
+    if (!explicit && /permission|not permitted|authoriz/i.test(e.message)) {
+      return await runSearch(customerId, query, null);
+    }
+    throw e;
+  }
+}
+
+async function runSearch(customerId, query, loginCustomerId) {
   const id = normalizeId(customerId);
   const url = `${ROOT}/customers/${id}/googleAds:search`;
-  const h = await headers();
+  const h = await headers({ loginCustomerId });
   const rows = [];
   let pageToken = null;
 
@@ -97,7 +116,7 @@ export async function search(customerId, query, { pageSize = 1000 } = {}) {
     const res = await fetch(url, {
       method: "POST",
       headers: h,
-      body: JSON.stringify({ query, pageSize, ...(pageToken ? { pageToken } : {}) }),
+      body: JSON.stringify({ query, ...(pageToken ? { pageToken } : {}) }),
     });
     const json = await handle(res, "search");
     rows.push(...(json.results || []));
