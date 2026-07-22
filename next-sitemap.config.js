@@ -5,5 +5,11 @@ module.exports = {
     changefreq: 'weekly', // Frequência de atualização
     priority: 0.7, // Prioridade para SEO
     sitemapSize: 5000, // Número máximo de URLs por arquivo de sitemap
+    // O /painel é superfície interna (Basic Auth no middleware). Fora do sitemap
+    // e bloqueado no robots.txt — não faz sentido divulgar a URL de admin.
+    exclude: ['/painel', '/painel/*'],
+    robotsTxtOptions: {
+      policies: [{ userAgent: '*', allow: '/', disallow: ['/painel'] }],
+    },
   };
   

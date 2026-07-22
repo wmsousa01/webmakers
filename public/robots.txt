@@ -1,6 +1,7 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /painel
 
 # Host
 Host: https://webmakers.dev.br
