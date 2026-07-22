@@ -17,7 +17,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { REPO_ROOT, CONFIG_DIR } from "./lib/env.mjs";
+import { REPO_ROOT, CONFIG_DIR, getEnv } from "./lib/env.mjs";
 import { BRAND, BRAND_DIR, FORMATS, brandImagePreamble, brandReferenceImages } from "./lib/brand.mjs";
 import {
   listBriefs,
@@ -54,6 +54,8 @@ Stages: brief → generate → validate → approve → publish (orgânico/ads).
   node scripts/growth/factory.mjs publish <id> --to=<adset_id> [--dry-run]
   node scripts/growth/factory.mjs activate <id>
   node scripts/growth/factory.mjs publish-ig <id> [--dry-run]   # posta no Instagram (orgânico)
+  node scripts/growth/factory.mjs gads-check                    # fumaça Google Ads (OAuth + dev token + MCC)
+  node scripts/growth/factory.mjs gads-report [--customer=<id>] [--days=30]
 
 --dry-run roda offline (imprime prompts/payloads, sem GOOGLE_AI_API_KEY / sem criar nada no Meta).`;
 
@@ -306,6 +308,41 @@ function adCopyFor(brief) {
   };
 }
 
+/** Teste de fumaça do Google Ads: OAuth + developer token + MCC. */
+async function cmdGadsCheck() {
+  const { listAccessibleCustomers, normalizeId } = await import("./lib/gads.mjs");
+  const mcc = normalizeId(getEnv("GADS_LOGIN_CUSTOMER_ID") || "");
+  const ids = await listAccessibleCustomers();
+  console.log(`✓ OAuth + developer token OK. MCC: ${mcc || "(não definida)"}`);
+  if (!ids.length) return console.log("(nenhuma conta acessível por este token)");
+  console.log("\nCONTAS ACESSÍVEIS");
+  for (const id of ids) console.log(`  ${id}${id === mcc ? "  ← MCC" : ""}`);
+  console.log("\nRelatório: node scripts/growth/factory.mjs gads-report --customer=<id>");
+}
+
+/** Desempenho por campanha nos últimos N dias. */
+async function cmdGadsReport(opts) {
+  const { campaignPerformance } = await import("./lib/gads.mjs");
+  const customer = opts.customer || getEnv("GADS_LOGIN_CUSTOMER_ID");
+  if (!customer) throw new Error("Informe --customer=<id> (ou defina GADS_LOGIN_CUSTOMER_ID).");
+  const days = Number(opts.days || 30);
+  const rows = await campaignPerformance(customer, { days });
+  if (!rows.length) return console.log(`(sem dados nos últimos ${days} dias para ${customer})`);
+
+  const brl = (n) => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  console.log(`Desempenho — últimos ${days} dias (conta ${customer})\n`);
+  console.log("CAMPANHA".padEnd(34) + "IMPR".padStart(9) + "CLIQUES".padStart(9) + "CUSTO".padStart(14) + "CONV".padStart(8));
+  for (const r of rows) {
+    console.log(
+      String(r.name || "?").slice(0, 33).padEnd(34) +
+        String(r.impressions).padStart(9) +
+        String(r.clicks).padStart(9) +
+        brl(r.cost).padStart(14) +
+        String(r.conversions).padStart(8),
+    );
+  }
+}
+
 async function cmdMetaAdSets() {
   const sets = await listAdSets();
   if (!sets.length) return console.log("(nenhum ad set na conta)");
@@ -482,6 +519,8 @@ async function main() {
     case "validate": return cmdValidate(need(id), opts);
     case "approve": return cmdApprove(need(id), opts);
     case "meta-adsets": return cmdMetaAdSets();
+    case "gads-check": return cmdGadsCheck();
+    case "gads-report": return cmdGadsReport(opts);
     case "publish": return cmdPublish(need(id), opts);
     case "activate": return cmdActivate(need(id), opts);
     case "publish-ig": return cmdPublishIg(need(id), opts);

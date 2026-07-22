@@ -46,7 +46,11 @@ ao ar sem ação manual (`activate`). Não automatize o `activate`.
 
 Layout:
 - `factory.mjs` — CLI da pipeline. `lib/*.mjs` — motor (gemini, veo, tts, assemble,
-  meta, ig, r2, validate, brand, brief, env).
+  meta, ig, r2, gads, validate, brand, brief, env).
+- `lib/gads.mjs` — Google Ads API (REST, dep-free): OAuth refresh→access token com cache,
+  `listAccessibleCustomers()` e `search()` (GAQL) + `campaignPerformance()`. **Só leitura
+  por enquanto** — mutação de campanha exige a conta em **modo especialista** (Smart/Express
+  não é operável pela API). Basic Access aprovado (MCC `718-066-9384`, 15k ops/dia).
 - `lib/env.mjs` — módulo central de caminhos: resolve `config/`, `briefs/`, `out/`
   relativos ao kit e lê segredos do **`.env` na raiz do repo** (override:
   `GROWTH_ENV_FILE=/abs/path`). Segredos nunca são impressos.
@@ -70,6 +74,8 @@ node scripts/growth/factory.mjs meta-adsets
 node scripts/growth/factory.mjs publish <id> --to=<adset_id>   # cria ad PAUSADO
 node scripts/growth/factory.mjs activate <id>                  # ação manual/gate humano
 node scripts/growth/factory.mjs publish-ig <id>                # IG orgânico
+node scripts/growth/factory.mjs gads-check                     # fumaça Google Ads
+node scripts/growth/factory.mjs gads-report [--customer=<id>] [--days=30]
 ```
 `--dry-run` roda **offline** (imprime prompts branded, sem chamar API nem criar nada).
 Para gerar imagens reais é preciso `GOOGLE_AI_API_KEY` no `.env` da raiz.
