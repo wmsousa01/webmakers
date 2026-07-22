@@ -3,10 +3,11 @@ import axios from "axios";
 import "tailwindcss/tailwind.css";
 import { FaComments, FaWhatsapp, FaArrowLeft, FaPaperPlane } from "react-icons/fa";
 
+import { trackLead, trackWhatsAppClick } from "../../lib/track";
+import { OPEN_CHAT_EVENT } from "../../lib/chatBus";
+
 const JIRA_ENDPOINT = "/api/send-to-jira";
 const WHATSAPP_NUMBER = "5519989331908";
-// Ação de conversão "Lead do site (chat de triagem)" — conta Google Ads 4296394458.
-const GADS_CONVERSION = "AW-18280455023/OBeQCJaP9tQcEO-25oxE";
 
 // Fluxo de triagem: contato (nome/e-mail/WhatsApp) + 4 dimensões de qualificação
 // em botões (tipo/urgência/orçamento/segmento) + detalhe livre. Cada passo vira
@@ -184,18 +185,6 @@ const ChatGPTChat = () => {
     [addMessage]
   );
 
-  // Dispara a conversão do Google Ads UMA vez, no sucesso — sem recarregar a página.
-  // send_to = ação "Lead do site (chat de triagem)" da conta 4296394458 (Web Makers).
-  const fireConversion = () => {
-    if (typeof window !== "undefined" && typeof window.gtag === "function") {
-      window.gtag("event", "conversion", {
-        send_to: GADS_CONVERSION,
-        value: 1.0,
-        currency: "BRL",
-      });
-    }
-  };
-
   const whatsappFallbackHref = () => {
     const d = userData;
     const msg =
@@ -209,14 +198,24 @@ const ChatGPTChat = () => {
     setStatus("sending");
     setIsTyping(true);
     try {
-      await axios.post(JIRA_ENDPOINT, finalData, { timeout: 12000 });
+      await axios.post(
+        JIRA_ENDPOINT,
+        { ...finalData, source: "chat" },
+        { timeout: 12000 }
+      );
       setIsTyping(false);
       addMessage(
         `Obrigado, ${finalData.name}! 🎉 Recebemos seu pedido — nossa equipe entra em contato pelo WhatsApp em breve.`,
         "bot"
       );
       setStatus("done");
-      fireConversion();
+      // Lead mais qualificado do site (contato + 4 dimensões de triagem):
+      // entra com o maior valor na conversão — ver lib/track.js.
+      trackLead("chat", {
+        context: "chat_triagem",
+        service: finalData.service,
+        urgency: finalData.urgency,
+      });
     } catch (error) {
       console.error("Erro ao enviar dados para o Jira:", error);
       setIsTyping(false);
@@ -322,6 +321,14 @@ const ChatGPTChat = () => {
 
   const closeChat = useCallback(() => setShowChat(false), []);
 
+  // CTAs fora da árvore do chat (hero, navbar, barra fixa do mobile) abrem o
+  // painel por CustomEvent — ver lib/chatBus.js.
+  useEffect(() => {
+    const onOpen = () => setShowChat(true);
+    window.addEventListener(OPEN_CHAT_EVENT, onOpen);
+    return () => window.removeEventListener(OPEN_CHAT_EVENT, onOpen);
+  }, []);
+
   // Esc fecha o painel.
   useEffect(() => {
     if (!showChat) return undefined;
@@ -337,8 +344,10 @@ const ChatGPTChat = () => {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
+      {/* No mobile o botão flutuante dá lugar à barra fixa de CTA (MobileCtaBar),
+          que oferece o mesmo diagnóstico com alvo de toque muito maior. */}
       {!showChat && (
-        <div className="relative">
+        <div className="relative hidden sm:block">
           <span className="absolute inset-0 animate-ping rounded-full bg-brand-500/40" />
           <button
             onClick={() => setShowChat(true)}
@@ -433,6 +442,11 @@ const ChatGPTChat = () => {
                   href={whatsappFallbackHref()}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackWhatsAppClick(
+                      status === "failed" ? "chat_falha" : "chat_sucesso"
+                    )
+                  }
                   className="inline-flex animate-wmpop items-center gap-2 rounded-full bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white shadow-md transition hover:brightness-95"
                 >
                   <FaWhatsapp size={18} />

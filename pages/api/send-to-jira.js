@@ -34,9 +34,12 @@ const priorityLabel = (urgency) => {
   return "urgencia-media";
 };
 
-const buildLabels = ({ service, urgency, budget, segment }) =>
+const buildLabels = ({ service, urgency, budget, segment, source }) =>
   [
     "lead-site",
+    // Origem do lead: o formulário de proposta também cria issue aqui (antes ia
+    // só para o getform e nunca aparecia no /painel). O label separa os funis.
+    `origem-${slug(source) || "chat"}`,
     service && `servico-${slug(service)}`,
     urgency && priorityLabel(urgency),
     budget && `orcamento-${slug(budget)}`,
@@ -64,8 +67,18 @@ export default async function handler(req, res) {
     return res.status(500).json({ ok: false, error: "Configuração indisponível." });
   }
 
-  const { name, email: leadEmail, phone, service, urgency, budget, segment, detail, interest } =
-    req.body || {};
+  const {
+    name,
+    email: leadEmail,
+    phone,
+    service,
+    urgency,
+    budget,
+    segment,
+    detail,
+    interest,
+    source,
+  } = req.body || {};
 
   // Validação mínima: sem contato não há lead (barra ruído/bot).
   if (!name || (!phone && !leadEmail)) {
@@ -74,7 +87,7 @@ export default async function handler(req, res) {
 
   const description = detail || interest || "";
   const priority = PRIORITY_BY_URGENCY[urgency] || "Medium";
-  const labels = buildLabels({ service, urgency, budget, segment });
+  const labels = buildLabels({ service, urgency, budget, segment, source });
   const summary = service ? `[${service}] Lead: ${name}` : `Novo contato de ${name}`;
 
   const baseFields = {
@@ -91,6 +104,7 @@ export default async function handler(req, res) {
         para("Urgência", urgency),
         para("Orçamento", budget),
         para("Segmento", segment),
+        para("Origem", source === "formulario" ? "Formulário de proposta" : "Chat de triagem"),
         para("Detalhe", description),
       ],
     },

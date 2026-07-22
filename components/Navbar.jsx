@@ -1,7 +1,10 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { Sling as Hamburger } from "hamburger-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { solutions } from "./data/siteData";
+import WhatsAppLink from "./WhatsAppLink";
+import { openChat } from "../lib/chatBus";
 
 const navLinks = [
   { label: "Planos", href: "/#precos" },
@@ -79,18 +82,21 @@ const Navbar = () => {
           ))}
 
           <div className="ml-auto flex items-center gap-[10px]">
-            <Link
-              href="/#contato"
+            <button
+              type="button"
+              onClick={() => openChat("navbar")}
               className="px-[14px] py-2 rounded-lg font-semibold text-[15px] text-ink-subtle hover:bg-surface-raised hover:text-ink whitespace-nowrap"
             >
-              Entrar em contato
-            </Link>
-            <Link
-              href="/#precos"
-              className="px-[18px] py-[10px] rounded-lg font-bold text-[15px] text-white bg-brand-600 hover:bg-brand-700 whitespace-nowrap transition-colors duration-200"
+              Diagnóstico grátis
+            </button>
+            {/* CTA da navbar vai direto para o canal de resposta mais rápida. */}
+            <WhatsAppLink
+              context="navbar"
+              className="inline-flex items-center gap-2 px-[18px] py-[10px] rounded-lg font-bold text-[15px] text-white bg-[#25D366] hover:bg-[#1EBE5B] whitespace-nowrap transition-colors duration-200"
             >
-              Ver planos
-            </Link>
+              <FaWhatsapp size={17} />
+              Falar no WhatsApp
+            </WhatsAppLink>
           </div>
         </div>
 
@@ -132,13 +138,21 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-            <div onClick={handleNav} className="mt-8">
-              <Link
-                href="/#precos"
-                className="btn bg-white text-brand-700 hover:bg-brand-50 w-full"
+            <div onClick={handleNav} className="mt-8 grid gap-3">
+              <WhatsAppLink
+                context="menu_mobile"
+                className="btn w-full bg-[#25D366] text-white hover:bg-[#1EBE5B]"
               >
-                Ver planos
-              </Link>
+                <FaWhatsapp size={19} />
+                Falar no WhatsApp
+              </WhatsAppLink>
+              <button
+                type="button"
+                onClick={() => openChat("menu_mobile")}
+                className="btn w-full bg-white text-brand-700 hover:bg-brand-50"
+              >
+                Diagnóstico grátis
+              </button>
             </div>
           </div>
         </div>

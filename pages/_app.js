@@ -5,6 +5,7 @@ import Script from 'next/script';
 import { Figtree, Plus_Jakarta_Sans } from 'next/font/google';
 import { useRouter } from 'next/router';
 import ChatGPTChat from '../components/gpt/ChatGptChat'; // Importa o componente do chat
+import MobileCtaBar from '../components/MobileCtaBar';
 
 // Fontes do design (auto-hospedadas — sem depender de @import externo).
 const figtree = Figtree({
@@ -64,6 +65,9 @@ function MyApp({ Component, pageProps }) {
 
       {/* Chat renderizado em todas as telas */}
       <ChatGPTChat />
+
+      {/* CTA sempre visível no mobile (substitui o botão flutuante nessa faixa) */}
+      <MobileCtaBar />
     </div>
   );
 }

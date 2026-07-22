@@ -1,6 +1,21 @@
 import React from "react";
 import Link from "next/link";
-import { plans, planRows } from "./data/siteData";
+import { plans, planRows, waPlanHref } from "./data/siteData";
+import { trackWhatsAppClick } from "../lib/track";
+
+// CTA de plano leva ao WhatsApp com o plano já citado na mensagem: quem chega
+// aqui já escolheu, e mandar essa pessoa rolar até um formulário perde o lead.
+const PlanCta = ({ plan, className }) => (
+  <a
+    href={waPlanHref(plan.name)}
+    target="_blank"
+    rel="noopener noreferrer"
+    onClick={() => trackWhatsAppClick(`plano_${plan.name}`)}
+    className={className}
+  >
+    Falar com especialista
+  </a>
+);
 
 const AllPlans = () => {
   return (
@@ -71,16 +86,14 @@ const AllPlans = () => {
               ))}
             </ul>
 
-            <Link
-              href="/#contato"
+            <PlanCta
+              plan={p}
               className={`mt-6 inline-block w-full text-center px-4 py-3 rounded-[9px] font-bold text-[15px] transition-colors duration-200 ${
                 p.popular
                   ? "text-white bg-brand-600 hover:bg-brand-700"
                   : "text-brand-600 bg-white border border-[#B6E3F6] hover:bg-brand-50"
               }`}
-            >
-              Falar com especialista
-            </Link>
+            />
           </div>
         ))}
       </div>
@@ -157,16 +170,14 @@ const AllPlans = () => {
                     key={p.name}
                     className={`p-6 ${p.popular ? "bg-surface-tint" : ""}`}
                   >
-                    <Link
-                      href="/#contato"
+                    <PlanCta
+                      plan={p}
                       className={`inline-block w-full text-center px-4 py-3 rounded-[9px] font-bold text-[15px] transition-colors duration-200 ${
                         p.popular
                           ? "text-white bg-brand-600 hover:bg-brand-700"
                           : "text-brand-600 bg-white border border-[#B6E3F6] hover:bg-brand-50"
                       }`}
-                    >
-                      Falar com especialista
-                    </Link>
+                    />
                   </td>
                 ))}
               </tr>

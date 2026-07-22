@@ -1,6 +1,8 @@
 import React from "react";
-import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
 import { heroStats } from "./data/siteData";
+import WhatsAppLink from "./WhatsAppLink";
+import { openChat } from "../lib/chatBus";
 
 const Hero = () => {
   return (
@@ -21,7 +23,7 @@ const Hero = () => {
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-[6px] rounded-full bg-brand-50 text-brand-700 font-bold text-[13px] mb-[22px]">
             <span className="w-[7px] h-[7px] rounded-full bg-brand-600" />
-            Feito para pequenas e médias empresas
+            Agência de Mogi Guaçu · para pequenas e médias empresas
           </div>
 
           <h1 className="mb-5" style={{ textWrap: "balance" }}>
@@ -33,14 +35,29 @@ const Hero = () => {
             trazem clientes — sem gastar além do necessário.
           </p>
 
+          {/* CTA primário é a oferta de topo de funil (diagnóstico), não um
+              "começar agora" vago. O WhatsApp fica ao lado como rota de menor
+              atrito — é o canal nº 1 de venda das PMEs da região. */}
           <div className="flex gap-3 flex-wrap">
-            <Link href="/#contato" className="btn-primary">
-              Começar agora
-            </Link>
-            <Link href="/#solucoes" className="btn-secondary">
-              Ver soluções
-            </Link>
+            <button
+              type="button"
+              onClick={() => openChat("hero")}
+              className="btn-primary"
+            >
+              Quero meu diagnóstico grátis
+            </button>
+            <WhatsAppLink
+              context="hero"
+              className="btn inline-flex items-center gap-2 bg-[#25D366] text-white hover:bg-[#1EBE5B]"
+            >
+              <FaWhatsapp size={19} />
+              Chamar no WhatsApp
+            </WhatsAppLink>
           </div>
+
+          <p className="text-sm text-ink-faint mt-3">
+            Resposta no mesmo dia · sem compromisso · sem custo
+          </p>
 
           <div className="flex gap-7 mt-10 flex-wrap">
             {heroStats.map((st) => (

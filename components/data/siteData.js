@@ -83,7 +83,9 @@ export const planRows = [
 export const heroStats = [
   { k: "48h", v: "para colocar seu site no ar" },
   { k: "+18h", v: "economizadas por semana" },
-  { k: "100%", v: "responsivo em qualquer tela" },
+  // Responsividade é commodity (todo concorrente promete). Ser de Mogi Guaçu não é:
+  // metade dos "concorrentes locais" no Google é operação remota de outra região.
+  { k: "DDD 19", v: "agência local, atendimento presencial" },
 ];
 
 export const logos = [
@@ -112,5 +114,25 @@ export const contactPoints = [
   { t: "Atendimento humano", d: "Fale direto com quem executa." },
 ];
 
-export const WHATSAPP_URL =
-  "https://api.whatsapp.com/send?phone=5519989331908&text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista.";
+export const WHATSAPP_NUMBER = "5519989331908";
+
+const WA_DEFAULT =
+  "Olá! Vim do site da Web Makers e quero meu diagnóstico digital grátis.";
+
+/**
+ * Monta o link de WhatsApp com a mensagem já preenchida.
+ * Mensagem contextual importa: o lead chega dizendo de onde veio e o que quer,
+ * o que corta uma rodada de ida e volta antes da qualificação.
+ */
+export const waHref = (message) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    message || WA_DEFAULT
+  )}`;
+
+export const waPlanHref = (planName) =>
+  waHref(
+    `Olá! Vim do site da Web Makers. Tenho interesse no plano ${planName} e queria entender melhor o que está incluso.`
+  );
+
+// Mantido para compatibilidade com imports antigos.
+export const WHATSAPP_URL = waHref();
