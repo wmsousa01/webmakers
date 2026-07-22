@@ -126,6 +126,62 @@ async function runSearch(customerId, query, loginCustomerId) {
   return rows;
 }
 
+/** POST de mutação, com o mesmo fallback de login-customer-id do search. */
+async function mutate(pathPart, body, { loginCustomerId } = {}) {
+  const explicit = loginCustomerId !== undefined;
+  const run = async (lci) => {
+    const res = await fetch(`${ROOT}/${pathPart}`, {
+      method: "POST",
+      headers: await headers({ loginCustomerId: lci }),
+      body: JSON.stringify(body),
+    });
+    return handle(res, pathPart);
+  };
+  try {
+    return await run(loginCustomerId);
+  } catch (e) {
+    if (!explicit && /permission|not permitted|authoriz/i.test(e.message)) return run(null);
+    throw e;
+  }
+}
+
+/** Liga/pausa uma campanha: ENABLED | PAUSED. Para remover use removeCampaign().
+ *  `validateOnly: true` valida a operação sem aplicar (dry-run da própria API). */
+export async function setCampaignStatus(customerId, campaignId, status, { validateOnly = false, loginCustomerId } = {}) {
+  const allowed = ["ENABLED", "PAUSED"];
+  if (!allowed.includes(status)) {
+    throw new Error(`Status inválido: ${status}. Use ${allowed.join(" | ")} — 'REMOVED' só via removeCampaign().`);
+  }
+  const id = normalizeId(customerId);
+  return mutate(
+    `customers/${id}/campaigns:mutate`,
+    {
+      operations: [
+        {
+          update: { resourceName: `customers/${id}/campaigns/${campaignId}`, status },
+          updateMask: "status",
+        },
+      ],
+      validateOnly,
+    },
+    { loginCustomerId },
+  );
+}
+
+/** ⚠️ Remove uma campanha PERMANENTEMENTE (configuração e histórico não voltam).
+ *  A API não aceita `status: REMOVED` via update — remoção é uma operação `remove`. */
+export async function removeCampaign(customerId, campaignId, { validateOnly = false, loginCustomerId } = {}) {
+  const id = normalizeId(customerId);
+  return mutate(
+    `customers/${id}/campaigns:mutate`,
+    {
+      operations: [{ remove: `customers/${id}/campaigns/${campaignId}` }],
+      validateOnly,
+    },
+    { loginCustomerId },
+  );
+}
+
 /** Desempenho por campanha nos últimos N dias — o que o /painel precisa. */
 export async function campaignPerformance(customerId, { days = 30 } = {}) {
   const rows = await search(
