@@ -1,0 +1,71 @@
+{
+  "id": "webmakers_servicos-google",
+  "slug": "webmakers_servicos_google",
+  "format": "static-1x1",
+  "pillar": "presenca-online",
+  "concept": "Serviços locais (clínica, oficina, pet, estética) são escolhidos pelo Google e avaliações; quem não aparece organizado perde para o concorrente.",
+  "copy": {
+    "headline": "Te acham no Google?",
+    "subhead": "Clínica, oficina, pet: apareça primeiro",
+    "cta": "Aparecer no Google"
+  },
+  "cards": [],
+  "art_direction": "Pin de mapa com estrelas de avaliação e uma lupa de busca, sugerindo resultado do Google. Ícones sutis de nichos (pata, chave de boca, estetoscópio). Azul-céu e navy sobre fundo claro.",
+  "reference_images": [],
+  "destination": {
+    "organic": [
+      "instagram"
+    ],
+    "ads": []
+  },
+  "status": "approved",
+  "outputs": [
+    {
+      "file": "scripts/growth/out/statics/webmakers_servicos-google_static-1x1_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": null
+    }
+  ],
+  "validation": {
+    "at": "2026-07-23T18:45:16.393Z",
+    "pass": true,
+    "results": [
+      {
+        "file": "scripts/growth/out/statics/webmakers_servicos-google_static-1x1_v1.jpg",
+        "pass": true,
+        "problems": []
+      }
+    ]
+  },
+  "history": [
+    {
+      "at": "2026-07-23T18:31:30.559Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_servicos-google_static-1x1_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-23T18:45:16.393Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_servicos-google_static-1x1_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T18:57:49.429Z",
+      "event": "status:approved",
+      "by": "willi",
+      "force": false
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "webmakers_restaurante-ifood",
+  "slug": "webmakers_restaurante_ifood",
+  "format": "static-4x5",
+  "pillar": "integracao-sistemas",
+  "concept": "Argumento anti-comissão para restaurantes: o iFood leva quase 1/3 de cada pedido; cardápio digital com pedido no WhatsApp devolve a margem ao dono.",
+  "copy": {
+    "headline": "O iFood leva quase 1/3",
+    "subhead": "Cardápio no WhatsApp: seu cliente, sua margem",
+    "cta": "Recuperar minha margem"
+  },
+  "cards": [],
+  "art_direction": "TODA a tipografia obrigatoriamente sans-serif grotesca (estilo Plus Jakarta Sans/Figtree), headline E subtítulo — NUNCA serifada. Ilustração de cardápio digital em celular conectado a um balão de WhatsApp, com um prato estilizado. Azul-céu e navy sobre fundo claro, restaurante local, apetitoso mas limpo, sem foto de banco de imagem.",
+  "reference_images": [],
+  "destination": {
+    "organic": [
+      "instagram"
+    ],
+    "ads": []
+  },
+  "status": "approved",
+  "outputs": [
+    {
+      "file": "scripts/growth/out/statics/webmakers_restaurante-ifood_static-4x5_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": null
+    }
+  ],
+  "validation": {
+    "at": "2026-07-23T18:57:40.364Z",
+    "pass": true,
+    "results": [
+      {
+        "file": "scripts/growth/out/statics/webmakers_restaurante-ifood_static-4x5_v1.jpg",
+        "pass": true,
+        "problems": []
+      }
+    ]
+  },
+  "history": [
+    {
+      "at": "2026-07-23T18:31:03.029Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_restaurante-ifood_static-4x5_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-23T18:45:08.938Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_restaurante-ifood_static-4x5_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T18:52:46.551Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_restaurante-ifood_static-4x5_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-23T18:57:40.364Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_restaurante-ifood_static-4x5_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T18:57:49.097Z",
+      "event": "status:approved",
+      "by": "willi",
+      "force": false
+    }
+  ]
+}

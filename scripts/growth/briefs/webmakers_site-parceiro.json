@@ -1,0 +1,71 @@
+{
+  "id": "webmakers_site-parceiro",
+  "slug": "webmakers_site_parceiro",
+  "format": "static-1x1",
+  "pillar": "recorrencia-suporte",
+  "concept": "Site como parceiro contínuo, não projeto que fica pronto e some — hospedagem, manutenção e suporte inclusos na mensalidade.",
+  "copy": {
+    "headline": "Seu site não é um projeto",
+    "subhead": "É um parceiro. Hospedagem e suporte inclusos.",
+    "cta": "Quero esse suporte"
+  },
+  "cards": [],
+  "art_direction": "Ícone de escudo/suporte e um site em tela conectado a símbolos de manutenção contínua (engrenagem, escudo, coração). Azul-céu e navy sobre fundo claro. Sensação de tranquilidade e continuidade.",
+  "reference_images": [],
+  "destination": {
+    "organic": [
+      "instagram"
+    ],
+    "ads": []
+  },
+  "status": "approved",
+  "outputs": [
+    {
+      "file": "scripts/growth/out/statics/webmakers_site-parceiro_static-1x1_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": null
+    }
+  ],
+  "validation": {
+    "at": "2026-07-23T18:45:02.250Z",
+    "pass": true,
+    "results": [
+      {
+        "file": "scripts/growth/out/statics/webmakers_site-parceiro_static-1x1_v1.jpg",
+        "pass": true,
+        "problems": []
+      }
+    ]
+  },
+  "history": [
+    {
+      "at": "2026-07-23T18:30:35.839Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_site-parceiro_static-1x1_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-23T18:45:02.250Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_site-parceiro_static-1x1_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T18:57:48.864Z",
+      "event": "status:approved",
+      "by": "willi",
+      "force": false
+    }
+  ]
+}

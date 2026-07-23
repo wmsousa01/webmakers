@@ -1,0 +1,71 @@
+{
+  "id": "webmakers_dado-chatbot",
+  "slug": "webmakers_dado_chatbot",
+  "format": "static-1x1",
+  "pillar": "automacao-processos",
+  "concept": "Estatística Sebrae de que 41% das pequenas empresas já usam chatbot no WhatsApp, provocando quem ainda atende tudo no braço.",
+  "copy": {
+    "headline": "41% já usam chatbot",
+    "subhead": "no WhatsApp. E o seu negócio? (Sebrae)",
+    "cta": "Quero automatizar"
+  },
+  "cards": [],
+  "art_direction": "Número 41% GIGANTE em gradiente azul-céu à esquerda como herói do card, balão de WhatsApp estilizado. Estilo dado/infográfico limpo, fundo claro.",
+  "reference_images": [],
+  "destination": {
+    "organic": [
+      "instagram"
+    ],
+    "ads": []
+  },
+  "status": "approved",
+  "outputs": [
+    {
+      "file": "scripts/growth/out/statics/webmakers_dado-chatbot_static-1x1_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": null
+    }
+  ],
+  "validation": {
+    "at": "2026-07-23T18:44:41.589Z",
+    "pass": true,
+    "results": [
+      {
+        "file": "scripts/growth/out/statics/webmakers_dado-chatbot_static-1x1_v1.jpg",
+        "pass": true,
+        "problems": []
+      }
+    ]
+  },
+  "history": [
+    {
+      "at": "2026-07-23T18:29:15.649Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_dado-chatbot_static-1x1_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-23T18:44:41.589Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_dado-chatbot_static-1x1_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T18:57:48.064Z",
+      "event": "status:approved",
+      "by": "willi",
+      "force": false
+    }
+  ]
+}

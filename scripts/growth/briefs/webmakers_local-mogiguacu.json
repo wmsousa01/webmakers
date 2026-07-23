@@ -1,0 +1,71 @@
+{
+  "id": "webmakers_local-mogiguacu",
+  "slug": "webmakers_local_mogiguacu",
+  "format": "static-1x1",
+  "pillar": "atendimento-local-mogi-guacu",
+  "concept": "Web Makers é agência local de Mogi Guaçu (DDD 19), com atendimento presencial — diferente dos concorrentes remotos que só atendem por formulário.",
+  "copy": {
+    "headline": "Sua agência é aqui do lado",
+    "subhead": "Mogi Guaçu · DDD 19 · atendimento presencial",
+    "cta": "Diagnóstico grátis"
+  },
+  "cards": [],
+  "art_direction": "Pin de localização/mapa estilizado em azul-céu #39B6EB sobre fundo claro, com silhueta leve de cidade do interior. Sensação de proximidade e confiança local. Muito respiro, sem foto genérica de banco de imagem.",
+  "reference_images": [],
+  "destination": {
+    "organic": [
+      "instagram"
+    ],
+    "ads": []
+  },
+  "status": "approved",
+  "outputs": [
+    {
+      "file": "scripts/growth/out/statics/webmakers_local-mogiguacu_static-1x1_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": null
+    }
+  ],
+  "validation": {
+    "at": "2026-07-23T18:44:35.077Z",
+    "pass": true,
+    "results": [
+      {
+        "file": "scripts/growth/out/statics/webmakers_local-mogiguacu_static-1x1_v1.jpg",
+        "pass": true,
+        "problems": []
+      }
+    ]
+  },
+  "history": [
+    {
+      "at": "2026-07-23T18:28:46.432Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_local-mogiguacu_static-1x1_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-23T18:44:35.078Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_local-mogiguacu_static-1x1_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T18:57:47.831Z",
+      "event": "status:approved",
+      "by": "willi",
+      "force": false
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "webmakers_bastidor-automacao",
+  "slug": "webmakers_bastidor_automacao",
+  "format": "static-1x1",
+  "pillar": "automacao-processos",
+  "concept": "Card conceitual reforçando que a automação da Web Makers é feita sob medida, conectada ao sistema do cliente — não robô genérico terceirizado. NÃO é foto nem screenshot real.",
+  "copy": {
+    "headline": "Feito à mão. Aqui.",
+    "subhead": "Sua automação ligada ao seu sistema",
+    "cta": "Falar no WhatsApp"
+  },
+  "cards": [],
+  "art_direction": "TODA a tipografia obrigatoriamente sans-serif grotesca (estilo Plus Jakarta Sans/Figtree), headline E subtítulo — NUNCA serifada. Ilustração de engrenagens conectadas por linhas de fluxo a um balão de WhatsApp e a ícones de sistema (carrinho, agenda), azul-céu e navy sobre fundo claro. Conceitual e limpo, NÃO imitar screenshot de app real.",
+  "reference_images": [],
+  "destination": {
+    "organic": [
+      "instagram"
+    ],
+    "ads": []
+  },
+  "status": "approved",
+  "outputs": [
+    {
+      "file": "scripts/growth/out/statics/webmakers_bastidor-automacao_static-1x1_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": null
+    }
+  ],
+  "validation": {
+    "at": "2026-07-23T18:57:47.415Z",
+    "pass": true,
+    "results": [
+      {
+        "file": "scripts/growth/out/statics/webmakers_bastidor-automacao_static-1x1_v1.jpg",
+        "pass": true,
+        "problems": []
+      }
+    ]
+  },
+  "history": [
+    {
+      "at": "2026-07-23T18:29:40.897Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_bastidor-automacao_static-1x1_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-23T18:44:48.021Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_bastidor-automacao_static-1x1_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T18:53:13.947Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_bastidor-automacao_static-1x1_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-23T18:57:47.415Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_bastidor-automacao_static-1x1_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T18:57:48.336Z",
+      "event": "status:approved",
+      "by": "willi",
+      "force": false
+    }
+  ]
+}

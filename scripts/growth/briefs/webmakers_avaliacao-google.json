@@ -1,0 +1,71 @@
+{
+  "id": "webmakers_avaliacao-google",
+  "slug": "webmakers_avaliacao_google",
+  "format": "static-1x1",
+  "pillar": "recorrencia-suporte",
+  "concept": "Convite a clientes atuais deixarem avaliação no Google — começa a construir a prova social por estrelas (concorrente tem 52, é a barreira a bater).",
+  "copy": {
+    "headline": "Já é cliente? Deixa 5 estrelas",
+    "subhead": "Cada avaliação ajuda outro PME daqui",
+    "cta": "Avaliar no Google"
+  },
+  "cards": [],
+  "art_direction": "Cinco estrelas douradas/azuis em destaque sobre fundo claro, sensação de comunidade e gratidão. Balão com coração. Limpo, caloroso, azul-céu e navy.",
+  "reference_images": [],
+  "destination": {
+    "organic": [
+      "instagram"
+    ],
+    "ads": []
+  },
+  "status": "approved",
+  "outputs": [
+    {
+      "file": "scripts/growth/out/statics/webmakers_avaliacao-google_static-1x1_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": null
+    }
+  ],
+  "validation": {
+    "at": "2026-07-23T18:45:22.612Z",
+    "pass": true,
+    "results": [
+      {
+        "file": "scripts/growth/out/statics/webmakers_avaliacao-google_static-1x1_v1.jpg",
+        "pass": true,
+        "problems": []
+      }
+    ]
+  },
+  "history": [
+    {
+      "at": "2026-07-23T18:32:05.143Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_avaliacao-google_static-1x1_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-23T18:45:22.612Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_avaliacao-google_static-1x1_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T18:57:49.670Z",
+      "event": "status:approved",
+      "by": "willi",
+      "force": false
+    }
+  ]
+}

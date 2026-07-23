@@ -1,0 +1,94 @@
+{
+  "id": "webmakers_precos-transparente",
+  "slug": "webmakers_precos_transparente",
+  "format": "static-4x5",
+  "pillar": "preco-transparente",
+  "concept": "Preço publicado como diferencial — nenhuma agência local publica preço, só faz orçamento sob consulta.",
+  "copy": {
+    "headline": "Preço na mesa, sem 'sob consulta'",
+    "subhead": "Planos de R$149 a R$997 por mês",
+    "cta": "Ver planos"
+  },
+  "cards": [],
+  "art_direction": "Três blocos/cards de plano estilizados lado a lado sugerindo comparação. IMPORTANTE: NÃO escrever NENHUM preço ou número dentro dos cards — os cards são visuais/vazios (barras e ícones decorativos), os únicos números da peça estão no subtítulo. Não inventar valores. Azul-céu e navy sobre fundo claro premium, limpo, sensação de transparência.",
+  "reference_images": [],
+  "destination": {
+    "organic": [
+      "instagram"
+    ],
+    "ads": []
+  },
+  "status": "approved",
+  "outputs": [
+    {
+      "file": "scripts/growth/out/statics/webmakers_precos-transparente_static-4x5_v1.jpg",
+      "model": "gemini-3-pro-image",
+      "card": null
+    }
+  ],
+  "validation": {
+    "at": "2026-07-23T18:57:33.331Z",
+    "pass": true,
+    "results": [
+      {
+        "file": "scripts/growth/out/statics/webmakers_precos-transparente_static-4x5_v1.jpg",
+        "pass": true,
+        "problems": []
+      }
+    ]
+  },
+  "history": [
+    {
+      "at": "2026-07-23T18:30:06.149Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_precos-transparente_static-4x5_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-23T18:44:55.943Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_precos-transparente_static-4x5_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T18:52:20.125Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_precos-transparente_static-4x5_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-23T18:57:33.331Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_precos-transparente_static-4x5_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T18:57:48.604Z",
+      "event": "status:approved",
+      "by": "willi",
+      "force": false
+    }
+  ]
+}
