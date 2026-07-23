@@ -1,17 +1,17 @@
 {
-  "_note": "Config de distribuição da Web Makers. IDs não são segredo (o TOKEN vem de META_ACCESS_TOKEN no .env). Campos com 'SET_' são placeholders — preencher no setup (ver scripts/growth/README.md).",
+  "_note": "Config de distribuição da Web Makers. IDs não são segredo (o TOKEN vem de META_ACCESS_TOKEN no .env). Meta/IG conectados em jul/2026: page 'Web Makers', IG @webmakersbr, conta act_2264540911014666 (BRL, cartão cadastrado), business WM Corp, pixel 'Web Makers Pixel'. Descobertos via Graph API a partir do token.",
   "landing_url": "https://webmakers.dev.br",
   "utm": { "source": "meta", "medium": "paid_social", "campaign": "captacao-local" },
   "meta": {
     "graph_version": "v21.0",
-    "ad_account_id": "SET_ACT_ID",
-    "business_id": "SET_BUSINESS_ID",
-    "page_id": "SET_PAGE_ID",
-    "pixel_id": "SET_PIXEL_ID",
+    "ad_account_id": "act_2264540911014666",
+    "business_id": "1635704286973645",
+    "page_id": "360455290490623",
+    "pixel_id": "1539611761512509",
     "default_cta": "LEARN_MORE"
   },
   "instagram": {
-    "ig_user_id": "SET_IG_USER_ID",
+    "ig_user_id": "17841467622636328",
     "username": "webmakersbr",
     "hashtags": "#webmakers #mogiguacu #mogimirim #sitepraempresa #pequenaempresa #automacao #marketinglocal #paginadevendas"
   },
