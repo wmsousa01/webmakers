@@ -20,7 +20,7 @@
       "meta"
     ]
   },
-  "status": "approved",
+  "status": "published",
   "outputs": [
     {
       "file": "scripts/growth/out/statics/webmakers_site-48h_static-4x5_v1.jpg",
@@ -132,6 +132,20 @@
       "event": "status:approved",
       "by": "willi",
       "force": false
+    },
+    {
+      "at": "2026-07-23T21:13:27.163Z",
+      "event": "status:published",
+      "platform": "instagram",
+      "mediaId": "17997324647993020"
     }
-  ]
+  ],
+  "caption": "Seu cliente pesquisou seu negócio no Google ontem. Achou?\n\nSe a resposta é \"mais ou menos\", você está perdendo venda pra quem aparece primeiro. A gente coloca seu site profissional no ar em 48h — sem template genérico, sem letras miúdas.\n\n📲 Chama no WhatsApp e faça seu diagnóstico grátis. Link na bio.\n\n#mogiguacu #mogimirim #pequenaempresa #sitesprofissionais #marketingdigital",
+  "published_ig": {
+    "mediaId": "17997324647993020",
+    "urls": [
+      "https://pub-7efe15bb61b34b3095f584227ac904b2.r2.dev/growth/webmakers_site-48h/webmakers_site-48h_static-4x5_v1.jpg"
+    ],
+    "at": "2026-07-23T21:13:27.163Z"
+  }
 }
