@@ -40,6 +40,14 @@ function parseEnvFile(file) {
     let val = line.slice(eq + 1).trim().replace(/\r$/, "");
     if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
       val = val.slice(1, -1);
+    } else {
+      // Comentário inline em valor sem aspas: corta a partir do primeiro " #"
+      // (espaço + hash), padrão dotenv. Segredos hex/base64 não têm " #", então
+      // não são truncados — mas o template do .env deixa "VAR=valor  # nota",
+      // e sem isto a nota entrava no valor e quebrava endpoint/região/etc.
+      val = val.replace(/\s+#.*$/, "").trim();
+      // "VAR=   # nota" (só comentário, sem valor) → vazio, não a nota.
+      if (val.startsWith("#")) val = "";
     }
     out[key] = val;
   }
