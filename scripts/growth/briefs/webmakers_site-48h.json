@@ -29,7 +29,7 @@
     }
   ],
   "validation": {
-    "at": "2026-07-22T21:13:03.582Z",
+    "at": "2026-07-23T18:03:42.861Z",
     "pass": true,
     "results": [
       {
@@ -95,6 +95,29 @@
     },
     {
       "at": "2026-07-22T21:13:03.582Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_site-48h_static-4x5_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T17:44:09.831Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/statics/webmakers_site-48h_static-4x5_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": null
+        }
+      ],
+      "card": null
+    },
+    {
+      "at": "2026-07-23T18:03:42.861Z",
       "event": "status:validated",
       "results": [
         {

@@ -6,3 +6,8 @@ config/brand/reference/*
 config/brand/logo/*
 !config/brand/reference/.gitkeep
 !config/brand/logo/.gitkeep
+# Exceção: os logos reais SÃO referência anexada a cada geração (tokens.json
+# → references). Sem eles versionados, quem clonar o kit perde a âncora de
+# marca e o modelo volta a inventar o logo. Portanto versione estes.
+!config/brand/logo/wm-circle.png
+!config/brand/logo/wm-wordmark.png

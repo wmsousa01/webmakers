@@ -73,7 +73,7 @@
     }
   ],
   "validation": {
-    "at": "2026-07-22T21:12:55.506Z",
+    "at": "2026-07-23T18:03:36.129Z",
     "pass": true,
     "results": [
       {
@@ -330,6 +330,197 @@
     },
     {
       "at": "2026-07-22T21:12:55.506Z",
+      "event": "status:validated",
+      "results": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+          "pass": true,
+          "problems": []
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+          "pass": true,
+          "problems": []
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+          "pass": true,
+          "problems": []
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+          "pass": true,
+          "problems": []
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+          "pass": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "at": "2026-07-23T17:31:45.817Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 1
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 2
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 3
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 4
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 5
+        }
+      ],
+      "card": 1
+    },
+    {
+      "at": "2026-07-23T17:42:24.071Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 1
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 2
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 3
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 4
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 5
+        }
+      ],
+      "card": 2
+    },
+    {
+      "at": "2026-07-23T17:42:49.014Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 1
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 2
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 3
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 4
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 5
+        }
+      ],
+      "card": 3
+    },
+    {
+      "at": "2026-07-23T17:43:12.341Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 1
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 2
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 3
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 4
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 5
+        }
+      ],
+      "card": 4
+    },
+    {
+      "at": "2026-07-23T17:43:41.137Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 1
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 2
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 3
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 4
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 5
+        }
+      ],
+      "card": 5
+    },
+    {
+      "at": "2026-07-23T18:03:36.129Z",
       "event": "status:validated",
       "results": [
         {
