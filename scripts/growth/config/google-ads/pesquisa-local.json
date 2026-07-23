@@ -1,10 +1,10 @@
 {
-  "_note": "Estrutura da campanha de Pesquisa da Web Makers. Especificação versionada: hoje é insumo para montar a campanha no painel do Google Ads (a conta está em modo Smart, que a API não cria nem edita); quando migrar para modo especialista, este mesmo arquivo alimenta a criação via API. Validar com: node scripts/growth/factory.mjs gads-spec",
+  "_note": "Estrutura da campanha de Pesquisa da Web Makers. CORREÇÃO jul/2026: dados do Planejador de Palavras-chave falsificaram a premissa de orçamento/CPC/geografia — ver docs/analise-google-ads-planejador.md. Não é preciso migrar de modo: uma campanha de Pesquisa completa valida via API AGORA (testado com validateOnly). Validar spec com: node scripts/growth/factory.mjs gads-spec",
   "conta": {
     "customer_id": "4296394458",
     "modo_atual": "smart",
-    "modo_necessario": "especialista",
-    "_note": "A campanha anterior (Criação de Sites para Empresas, id 24046143972) está REMOVED. Não há nada no ar."
+    "criacao_via_api": "OK — campanha de Pesquisa valida via API sem migrar de modo (validateOnly confirmado 2x). A limitação do modo Smart era sobre EDITAR a campanha Smart antiga, não sobre CRIAR uma nova de Pesquisa.",
+    "_note": "A campanha anterior (Criação de Sites para Empresas, id 24046143972) está REMOVED. Não há nada no ar. Ela deu 35 impressões / R$ 0,20 em 30 dias com R$ 17,20/dia disponível — não estava quebrada: lance abaixo do piso de mercado + demanda local mínima."
   },
 
   "campanha": {
@@ -14,17 +14,18 @@
     "rede_display": false,
     "_note_redes": "Display e parceiros desligados: em orçamento pequeno eles consomem a verba com tráfego de baixa intenção e mascaram o desempenho da Pesquisa.",
 
-    "orcamento_diario_brl": 30,
-    "_note_orcamento": "A campanha removida rodava com R$ 17,20/dia. Abaixo de ~R$ 20/dia uma campanha de Pesquisa não junta cliques suficientes para sair do ruído. Confirme o CPC real das palavras no Planejador de Palavras-chave antes de fixar — não estimei CPC, precisa ser medido.",
+    "orcamento_diario_brl": 12,
+    "_note_orcamento": "CORRIGIDO de R$ 30 para R$ 12/dia. O Planejador mostrou ~110 buscas/mês para as 19 palavras nas 4 cidades = ~3,7 buscas/dia no conjunto TODO. Com CTR de 10% e boa participação, o teto realista é ~11 cliques/mês ≈ R$ 55-77/mês a R$ 5-7/clique. R$ 30/dia (R$ 900/mês) era ~12x o gasto possível — o gargalo é DEMANDA, não verba. R$ 12/dia sobra folgado e ainda cobre picos.",
 
     "estrategia_lance": "MAXIMIZAR_CLIQUES",
-    "cpc_teto_brl": 4.0,
-    "_note_lance": "Começar em Maximizar cliques COM teto de CPC, não em Maximizar conversões. A conta tem zero conversões registradas e o rastreamento acabou de ser corrigido — Smart Bidding sem histórico gasta caro para aprender. Trocar para Maximizar conversões após ~30 conversões ou 3-4 semanas.",
+    "cpc_teto_brl": 9.0,
+    "_note_lance": "Maximizar cliques COM teto de CPC (conta sem histórico de conversão). CORRIGIDO o teto de R$ 4 para R$ 9: o lance de topo de página na região começa em R$ 5-6,50 — R$ 4 fica ABAIXO do piso e o anúncio quase não alcança o topo (foi o que matou a campanha antiga). R$ 9 compete pelas poucas buscas que existem. Trocar para Maximizar conversões só após ~30 conversões ou 3-4 semanas — E antes disso corrigir as conversões principais no painel (ver conversao_principal).",
 
     "conversao_principal": {
       "id": "7694288790",
       "nome": "Lead do site (chat de triagem)",
-      "_note": "Marcar como única conversão principal da campanha. As ações de Smart Campaign (Clicks to call, Local actions - Directions, Smart campaign *) devem sair de 'Principal' — são resquício do modo Smart e poluem o sinal de otimização."
+      "acao_manual_obrigatoria": "NO PAINEL, não via API. Metas → Conversões → Resumo: deixar 'Lead do site (chat de triagem)' como única PRINCIPAL e rebaixar as 6 herdadas do Smart (Clicks to call, Local actions - Directions, Smart campaign *) para secundárias. A API RECUSA mutação nessas ações ('Mutates are not allowed' — são gerenciadas pelo sistema).",
+      "_note": "Não morde enquanto o lance for Maximizar cliques (não otimiza por conversão). Vira CRÍTICO ao trocar para Maximizar conversões — se as herdadas seguirem como principais, o Google otimiza para clique-em-telefone e rota-no-mapa em vez do lead."
     },
 
     "localizacoes": [
@@ -38,6 +39,12 @@
     ],
     "presenca": "PRESENCA_FISICA",
     "_note_geo": "Obrigatório usar 'Pessoas que estão ou frequentam regularmente' — NÃO 'pessoas interessadas'. O padrão do Google inclui quem só pesquisou sobre a região e é o vazamento de verba mais comum em campanha local.",
+    "decisao_pendente_expansao": {
+      "questao": "Geografia é o gargalo de volume. Manter local (4 cidades, ~110 buscas/mês) OU expandir para a RMC/Campinas?",
+      "dados_planejador": "4 cidades: 110 buscas/mês. Campinas: 300 (~3x). Estado de SP: 4.830 (~44x). Brasil: 14.060.",
+      "trade_off": "Incluir Campinas ~triplica o volume MAS dilui o argumento 'agência local do DDD 19', que a pesquisa aponta como o principal diferencial contra os concorrentes remotos. É decisão de marca, não técnica — mantida LOCAL por padrão até decisão explícita.",
+      "default_atual": "4 cidades (hiperlocal). Para expandir, adicionar Campinas/RMC a localizacoes e subir orçamento proporcionalmente."
+    },
 
     "idiomas": ["pt"],
     "url_final": "https://webmakers.dev.br",
@@ -73,7 +80,9 @@
     },
     {
       "nome": "Automação e integração",
-      "tema": "Diferencial exclusivo — nenhum concorrente local oferece. Volume baixo, concorrência baixa, tíquete alto.",
+      "tema": "Diferencial exclusivo, mas SEM demanda de busca local.",
+      "incluir_no_lancamento": false,
+      "_note_volume_zero": "O Planejador deu volume ZERO na região para 'automação de whatsapp para empresa' e 'automação de processos empresa' — abaixo do limiar de reporte. A pesquisa mostrou que ninguém OFERECE; os dados mostram que ninguém PROCURA localmente. Este é o produto de maior tíquete e NÃO se vende por Search local: vai por conteúdo, orgânico e outbound (ver calendário orgânico). Manter o grupo documentado mas NÃO subir no lançamento — só ligar se as palavras acumularem volume.",
       "palavras_chave": [
         { "texto": "automação de whatsapp para empresa", "correspondencia": "FRASE" },
         { "texto": "chatbot para whatsapp", "correspondencia": "FRASE" },
@@ -147,11 +156,13 @@
   },
 
   "checklist_antes_de_publicar": [
-    "Migrar a conta para modo especialista (Configurações → mudar de Smart para Especialista). Sem isso não existe campanha de Pesquisa.",
-    "Confirmar que 'Lead do site (chat de triagem)' é a ÚNICA conversão principal e que as ações de Smart Campaign foram rebaixadas para secundárias.",
-    "Rodar as palavras no Planejador de Palavras-chave e ajustar orçamento ao CPC real da região.",
+    "NÃO é preciso migrar de modo — a campanha de Pesquisa cria/valida via API mesmo com a conta em Smart (validateOnly confirmado). Corrigido: o modo Smart só bloqueava editar a campanha Smart ANTIGA.",
+    "Subir só os 2 grupos com demanda (Criação de site, Loja virtual). Deixar 'Automação e integração' FORA do lançamento — volume de busca local zero.",
+    "Decidir a geografia: manter 4 cidades (hiperlocal, ~110 buscas/mês) ou incluir RMC/Campinas (~3x volume, perde o argumento DDD 19). Ver decisao_pendente_expansao.",
+    "No painel (não via API): Metas → Conversões → Resumo — deixar 'Lead do site (chat de triagem)' como única principal e rebaixar as 6 herdadas do Smart. A API recusa mutar essas ações.",
     "Conferir a segmentação de local em 'Presença física' — o padrão do Google é mais amplo.",
     "Criar/vincular o Google Perfil de Empresa para habilitar extensão de local.",
     "Validar esta spec: node scripts/growth/factory.mjs gads-spec"
-  ]
+  ],
+  "expectativa_realista": "Com 4 cidades: teto ~11 cliques/mês. Search local é um fio de água. O canal principal para o diferencial de maior tíquete (automação/integração) é ORGÂNICO + conteúdo + outbound — ver scripts/growth/config/calendario-organico.json."
 }
