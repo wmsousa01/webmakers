@@ -20,7 +20,7 @@
       "meta"
     ]
   },
-  "status": "validated",
+  "status": "approved",
   "outputs": [
     {
       "file": "scripts/growth/out/statics/webmakers_site-48h_static-4x5_v1.jpg",
@@ -126,6 +126,12 @@
           "problems": []
         }
       ]
+    },
+    {
+      "at": "2026-07-23T18:16:48.829Z",
+      "event": "status:approved",
+      "by": "willi",
+      "force": false
     }
   ]
 }
