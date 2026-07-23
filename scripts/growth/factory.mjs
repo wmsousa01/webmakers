@@ -51,6 +51,7 @@ Stages: brief → generate → validate → approve → publish (orgânico/ads).
   node scripts/growth/factory.mjs generate <id> [--dry-run]
   node scripts/growth/factory.mjs prompts <id> | --all   # exporta prompts p/ geração manual + cria pastas
   node scripts/growth/factory.mjs ingest <id> | --all    # adota imagens geradas fora do kit
+  node scripts/growth/factory.mjs calendario             # calendário editorial orgânico + o que falta gerar
   node scripts/growth/factory.mjs validate <id> [--dry-run]
   node scripts/growth/factory.mjs approve <id> [--force]
   node scripts/growth/factory.mjs meta-adsets                 # lista ad sets (precisa META_ACCESS_TOKEN)
@@ -465,6 +466,51 @@ async function cmdGadsSpec(opts) {
   console.log("\n✓ Nenhum limite de caractere estourado. Spec pronta para montar no painel.");
 }
 
+// Lê o calendário editorial e cruza com o estado real dos briefs — mostra o
+// que já dá pra postar hoje (asset aprovado) e o que trava (a gerar, ou
+// dependente de material do cliente). Sem rede.
+async function cmdCalendario() {
+  const p = path.join(CONFIG_DIR, "calendario-organico.json");
+  if (!fs.existsSync(p)) throw new Error(`Calendário não encontrado: ${rel(p)}`);
+  const cal = JSON.parse(fs.readFileSync(p, "utf8"));
+
+  // Status real dos briefs aprovados, para não confiar só no rótulo do JSON.
+  const statusDe = {};
+  for (const b of listBriefs()) statusDe[b.id] = b.status;
+
+  const marca = { aprovado: "✅", "a-gerar": "🎨", "depende-de-cliente": "🔒" };
+  let pronto = 0,
+    gerar = 0,
+    bloqueado = 0;
+
+  console.log(`\n📅  ${cal.semanas.length} semanas · ${cal.cadencia.posts_por_semana} posts/semana · ${cal.cadencia.dias.join("/")}`);
+  console.log(`    Melhor horário: ${cal.cadencia.melhor_horario}\n`);
+
+  for (const s of cal.semanas) {
+    console.log(`━━ SEMANA ${s.semana}: ${s.tema}`);
+    for (const post of s.posts) {
+      let status = post.asset_status;
+      // Se o post aponta um brief, o estado real do brief manda.
+      if (post.asset && statusDe[post.asset]) {
+        status = statusDe[post.asset] === "approved" ? "aprovado" : "a-gerar";
+      }
+      if (status === "aprovado") pronto++;
+      else if (status === "depende-de-cliente") bloqueado++;
+      else gerar++;
+
+      const icon = marca[status] || "•";
+      console.log(`  ${icon} ${post.dia.padEnd(7)} ${post.pilar.padEnd(28)} ${post.formato}`);
+      if (post.asset) console.log(`       asset: ${post.asset} (${status})`);
+      else if (post.brief_sugerido) console.log(`       criar: ${post.brief_sugerido.slice(0, 90)}…`);
+      if (post.bloqueio) console.log(`       ⚠ ${post.bloqueio}`);
+    }
+    console.log("");
+  }
+
+  console.log(`RESUMO: ${pronto} prontos p/ postar · ${gerar} a gerar · ${bloqueado} travados (material do cliente)`);
+  console.log(`Legenda: ✅ asset aprovado   🎨 falta gerar   🔒 depende de material do cliente\n`);
+}
+
 async function cmdMetaAdSets() {
   const sets = await listAdSets();
   if (!sets.length) return console.log("(nenhum ad set na conta)");
@@ -658,6 +704,7 @@ async function main() {
     case "gads-spec": return cmdGadsSpec(opts);
     case "prompts": return cmdPrompts(id, opts);
     case "ingest": return cmdIngest(id, opts);
+    case "calendario": return cmdCalendario();
     case "publish": return cmdPublish(need(id), opts);
     case "activate": return cmdActivate(need(id), opts);
     case "publish-ig": return cmdPublishIg(need(id), opts);

@@ -1,0 +1,182 @@
+{
+  "_note": "Calendário editorial orgânico da Web Makers (Instagram/Facebook). Fonte da verdade versionada: hoje é plano executado à mão (não há conta IG business — ver distribution.config.json), e quando o publish-ig estiver ligado o mesmo arquivo alimenta o agendamento. Ver: node scripts/growth/factory.mjs calendario",
+  "cadencia": {
+    "posts_por_semana": 3,
+    "dias": ["terça", "quinta", "sábado"],
+    "melhor_horario": "12h ou 19h (almoço e fim de expediente do dono de PME)",
+    "_note": "3 posts/semana é o piso sustentável para uma agência pequena manter sem furar. Melhor 3 firmes que 7 e sumir. Stories diários (bastidor, enquete, prova social) complementam sem entrar neste calendário."
+  },
+  "regras": [
+    "Todo post fecha com CTA de WhatsApp (canal nº 1 de venda das PMEs da região).",
+    "1 em cada 3 posts é prova social (depoimento, print de resultado, bastidor) — é o maior buraco vs. concorrência.",
+    "Sempre citar Mogi Guaçu / DDD 19 quando fizer sentido — diferencial que os concorrentes remotos não têm.",
+    "Copy curta, benefício concreto + PME local. Sem jargão."
+  ],
+  "pilares_cobertos": {
+    "presenca-online": 3,
+    "automacao-processos": 3,
+    "integracao-sistemas": 1,
+    "preco-transparente": 2,
+    "recorrencia-suporte": 1,
+    "atendimento-local-mogi-guacu": 2,
+    "prova-social": 4
+  },
+  "semanas": [
+    {
+      "semana": 1,
+      "tema": "Presença — quem não te acha, não te compra",
+      "posts": [
+        {
+          "dia": "terça",
+          "pilar": "presenca-online",
+          "formato": "static-4x5",
+          "asset": "webmakers_site-48h",
+          "asset_status": "aprovado",
+          "legenda": "Seu cliente pesquisou seu negócio no Google ontem. Achou? Se a resposta é \"mais ou menos\", você está perdendo venda pra quem aparece primeiro. A gente coloca seu site profissional no ar em 48h — sem template genérico, sem letras miúdas. 📲 Chama no WhatsApp e faça seu diagnóstico grátis.",
+          "hashtags": ["#mogiguacu", "#mogimirim", "#pequenaempresa", "#sitesprofissionais", "#marketingdigital"],
+          "cta": "Diagnóstico grátis no WhatsApp"
+        },
+        {
+          "dia": "quinta",
+          "pilar": "atendimento-local-mogi-guacu",
+          "formato": "static-1x1",
+          "asset": null,
+          "asset_status": "a-gerar",
+          "brief_sugerido": "Card 'Somos de Mogi Guaçu' — mapa/pin do DDD 19, foto ou ilustração local, texto 'Agência de verdade, aqui do lado. Atendimento presencial no DDD 19.'",
+          "legenda": "Cansado de contratar agência que some depois do pagamento e só responde por e-mail? A Web Makers é daqui — Mogi Guaçu, DDD 19. Você fala com quem executa, e a gente senta com você se precisar. 📍 Atendimento presencial. Chama no WhatsApp.",
+          "hashtags": ["#mogiguacu", "#mogimirim", "#itapira", "#empreendedorismo", "#agencialocal"],
+          "cta": "Falar com quem é daqui"
+        },
+        {
+          "dia": "sábado",
+          "pilar": "prova-social",
+          "formato": "static-1x1",
+          "asset": null,
+          "asset_status": "depende-de-cliente",
+          "brief_sugerido": "Depoimento de um dos 3 clientes reais (Contenta AI / PFC TV / Canaã Pallets). PRECISA da fala real — não inventar. Formato: aspas grandes + nome + negócio.",
+          "legenda": "\"[fala real do cliente aqui]\" — [Nome], [Negócio]. Resultado de verdade, cliente de verdade, aqui da região. 🙌 Quer o mesmo pro seu negócio? Chama no WhatsApp.",
+          "hashtags": ["#depoimento", "#clientewebmakers", "#mogiguacu", "#resultado"],
+          "cta": "Quero resultado assim",
+          "bloqueio": "Aguardando as falas reais dos 3 clientes."
+        }
+      ]
+    },
+    {
+      "semana": 2,
+      "tema": "Automação — pare de responder no braço",
+      "posts": [
+        {
+          "dia": "terça",
+          "pilar": "automacao-processos",
+          "formato": "carrossel-4x5",
+          "asset": "webmakers_automacao-whatsapp",
+          "asset_status": "aprovado",
+          "legenda": "Quantas horas por semana você perde respondendo o mesmo WhatsApp? \"Qual o preço?\", \"Tá aberto?\", \"Faz entrega?\". A automação responde e agenda sozinha — você só fecha. Arrasta pro lado pra ver como funciona 👉 e chama a gente no WhatsApp pra montar o seu.",
+          "hashtags": ["#automacao", "#whatsappbusiness", "#pequenaempresa", "#mogiguacu", "#produtividade"],
+          "cta": "Montar minha automação"
+        },
+        {
+          "dia": "quinta",
+          "pilar": "automacao-processos",
+          "formato": "static-1x1",
+          "asset": null,
+          "asset_status": "a-gerar",
+          "brief_sugerido": "Card de dado: '41% das pequenas empresas já usam chatbot no WhatsApp' (fonte Sebrae). Número gigante + a estatística + 'E o seu negócio?'",
+          "legenda": "41% das pequenas empresas do Brasil já usam atendimento automático no WhatsApp (Sebrae). Enquanto uns ainda digitam tudo na mão, outros já estão atendendo cliente às 23h no automático. De que lado você quer estar? 📲 Chama no WhatsApp.",
+          "hashtags": ["#sebrae", "#automacao", "#transformacaodigital", "#pmebrasil", "#mogiguacu"],
+          "cta": "Automatizar meu atendimento"
+        },
+        {
+          "dia": "sábado",
+          "pilar": "prova-social",
+          "formato": "static-1x1",
+          "asset": null,
+          "asset_status": "a-gerar",
+          "brief_sugerido": "Bastidor: print (anonimizado) de uma automação real funcionando OU foto da equipe trabalhando. 'Assim que a gente entrega' / 'Feito à mão, aqui.'",
+          "legenda": "Sem terceirizar pra fora, sem robô genérico. A gente conecta a automação ao SEU catálogo, à SUA agenda, ao SEU sistema. É por isso que funciona de verdade. Quer ver no seu negócio? Chama no WhatsApp 👇",
+          "hashtags": ["#bastidores", "#automacao", "#integracao", "#mogiguacu", "#feitoamao"],
+          "cta": "Ver no meu negócio"
+        }
+      ]
+    },
+    {
+      "semana": 3,
+      "tema": "Preço transparente — sem 'sob consulta'",
+      "posts": [
+        {
+          "dia": "terça",
+          "pilar": "preco-transparente",
+          "formato": "static-4x5",
+          "asset": null,
+          "asset_status": "a-gerar",
+          "brief_sugerido": "Card dos 3 planos com preço VISÍVEL (Web Start R$149, Web Boost R$349, Web Mastery a partir de R$997). Diferencial: ninguém local publica preço.",
+          "legenda": "Cansado de pedir orçamento e esperar 3 dias pra receber um PDF misterioso? Aqui o preço tá na mesa: Web Start R$149/mês, Web Boost R$349/mês, Web Mastery sob medida. Sem 'sob consulta', sem surpresa. 📲 Escolheu? Chama no WhatsApp.",
+          "hashtags": ["#precotransparente", "#planos", "#pequenaempresa", "#mogiguacu", "#semenrolação"],
+          "cta": "Ver planos e falar no WhatsApp"
+        },
+        {
+          "dia": "quinta",
+          "pilar": "recorrencia-suporte",
+          "formato": "static-1x1",
+          "asset": null,
+          "asset_status": "a-gerar",
+          "brief_sugerido": "Card 'Seu site não é um projeto, é um parceiro'. Hospedagem + manutenção + suporte inclusos na mensalidade. Ícones de escudo/suporte.",
+          "legenda": "Site bom não é o que fica pronto e some. É o que continua no ar, rápido e seguro, com alguém pra chamar quando precisa. Hospedagem, manutenção e suporte já inclusos na mensalidade — sem susto no fim do mês. Chama no WhatsApp e entenda. 👇",
+          "hashtags": ["#suporte", "#manutencao", "#recorrencia", "#mogiguacu", "#tranquilidade"],
+          "cta": "Quero esse suporte"
+        },
+        {
+          "dia": "sábado",
+          "pilar": "prova-social",
+          "formato": "static-1x1",
+          "asset": null,
+          "asset_status": "depende-de-cliente",
+          "brief_sugerido": "Antes/depois de um site real que a Web Makers fez (com permissão do cliente). Split screen 'antes' cinza / 'depois' colorido.",
+          "legenda": "Antes ➡️ depois. Mesmo negócio, outra história. [Nome do cliente] agora tem um site que trabalha por ele 24h. Quer ver o seu assim? A gente começa com um diagnóstico grátis. Chama no WhatsApp 👇",
+          "hashtags": ["#antesedepois", "#portfolio", "#clientewebmakers", "#mogiguacu"],
+          "cta": "Quero o meu antes/depois",
+          "bloqueio": "Precisa de um caso real com permissão de uso de imagem."
+        }
+      ]
+    },
+    {
+      "semana": 4,
+      "tema": "Nichos locais — falando direto com quem tem dinheiro na região",
+      "posts": [
+        {
+          "dia": "terça",
+          "pilar": "integracao-sistemas",
+          "formato": "static-4x5",
+          "asset": null,
+          "asset_status": "a-gerar",
+          "brief_sugerido": "Nicho restaurante — argumento anti-comissão. 'O iFood leva ~27% de cada pedido. E se fosse o SEU canal?' Cardápio digital + pedido no WhatsApp.",
+          "legenda": "O iFood fica com quase 1/3 de cada pedido seu. 🍔 Imagina recuperar isso todo mês. A gente monta seu cardápio digital com pedido direto no WhatsApp — seu canal, seu cliente, sua margem. Restaurante de Mogi Guaçu, chama a gente no WhatsApp.",
+          "hashtags": ["#restaurante", "#delivery", "#mogiguacu", "#cardapiodigital", "#foodservice"],
+          "cta": "Fugir da comissão"
+        },
+        {
+          "dia": "quinta",
+          "pilar": "presenca-online",
+          "formato": "static-1x1",
+          "asset": null,
+          "asset_status": "a-gerar",
+          "brief_sugerido": "Nicho serviços locais (clínica/mecânica/pet/estética). 'Cliente escolhe pelo Google. Sua clínica/oficina aparece?' Google Perfil de Empresa.",
+          "legenda": "Clínica, oficina, petshop, estúdio: seu próximo cliente vai te escolher pelo Google e pelas avaliações. Se você não aparece organizado ali, ele vai no concorrente que aparece. A gente resolve isso. 📍 Chama no WhatsApp e faça seu diagnóstico grátis.",
+          "hashtags": ["#clinica", "#petshop", "#estetica", "#mecanica", "#mogiguacu"],
+          "cta": "Aparecer no Google"
+        },
+        {
+          "dia": "sábado",
+          "pilar": "prova-social",
+          "formato": "static-1x1",
+          "asset": null,
+          "asset_status": "a-gerar",
+          "brief_sugerido": "Convite a avaliação/CTA de comunidade. 'Já é cliente? Deixa sua avaliação 🌟' — começa a construir as estrelas do Google (concorrente tem 52, é a barreira a bater).",
+          "legenda": "Se a gente já colocou seu negócio pra trabalhar online, faz um favor: deixa sua avaliação no Google 🌟. Cada estrela ajuda outro dono de PME daqui a confiar em quem é local. E se você ainda não é cliente — bora mudar isso? Chama no WhatsApp. 💙",
+          "hashtags": ["#avaliacao", "#comunidade", "#mogiguacu", "#pequenaempresa", "#google"],
+          "cta": "Deixar avaliação / virar cliente"
+        }
+      ]
+    }
+  ]
+}
