@@ -588,8 +588,11 @@ function captionFor(b) {
 
 async function cmdPublishIg(id, { dryRun, force }) {
   const b = loadBrief(id);
-  if (!(b.destination?.organic || []).includes("ig")) {
-    throw new Error(`Brief ${id}: destination.organic não inclui "ig".`);
+  // Aceita "ig" ou "instagram": os briefs (seeds inclusive) usam "instagram",
+  // e a checagem só por "ig" recusava todos — bug latente, publish-ig nunca rodou.
+  const igTokens = ["ig", "instagram"];
+  if (!(b.destination?.organic || []).some((t) => igTokens.includes(t))) {
+    throw new Error(`Brief ${id}: destination.organic não inclui "ig"/"instagram".`);
   }
   if (b.status !== "approved" && b.status !== "published" && !force) {
     throw new Error(`Brief ${id} está "${b.status}", não "approved" (ou use --force).`);
