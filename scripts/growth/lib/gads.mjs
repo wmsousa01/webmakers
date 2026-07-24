@@ -212,6 +212,30 @@ export async function createConversionAction(
   );
 }
 
+/** Promove/rebaixa uma ação de conversão como meta principal da conta.
+ *  Só as PRINCIPAIS entram na otimização de lances — deixar as herdadas do Smart
+ *  (cliques para ligar, rotas no mapa) como principais faz o Google otimizar para
+ *  elas em vez do lead. Reversível. */
+export async function setConversionActionPrimary(customerId, conversionActionId, primary, { validateOnly = false, loginCustomerId } = {}) {
+  const id = normalizeId(customerId);
+  return mutate(
+    `customers/${id}/conversionActions:mutate`,
+    {
+      operations: [
+        {
+          update: {
+            resourceName: `customers/${id}/conversionActions/${normalizeId(conversionActionId)}`,
+            primaryForGoal: primary,
+          },
+          updateMask: "primary_for_goal",
+        },
+      ],
+      validateOnly,
+    },
+    { loginCustomerId },
+  );
+}
+
 /** Snippets da tag (conversion id + label) de uma ação de conversão. */
 export async function conversionActionTag(customerId, conversionActionId, { loginCustomerId } = {}) {
   const rows = await search(
