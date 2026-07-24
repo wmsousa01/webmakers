@@ -18,17 +18,17 @@
     {
       "headline": "O cliente chama no WhatsApp",
       "body": "",
-      "art": "Card de PASSO: número gigante em gradiente à esquerda + a headline ao lado. SEM subtítulo. Ícone de balão de mensagem."
+      "art": "Card de PASSO. O número gigante à esquerda é EXATAMENTE '1' (um) — renderize o dígito 1, nenhum outro. Headline ao lado, SEM subtítulo. Ícone de balão de mensagem. Azul-céu e navy sobre fundo claro."
     },
     {
       "headline": "A automação responde e agenda",
       "body": "",
-      "art": "Card de PASSO: número gigante + headline. SEM subtítulo. Ícone de engrenagem + relógio."
+      "art": "Card de PASSO. O número gigante à esquerda é EXATAMENTE '2' (dois) — renderize o dígito 2, nenhum outro. Headline ao lado, SEM subtítulo. Ícone de engrenagem + relógio. Azul-céu e navy sobre fundo claro."
     },
     {
-      "headline": "Você fecha, sem digitar tudo",
+      "headline": "Você só fecha a venda",
       "body": "",
-      "art": "Card de PASSO: número gigante + headline. SEM subtítulo. Ícone de check/aperto de mão."
+      "art": "Card de PASSO. O número gigante à esquerda é EXATAMENTE '3' (três) — renderize o dígito 3, nenhum outro. Headline ao lado, SEM subtítulo. Ícone de aperto de mão/check. Azul-céu e navy sobre fundo claro."
     },
     {
       "headline": "Fale com a Web Makers",
@@ -44,7 +44,7 @@
     ],
     "ads": []
   },
-  "status": "published",
+  "status": "generated",
   "outputs": [
     {
       "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
@@ -561,6 +561,102 @@
       "event": "status:published",
       "platform": "instagram",
       "mediaId": "18117750928813495"
+    },
+    {
+      "at": "2026-07-24T16:16:59.762Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 1
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 2
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 3
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 4
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 5
+        }
+      ],
+      "card": 2
+    },
+    {
+      "at": "2026-07-24T16:17:24.648Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 1
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 2
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 3
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 4
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 5
+        }
+      ],
+      "card": 3
+    },
+    {
+      "at": "2026-07-24T16:17:49.550Z",
+      "event": "status:generated",
+      "outputs": [
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 1
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 2
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 3
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 4
+        },
+        {
+          "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg",
+          "model": "gemini-3-pro-image",
+          "card": 5
+        }
+      ],
+      "card": 4
     }
   ],
   "caption": "Quantas horas por semana você perde respondendo o mesmo WhatsApp?\n\n\"Qual o preço?\", \"Tá aberto?\", \"Faz entrega?\" — a automação responde e agenda sozinha. Você só fecha.\n\nArrasta pro lado 👉 e chama a gente no WhatsApp pra montar o seu. Link na bio.\n\n#automacao #whatsappbusiness #pequenaempresa #mogiguacu #produtividade",
