@@ -44,7 +44,7 @@
     ],
     "ads": []
   },
-  "status": "approved",
+  "status": "published",
   "outputs": [
     {
       "file": "scripts/growth/out/carrossel/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
@@ -555,7 +555,24 @@
       "event": "status:approved",
       "by": "willi",
       "force": false
+    },
+    {
+      "at": "2026-07-24T15:32:07.648Z",
+      "event": "status:published",
+      "platform": "instagram",
+      "mediaId": "18117750928813495"
     }
   ],
-  "caption": "Quantas horas por semana você perde respondendo o mesmo WhatsApp?\n\n\"Qual o preço?\", \"Tá aberto?\", \"Faz entrega?\" — a automação responde e agenda sozinha. Você só fecha.\n\nArrasta pro lado 👉 e chama a gente no WhatsApp pra montar o seu. Link na bio.\n\n#automacao #whatsappbusiness #pequenaempresa #mogiguacu #produtividade"
+  "caption": "Quantas horas por semana você perde respondendo o mesmo WhatsApp?\n\n\"Qual o preço?\", \"Tá aberto?\", \"Faz entrega?\" — a automação responde e agenda sozinha. Você só fecha.\n\nArrasta pro lado 👉 e chama a gente no WhatsApp pra montar o seu. Link na bio.\n\n#automacao #whatsappbusiness #pequenaempresa #mogiguacu #produtividade",
+  "published_ig": {
+    "mediaId": "18117750928813495",
+    "urls": [
+      "https://pub-7efe15bb61b34b3095f584227ac904b2.r2.dev/growth/webmakers_automacao-whatsapp/webmakers_automacao-whatsapp_carrossel-4x5-c01_v1.jpg",
+      "https://pub-7efe15bb61b34b3095f584227ac904b2.r2.dev/growth/webmakers_automacao-whatsapp/webmakers_automacao-whatsapp_carrossel-4x5-c02_v1.jpg",
+      "https://pub-7efe15bb61b34b3095f584227ac904b2.r2.dev/growth/webmakers_automacao-whatsapp/webmakers_automacao-whatsapp_carrossel-4x5-c03_v1.jpg",
+      "https://pub-7efe15bb61b34b3095f584227ac904b2.r2.dev/growth/webmakers_automacao-whatsapp/webmakers_automacao-whatsapp_carrossel-4x5-c04_v1.jpg",
+      "https://pub-7efe15bb61b34b3095f584227ac904b2.r2.dev/growth/webmakers_automacao-whatsapp/webmakers_automacao-whatsapp_carrossel-4x5-c05_v1.jpg"
+    ],
+    "at": "2026-07-24T15:32:07.647Z"
+  }
 }
