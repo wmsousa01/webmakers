@@ -128,6 +128,18 @@ function Numbered({ n, title, children }) {
   );
 }
 
+/** Um achado do diagnóstico: o que vimos e o que isso custa hoje.
+ *  Lista com régua à esquerda em vez de card — são observações de um mesmo
+ *  levantamento, não objetos separados. */
+function Achado({ titulo, children }) {
+  return (
+    <li className="border-l-2 border-line py-1 pl-5">
+      <h3 className="font-display text-[16px] font-bold text-brand-900">{titulo}</h3>
+      <p className="mt-1 text-[15px] leading-relaxed text-ink-soft">{children}</p>
+    </li>
+  );
+}
+
 function PathCard({ recommended, who, title, price, unit, note, items }) {
   return (
     <div
@@ -203,11 +215,184 @@ export default function PropostaRenanCamargo() {
               Sua agenda cheia, com cada real rastreado até o contrato.
             </h1>
             <p className="mt-4 max-w-[660px] text-[19px] text-ink-soft">
-              Anúncios no Instagram, Facebook e Google mais produção de conteúdo, operados pela Web
-              Makers. Esta proposta separa, linha por linha, o que você paga pelo serviço e o que
-              você investe em anúncio — porque são dois dinheiros diferentes, e só um deles é nosso.
+              Anúncios no Instagram, Facebook e Google, mais produção de conteúdo, operados pela Web
+              Makers. Esta proposta começa pelo que encontramos olhando o seu material, passa pela
+              estratégia que sai dali, e só então chega ao preço — separando linha por linha o que é
+              serviço nosso e o que é verba de anúncio sua.
             </p>
           </div>
+
+          {/* diagnóstico */}
+          <section className="py-11">
+            <SectionHead
+              eyebrow="Onde você está hoje"
+              title="O que a gente viu antes de escrever esta proposta"
+            >
+              Olhamos seu site, suas últimas publicações e como o mercado de música para eventos se
+              comporta na sua região. O que está aqui é observação, não suposição — e é de onde sai
+              tudo o que vem depois.
+            </SectionHead>
+
+            <div className="rounded-2xl border border-line bg-surface-tint px-6 py-5">
+              <h3 className="font-display text-[15px] font-bold text-brand-900">
+                O que já está pronto — e é mais forte do que você usa
+              </h3>
+              <ul className="mt-3 grid gap-x-9 sm:grid-cols-2">
+                <Check>26 anos de estrada e mais de 2.300 eventos</Check>
+                <Check>6,6 mil seguidores e acervo real de palco</Check>
+                <Check>Siemens e Multfer no portfólio corporativo</Check>
+                <Check>Três formatos: cerimônia, festa e corporativo</Check>
+              </ul>
+              <p className="mt-4 text-[14.5px] text-ink-soft">
+                Nenhum concorrente da região junta essas quatro coisas. O problema não é o que você
+                tem — é que quase nada disso está trabalhando para você fora do palco.
+              </p>
+            </div>
+
+            <h3 className="mb-5 mt-9 font-display text-[17px] font-bold text-brand-900">
+              O que está travando
+            </h3>
+            <ul className="flex list-none flex-col gap-5 p-0">
+              <Achado titulo="Ninguém sabe de onde você é">
+                Nem o site nem a bio do Instagram dizem a sua cidade. Para quem vende serviço
+                presencial, essa é a informação que mais qualifica ou desqualifica um contato — e
+                hoje ela não aparece em lugar nenhum. Custa busca local e traz gente de fora do seu
+                raio de atendimento.
+              </Achado>
+              <Achado titulo="Nada é medido">
+                Seu site não tem Pixel do Meta, Google Analytics nem tag de conversão do Google Ads.
+                Um anúncio que rodasse hoje mostraria cliques e nada mais: não daria para saber
+                quais viraram conversa no WhatsApp, e o algoritmo não teria como aprender quem
+                procurar.
+              </Achado>
+              <Achado titulo="Cinco botões de WhatsApp idênticos">
+                Todos com a mesma mensagem pronta e sem qualquer identificação. Quando o contato cai
+                no seu celular, não há como saber se veio do topo do site, da seção de casamento ou
+                de um anúncio pago.
+              </Achado>
+              <Achado titulo="O conteúdo é bom e termina sem pedir nada">
+                Nas últimas 25 publicações não há uma única chamada para ação. E as hashtags estão
+                em inglês e genéricas — entregam o post para um público que nunca vai te contratar,
+                em vez de para quem casa na sua região no ano que vem.
+              </Achado>
+              <Achado titulo="Seu maior diferencial está escondido">
+                <em className="text-ink">“Sempre um repertório exclusivo, para chamar de SEU”</em> é
+                a quarta linha da sua bio. É a única promessa que nenhum concorrente da região faz
+                de forma explícita, e ela está enterrada.
+              </Achado>
+              <Achado titulo="Sua melhor frase circulou uma vez só">
+                <em className="text-ink">
+                  “O barato sai caro quando o momento não pode ser repetido”
+                </em>{" "}
+                é o melhor argumento de venda que existe no seu perfil — escrito por você, publicado
+                uma vez, sem nenhum impulso. Ela ataca de frente a objeção que trava a maioria das
+                contratações.
+              </Achado>
+              <Achado titulo="Seus números não batem entre si">
+                O site diz 25 anos e 2.500 eventos; a bio diz 26 anos e 2.300. São detalhes, mas
+                prova social só pesa quando é consistente. Vale fixar um número e usar sempre o
+                mesmo, em todo lugar.
+              </Achado>
+            </ul>
+          </section>
+
+          {/* estratégia */}
+          <section className="py-11">
+            <SectionHead eyebrow="Para onde vamos" title="A estratégia">
+              Nada aqui é genérico. Cada peça sai de algo que já existe no seu material e não está
+              sendo aproveitado.
+            </SectionHead>
+
+            <div className="rounded-2xl border border-line bg-surface-sunken px-6 py-5">
+              <h3 className="font-display text-[15px] font-bold text-brand-900">
+                Quem vamos buscar
+              </h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
+                Noiva entre 26 e 38 anos, casamento marcado para daqui a 6 a 14 meses, num raio de
+                cerca de 120 km. Ela não está comparando bandas por preço — está com medo de errar
+                num evento que não tem segunda chance. O que passa pela cabeça dela é:{" "}
+                <em className="text-ink">
+                  “tenho pavor de a festa esvaziar às onze horas, e não tenho como saber se a banda
+                  é boa antes do dia”
+                </em>
+                .
+              </p>
+              <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
+                Em paralelo, dois públicos que quase ninguém disputa na região: aniversário de 40 a
+                60 anos e evento corporativo — onde a Siemens no seu portfólio vale mais que
+                qualquer anúncio que a gente escreva.
+              </p>
+            </div>
+
+            <h3 className="mb-1 mt-9 font-display text-[17px] font-bold text-brand-900">
+              Os três ângulos, em ordem de prioridade
+            </h3>
+            <div>
+              <Numbered n="01" title="“O repertório é SEU”">
+                <p>
+                  Um Reel curto emendando rock, sertanejo e flashback para provar em 20 segundos o
+                  que a sua bio diz em texto. É a promessa que nenhum concorrente local faz, e
+                  responde ao medo da noiva de a festa não ter a cara dela.
+                </p>
+              </Numbered>
+              <Numbered n="02" title="“O barato sai caro quando o momento não pode ser repetido”">
+                <p>
+                  Sua própria frase, virando carrossel: as perguntas que toda noiva deveria fazer a
+                  uma banda antes de assinar. Conteúdo feito para ser salvo e compartilhado em grupo
+                  de noivas — que é como esse mercado realmente circula.
+                </p>
+              </Numbered>
+              <Numbered n="03" title="“Sim, a gente toca isso”">
+                <p>
+                  Série curta respondendo pedidos de música. Esse formato já funcionou no seu
+                  perfil: o post sobre tocar The Wall performou acima da sua média. É barato de
+                  produzir, é infinito, e é o que mais gera comentário.
+                </p>
+              </Numbered>
+            </div>
+
+            <h3 className="mb-4 mt-9 font-display text-[17px] font-bold text-brand-900">
+              Onde o dinheiro entra
+            </h3>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-brand-600 bg-surface-tint p-6 ring-[3px] ring-brand-600/10">
+                <p className="font-display text-[15px] font-bold text-brand-900">
+                  Instagram e Facebook · a maior parte
+                </p>
+                <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft">
+                  Ninguém pesquisa no Google “banda para o meu aniversário de 60 anos” — mas para de
+                  rolar o feed quando vê uma pista cheia. Seu produto é audiovisual: o vídeo{" "}
+                  <strong className="text-ink">é</strong> a demonstração. É aqui que se cria a
+                  demanda que ainda não virou busca.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-line bg-white p-6">
+                <p className="font-display text-[15px] font-bold text-brand-900">
+                  Google · a rede de pesca
+                </p>
+                <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft">
+                  Quem digita “música para casamento” na sua região já decidiu contratar e só
+                  precisa te achar. É volume menor, porque a cidade é pequena, mas é o contato mais
+                  barato e mais perto de fechar que existe.
+                </p>
+              </div>
+            </div>
+
+            <Callout>
+              <p>
+                <strong className="text-brand-900">A ordem importa mais que a verba.</strong> Antes
+                de qualquer anúncio, instalamos a medição e definimos junto com você o que conta
+                como um contato válido. Sem isso, campanha vira aposta cara: gasta, entrega
+                relatório bonito e não dá para saber o que trouxe contrato.
+              </p>
+              <p>
+                Enquanto o tráfego pago calibra — leva de 4 a 8 semanas —, o orgânico já corrige o
+                que não custa nada: chamada para ação nas publicações, hashtags da sua região no
+                lugar das em inglês, e o repertório sob medida saindo da quarta linha da bio para o
+                centro da comunicação.
+              </p>
+            </Callout>
+          </section>
 
           {/* as duas pistas */}
           <section className="py-11">
