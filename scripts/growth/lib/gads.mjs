@@ -11,7 +11,7 @@
 
 import { getEnv } from "./env.mjs";
 
-const API_VERSION = getEnv("GADS_API_VERSION") || "v21";
+const API_VERSION = getEnv("GADS_API_VERSION") || "v25";
 const ROOT = `https://googleads.googleapis.com/${API_VERSION}`;
 
 /** IDs de conta vêm como 718-066-9384; a API quer só dígitos. */
@@ -248,7 +248,7 @@ export async function conversionActionTag(customerId, conversionActionId, { logi
 }
 
 /** Desempenho por campanha nos últimos N dias — o que o /painel precisa. */
-export async function campaignPerformance(customerId, { days = 30 } = {}) {
+export async function campaignPerformance(customerId, { days = 30, loginCustomerId } = {}) {
   const rows = await search(
     customerId,
     `SELECT campaign.id, campaign.name, campaign.status,
@@ -256,6 +256,7 @@ export async function campaignPerformance(customerId, { days = 30 } = {}) {
      FROM campaign
      WHERE segments.date DURING LAST_${days}_DAYS
      ORDER BY metrics.impressions DESC`,
+    { loginCustomerId },
   );
 
   return rows.map((r) => ({
@@ -268,4 +269,30 @@ export async function campaignPerformance(customerId, { days = 30 } = {}) {
     cost: Number(r.metrics?.costMicros || 0) / 1e6,
     conversions: Number(r.metrics?.conversions || 0),
   }));
+}
+
+/** Subcontas que a MCC gerencia (nível > 0). É a carteira da operação.
+ *  Exige `loginCustomerId` = a própria MCC — a query roda no contexto dela.
+ *  Conta gerente aninhada vem com `manager: true` e NÃO tem métricas. */
+export async function listManagedAccounts(mccId) {
+  const mcc = normalizeId(mccId);
+  const rows = await search(
+    mcc,
+    `SELECT customer_client.id, customer_client.descriptive_name, customer_client.level,
+            customer_client.status, customer_client.currency_code, customer_client.manager
+     FROM customer_client
+     WHERE customer_client.level > 0 AND customer_client.status != 'CANCELED'`,
+    { loginCustomerId: mcc },
+  );
+  return rows.map((r) => {
+    const c = r.customerClient || {};
+    return {
+      id: String(c.id),
+      name: c.descriptiveName || null,
+      level: Number(c.level || 0),
+      status: c.status || null,
+      currency: c.currencyCode || null,
+      manager: Boolean(c.manager),
+    };
+  });
 }

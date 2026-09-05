@@ -60,6 +60,7 @@ Stages: brief → generate → validate → approve → publish (orgânico/ads).
   node scripts/growth/factory.mjs publish-ig <id> [--dry-run]   # posta no Instagram (orgânico)
   node scripts/growth/factory.mjs gads-check                    # fumaça Google Ads (OAuth + dev token + MCC)
   node scripts/growth/factory.mjs gads-report [--customer=<id>] [--days=30]
+  node scripts/growth/factory.mjs gads-carteira [--days=30]     # carteira da MCC: todas as subcontas + entrega
   node scripts/growth/factory.mjs gads-spec [--spec=pesquisa-local]  # valida a spec de campanha (limites de caractere)
 
 --dry-run roda offline (imprime prompts/payloads, sem GOOGLE_AI_API_KEY / sem criar nada no Meta).`;
@@ -704,6 +705,7 @@ async function main() {
     case "meta-adsets": return cmdMetaAdSets();
     case "gads-check": return cmdGadsCheck();
     case "gads-report": return cmdGadsReport(opts);
+    case "gads-carteira": return cmdGadsCarteira(opts);
     case "gads-spec": return cmdGadsSpec(opts);
     case "prompts": return cmdPrompts(id, opts);
     case "ingest": return cmdIngest(id, opts);
@@ -714,6 +716,107 @@ async function main() {
     default:
       console.log(USAGE);
   }
+}
+
+// Carteira da MCC: uma linha por subconta com a entrega dos últimos N dias.
+// É a consulta semanal da operação de agência — e o lugar onde o modo de falha
+// já documentado (campanha ATIVA que não entrega: lance abaixo do piso ou
+// demanda inexistente) aparece sozinho, sem precisar abrir conta por conta.
+async function cmdGadsCarteira(opts) {
+  const { listManagedAccounts, campaignPerformance, normalizeId } = await import("./lib/gads.mjs");
+  const mcc = normalizeId(getEnv("GADS_LOGIN_CUSTOMER_ID") || cfg().google_ads?.manager_id || "");
+  if (!mcc) {
+    throw new Error("Defina GADS_LOGIN_CUSTOMER_ID no .env (ou google_ads.manager_id em distribution.config.json).");
+  }
+
+  const days = Number(opts.days || 30);
+  const todas = await listManagedAccounts(mcc);
+  if (!todas.length) {
+    console.log(`MCC ${mcc} não gerencia nenhuma subconta.`);
+    console.log("Vincular: Contas → Subcontas → + → \"Vincular conta existente\".");
+    return;
+  }
+
+  // Conta gerente aninhada não tem métrica — fica fora da tabela de entrega.
+  const gerentes = todas.filter((c) => c.manager);
+  const contas = todas.filter((c) => !c.manager);
+
+  const brl = (n) => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  console.log(`Carteira da MCC ${mcc} — últimos ${days} dias · ${contas.length} conta(s) operacional(is)\n`);
+  console.log(
+    "CONTA".padEnd(26) + "ID".padEnd(12) + "ATIVAS".padStart(7) +
+    "IMPR".padStart(9) + "CLIQUES".padStart(9) + "CUSTO".padStart(13) + "CONV".padStart(7),
+  );
+
+  const avisos = [];
+  let totCusto = 0;
+  let totConv = 0;
+  let totCliques = 0;
+
+  for (const c of contas) {
+    const rotulo = String(c.name || "(sem nome)").slice(0, 25).padEnd(26) + String(c.id).padEnd(12);
+    let rows;
+    try {
+      rows = await campaignPerformance(c.id, { days, loginCustomerId: mcc });
+    } catch (e) {
+      console.log(rotulo + "<erro>".padStart(7));
+      avisos.push(`${c.name || c.id}: ${e.message.slice(0, 110)}`);
+      continue;
+    }
+
+    const ativas = rows.filter((r) => r.status === "ENABLED").length;
+    const t = rows.reduce(
+      (a, r) => ({
+        impressions: a.impressions + r.impressions,
+        clicks: a.clicks + r.clicks,
+        cost: a.cost + r.cost,
+        conversions: a.conversions + r.conversions,
+      }),
+      { impressions: 0, clicks: 0, cost: 0, conversions: 0 },
+    );
+    totCusto += t.cost;
+    totConv += t.conversions;
+    totCliques += t.clicks;
+
+    console.log(
+      rotulo +
+        String(ativas).padStart(7) +
+        String(t.impressions).padStart(9) +
+        String(t.clicks).padStart(9) +
+        brl(t.cost).padStart(13) +
+        String(t.conversions).padStart(7),
+    );
+
+    if (ativas > 0 && t.impressions === 0) {
+      avisos.push(
+        `${c.name || c.id}: ${ativas} campanha(s) ATIVA(s) e ZERO impressão em ${days} dias — ` +
+          "lance abaixo do piso de mercado ou sem demanda. Ver docs/analise-google-ads-planejador.md.",
+      );
+    } else if (t.clicks > 0 && t.conversions === 0) {
+      avisos.push(
+        `${c.name || c.id}: ${t.clicks} clique(s) e ZERO conversão — conferir se a ação de ` +
+          "conversão principal está medindo (as herdadas do Smart poluem a otimização).",
+      );
+    }
+  }
+
+  const cpa = totConv > 0 ? totCusto / totConv : null;
+  console.log(
+    "\n" + "TOTAL".padEnd(38) + "".padStart(9) +
+      String(totCliques).padStart(9) + brl(totCusto).padStart(13) + String(totConv).padStart(7),
+  );
+  console.log(`CPA da carteira: ${cpa === null ? "— (sem conversão no período)" : brl(cpa)}`);
+
+  if (gerentes.length) {
+    console.log(`\nGerentes aninhadas (sem métrica): ${gerentes.map((g) => `${g.id} ${g.name || ""}`.trim()).join(" · ")}`);
+  }
+
+  if (avisos.length) {
+    console.log("\nAVISOS");
+    for (const a of avisos) console.log(`  ! ${a}`);
+  }
+
+  console.log("\nDetalhe por campanha: node scripts/growth/factory.mjs gads-report --customer=<id>");
 }
 
 function need(id) {
