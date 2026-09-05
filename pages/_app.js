@@ -23,9 +23,12 @@ const jakarta = Plus_Jakarta_Sans({
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   // The ops panel is an internal admin surface — no public chrome, no GA, no chat.
-  const isPanel = router.pathname.startsWith('/painel');
+  // Client proposals (/proposta/*) are standalone documents with their own header
+  // and CTA — the lead-capture chat would fight with them.
+  const isBare =
+    router.pathname.startsWith('/painel') || router.pathname.startsWith('/proposta');
 
-  if (isPanel) {
+  if (isBare) {
     return (
       <div className={`${figtree.variable} ${jakarta.variable} font-sans`}>
         <Component {...pageProps} />
