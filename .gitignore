@@ -38,3 +38,7 @@ next-env.d.ts
 .env.local
 .env
 
+
+# Documentos internos de cliente (margem, custo-hora, memoria de calculo).
+# O par sanitizado, sem economia interna, e que vai versionado.
+*-INTERNO.md
