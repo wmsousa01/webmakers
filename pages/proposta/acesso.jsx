@@ -1,30 +1,65 @@
 import Head from "next/head";
 
-// Tela de desbloqueio das propostas. O middleware faz REWRITE para cá quando
-// falta a chave, então a URL na barra continua sendo a da proposta — e o
-// formulário abaixo, um GET sem `action`, volta para ela com ?k=<chave>.
-// Sem JavaScript: é um form HTML puro, funciona até com script bloqueado.
+// Tela de aviso das propostas. O middleware faz REWRITE para cá quando o link
+// não abre, então a URL na barra continua sendo a da proposta.
 //
-// getServerSideProps só existe para ler o motivo do bloqueio no servidor. Numa
-// página estática o `router.query` chega vazio no primeiro render e a mensagem
-// de erro piscaria depois da hidratação.
+// Não há campo para digitar nada: o acesso é o link assinado que a gente
+// enviou. Quando ele morre, o caminho é pedir outro — por isso a tela é um
+// convite a responder no WhatsApp, e não um beco sem saída.
+//
+// getServerSideProps só existe para ler o motivo no servidor. Numa página
+// estática o router.query chega vazio no primeiro render e a mensagem piscaria
+// depois da hidratação.
 export async function getServerSideProps({ query }) {
-  const e = typeof query.e === "string" ? query.e : null;
-  return { props: { erro: e === "errada" || e === "indisponivel" ? e : null } };
+  const aceitos = ["expirada", "invalida", "ausente", "indisponivel"];
+  const e = typeof query.e === "string" && aceitos.includes(query.e) ? query.e : "ausente";
+  return { props: { motivo: e } };
 }
 
-export default function AcessoProposta({ erro }) {
-  const indisponivel = erro === "indisponivel";
+const TEXTOS = {
+  expirada: {
+    titulo: "O prazo desta proposta terminou",
+    corpo:
+      "O link valia enquanto a proposta estava de pé. Se ainda quiser seguir, é só pedir — a gente revisa os valores, confirma o que mudou e envia um link novo.",
+    botao: "Pedir uma proposta atualizada",
+    zap: "Oi! A proposta que voces me enviaram expirou. Da pra reenviar?",
+  },
+  ausente: {
+    titulo: "Esta proposta é privada",
+    corpo:
+      "Ela abre pelo link que enviamos diretamente a você. Se você chegou aqui digitando o endereço, ou se perdeu a conversa, a gente reenvia sem problema.",
+    botao: "Pedir o link da proposta",
+    zap: "Oi! Preciso do link da proposta de voces.",
+  },
+  invalida: {
+    titulo: "Este link não é válido",
+    corpo:
+      "Pode ter sido copiado pela metade — acontece quando o endereço quebra em duas linhas no WhatsApp. Tente abrir de novo pela conversa original, ou peça outro.",
+    botao: "Pedir outro link",
+    zap: "Oi! O link da proposta nao esta abrindo aqui.",
+  },
+  indisponivel: {
+    titulo: "Proposta indisponível",
+    corpo:
+      "Este endereço não corresponde a nenhuma proposta ativa no momento. Se você recebeu o link de nós, responda a mesma conversa que a gente verifica.",
+    botao: "Falar com a Web Makers",
+    zap: "Oi! Tentei abrir uma proposta de voces e apareceu indisponivel.",
+  },
+};
+
+export default function AcessoProposta({ motivo }) {
+  const t = TEXTOS[motivo] || TEXTOS.ausente;
+  const zap = `https://wa.me/5519989331908?text=${encodeURIComponent(t.zap)}`;
 
   return (
     <>
       <Head>
-        <title>Proposta protegida | Web Makers</title>
+        <title>Proposta privada | Web Makers</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       <main className="flex min-h-screen items-center justify-center bg-surface-sunken px-6 py-16">
-        <div className="w-full max-w-[420px]">
+        <div className="w-full max-w-[440px]">
           <div className="mb-7 flex items-center gap-3">
             <span className="grid h-[34px] w-[34px] shrink-0 place-items-center rounded-full bg-brand-600 font-display text-sm font-extrabold tracking-tight text-white">
               wm
@@ -38,67 +73,19 @@ export default function AcessoProposta({ erro }) {
           </div>
 
           <div className="rounded-2xl border border-line bg-white p-7 shadow-card">
-            {indisponivel ? (
-              <>
-                <h1 className="font-display text-[22px] font-extrabold leading-tight tracking-tight text-brand-900">
-                  Proposta indisponível
-                </h1>
-                <p className="mt-3 text-[15px] text-ink-soft">
-                  Este endereço não corresponde a nenhuma proposta ativa. Se você recebeu o link de
-                  nós, responda a mesma conversa que a gente reenvia.
-                </p>
-              </>
-            ) : (
-              <>
-                <h1 className="font-display text-[22px] font-extrabold leading-tight tracking-tight text-brand-900">
-                  Sua proposta é privada
-                </h1>
-                <p className="mt-3 text-[15px] text-ink-soft">
-                  Para abrir, informe os <strong className="text-ink">4 últimos dígitos do seu
-                  WhatsApp</strong> — o mesmo número pelo qual a gente conversou.
-                </p>
-
-                <form method="get" className="mt-6">
-                  <label htmlFor="k" className="sr-only">
-                    Últimos 4 dígitos do seu WhatsApp
-                  </label>
-                  <input
-                    id="k"
-                    name="k"
-                    type="text"
-                    inputMode="numeric"
-                    pattern="[0-9]*"
-                    maxLength={4}
-                    autoComplete="off"
-                    autoFocus
-                    placeholder="0000"
-                    aria-invalid={erro === "errada" ? "true" : undefined}
-                    aria-describedby={erro === "errada" ? "erro" : undefined}
-                    className={
-                      "w-full rounded-[10px] border bg-white px-4 py-3 text-center font-display text-[28px] font-extrabold tracking-[0.4em] tabular-nums text-brand-900 outline-none transition-colors placeholder:font-normal placeholder:tracking-[0.4em] placeholder:text-ink-faint/50 focus:ring-2 focus:ring-brand-300 " +
-                      (erro === "errada" ? "border-[#C9372C]" : "border-[#DFE1E6] focus:border-brand-600")
-                    }
-                  />
-                  {erro === "errada" ? (
-                    <p id="erro" className="mt-2 text-center text-sm font-medium text-[#C9372C]">
-                      Chave incorreta. Confira os 4 últimos dígitos.
-                    </p>
-                  ) : null}
-                  <button type="submit" className="btn-primary mt-4 w-full">
-                    Abrir proposta
-                  </button>
-                </form>
-              </>
-            )}
+            <h1 className="font-display text-[22px] font-extrabold leading-tight tracking-tight text-brand-900">
+              {t.titulo}
+            </h1>
+            <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{t.corpo}</p>
+            <a href={zap} target="_blank" rel="noopener noreferrer" className="btn-primary mt-6 w-full">
+              {t.botao}
+            </a>
           </div>
 
           <p className="mt-5 text-center text-[13px] text-ink-soft">
-            Não é você quem deveria ver isto?{" "}
-            <a
-              href="https://webmakers.dev.br"
-              className="font-semibold text-brand-700 hover:text-brand-600"
-            >
-              Conheça a Web Makers
+            Web Makers · (19) 98933-1908 ·{" "}
+            <a href="https://webmakers.dev.br" className="font-semibold text-brand-700 hover:text-brand-600">
+              webmakers.dev.br
             </a>
           </p>
         </div>

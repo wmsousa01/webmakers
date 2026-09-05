@@ -1,21 +1,19 @@
 import { NextResponse } from "next/server";
+import { verificar } from "./lib/propostaToken.mjs";
 
 // Dois portões, um middleware.
 //
 //   /painel/*    Basic Auth — superfície interna da agência.
-//   /proposta/*  chave numérica por cliente — documento comercial com um
-//                destinatário só. Não é Basic Auth de propósito: o cliente abre
-//                no celular, e digitar 4 dígitos num campo é menos atrito que o
-//                prompt de usuário e senha do navegador.
+//   /proposta/*  link assinado com validade — documento comercial que existe
+//                só durante a negociação. Ver lib/propostaToken.mjs.
 //
 // Ambos falham FECHADOS: sem a env configurada, a rota não abre. Uma superfície
 // desprotegida é pior que uma inacessível.
 export const config = { matcher: ["/painel/:path*", "/proposta/:path*"] };
 
 const COOKIE_PREFIX = "wm_prop_";
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 30; // 30 dias
 
-export function middleware(req) {
+export async function middleware(req) {
   if (req.nextUrl.pathname.startsWith("/painel")) return painelGate(req);
   return propostaGate(req);
 }
@@ -47,61 +45,57 @@ function painelGate(req) {
 
 // -------------------------------------------------------------- /proposta
 
-/** PROPOSTA_KEYS = "renan-camargo:7975,outro-cliente:1234" → { slug: chave } */
-function parseKeys(raw) {
-  const map = {};
-  for (const pair of String(raw || "").split(",")) {
-    const i = pair.indexOf(":");
-    if (i < 0) continue;
-    const slug = pair.slice(0, i).trim();
-    const key = pair.slice(i + 1).trim();
-    if (slug && key) map[slug] = key;
-  }
-  return map;
-}
-
-function propostaGate(req) {
+async function propostaGate(req) {
   const url = req.nextUrl;
   const slug = url.pathname.split("/")[2] || "";
 
-  // A tela de desbloqueio mora dentro de /proposta e precisa ficar fora do
-  // portão, senão o rewrite abaixo vira loop.
+  // A tela de aviso mora dentro de /proposta e precisa ficar fora do portão,
+  // senão o rewrite abaixo vira loop.
   if (slug === "acesso") return NextResponse.next();
 
-  const expected = parseKeys(process.env.PROPOSTA_KEYS)[slug];
-  // Proposta sem chave configurada não abre para ninguém — nem com chave certa.
-  if (!expected) return unlock(url, "indisponivel");
+  const secret = process.env.PROPOSTA_SECRET;
+  if (!secret) return aviso(url, "indisponivel");
 
-  if (req.cookies.get(COOKIE_PREFIX + slug)?.value === expected) {
-    return NextResponse.next();
+  // O cookie guarda o próprio token e é reverificado a cada request — assim a
+  // validade vale também para quem já abriu: passou da data, fecha sozinho.
+  const doCookie = req.cookies.get(COOKIE_PREFIX + slug)?.value;
+  if (doCookie) {
+    const r = await verificar({ token: doCookie, slug, secret });
+    if (r.ok) return NextResponse.next();
+    if (r.motivo === "expirada") return aviso(url, "expirada");
   }
 
-  const tentativa = url.searchParams.get("k");
-  if (tentativa && tentativa === expected) {
-    // Chave certa: guarda no cookie e devolve a URL limpa, para o link que o
-    // cliente eventualmente repassar não carregar a chave à mostra.
-    const limpa = url.clone();
-    limpa.searchParams.delete("k");
-    const res = NextResponse.redirect(limpa);
-    res.cookies.set(COOKIE_PREFIX + slug, expected, {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: true,
-      path: url.pathname,
-      maxAge: COOKIE_MAX_AGE,
-    });
-    return res;
+  const doLink = url.searchParams.get("t");
+  if (doLink) {
+    const r = await verificar({ token: doLink, slug, secret });
+    if (r.ok) {
+      // Token bom: guarda no cookie e devolve a URL limpa, para o endereço que
+      // o cliente vê (e eventualmente repassa) não carregar o token à mostra.
+      const limpa = url.clone();
+      limpa.searchParams.delete("t");
+      const res = NextResponse.redirect(limpa);
+      res.cookies.set(COOKIE_PREFIX + slug, doLink, {
+        httpOnly: true,
+        sameSite: "lax",
+        secure: true,
+        path: url.pathname,
+        // O cookie morre junto com o token, nunca depois dele.
+        expires: new Date(r.exp * 1000),
+      });
+      return res;
+    }
+    return aviso(url, r.motivo);
   }
 
-  return unlock(url, tentativa ? "errada" : null);
+  return aviso(url, "ausente");
 }
 
-/** Rewrite (não redirect) para a URL na barra continuar sendo a da proposta —
- *  assim o formulário de desbloqueio faz GET de volta para ela mesma. */
-function unlock(url, erro) {
+/** Rewrite (não redirect): a URL na barra continua sendo a da proposta, então o
+ *  cliente pode reenviar o link certo sem se perder. */
+function aviso(url, motivo) {
   const to = url.clone();
   to.pathname = "/proposta/acesso";
   to.search = "";
-  if (erro) to.searchParams.set("e", erro);
+  to.searchParams.set("e", motivo);
   return NextResponse.rewrite(to);
 }
