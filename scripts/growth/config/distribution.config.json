@@ -20,6 +20,6 @@
     "conversion_send_to": "AW-18280455023/OBeQCJaP9tQcEO-25oxE",
     "customer_id": "4296394458",
     "manager_id": "7180669384",
-    "_note": "Conversão gtag já instalada no site (_document.js). Ads via Google API exigem GADS_* no .env. customer_id é a conta Web Makers; manager_id é a MCC (a conta NÃO está vinculada à MCC, então o cliente omite login-customer-id automaticamente)."
+    "_note": "Conversão gtag já instalada no site (_document.js). Ads via Google API exigem GADS_* no .env. customer_id é a conta Web Makers; manager_id é a MCC. ATUALIZADO 2026-09-04: a MCC 7180669384 passou a gerenciar 3 subcontas (8798605455, 8293939752 Canaã Pallets, 6412126974 Contenta AI) — para ELAS o login-customer-id é obrigatório e funciona. A conta Web Makers (4296394458) AINDA NÃO está vinculada: via MCC ela responde 403, e o fallback do gads.mjs reexecuta sem login-customer-id. Vincular fecha essa exceção. Carteira: node scripts/growth/factory.mjs gads-carteira"
   }
 }

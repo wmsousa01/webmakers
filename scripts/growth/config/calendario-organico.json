@@ -1,5 +1,5 @@
 {
-  "_note": "Calendário editorial orgânico da Web Makers (Instagram/Facebook). Fonte da verdade versionada: hoje é plano executado à mão (não há conta IG business — ver distribution.config.json), e quando o publish-ig estiver ligado o mesmo arquivo alimenta o agendamento. Ver: node scripts/growth/factory.mjs calendario",
+  "_note": "Calendário editorial orgânico da Web Makers (Instagram/Facebook). Fonte da verdade versionada. ATUALIZADO 2026-09-04: a conta IG @webmakersbr JÁ É business e publicável (content_publishing_limit responde 0/100 em 24h; token system-user com instagram_content_publish) — o publish-ig pode ir ao ar, este arquivo alimenta o agendamento. Ver: node scripts/growth/factory.mjs calendario",
   "cadencia": {
     "posts_por_semana": 3,
     "dias": [
