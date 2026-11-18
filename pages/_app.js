@@ -2,20 +2,21 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import '../styles/globals.css';
 import Script from 'next/script';
-import { Figtree, Plus_Jakarta_Sans } from 'next/font/google';
+import localFont from 'next/font/local';
 import { useRouter } from 'next/router';
 import ChatGPTChat from '../components/gpt/ChatGptChat'; // Importa o componente do chat
 
-// Fontes do design (auto-hospedadas — sem depender de @import externo).
-const figtree = Figtree({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+// Fontes do design, versionadas em assets/fonts. O next/font/google baixava os arquivos
+// durante o build e quebrava na Vercel quando o Google devolvia URL sem extensão.
+const figtree = localFont({
+  src: '../assets/fonts/figtree-latin-variable.woff2',
+  weight: '300 900',
   variable: '--font-sans',
   display: 'swap',
 });
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
+const jakarta = localFont({
+  src: '../assets/fonts/plus-jakarta-sans-latin-variable.woff2',
+  weight: '200 800',
   variable: '--font-display',
   display: 'swap',
 });
