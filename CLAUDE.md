@@ -18,7 +18,7 @@ Big idea da marca: *"Coloque seu negócio para trabalhar online."*
   **Plus Jakarta Sans** (títulos) + **Figtree** (corpo), auto-hospedadas via `next/font`.
 - **Sem banco de dados e sem auth** no app.
 - **Leads** vão para o **Jira, projeto `LEAD`** (issuetype `Tarefa`) na instância
-  `wdesousa.atlassian.net`, criados por uma **API route do Next** (`pages/api/send-to-jira.js`)
+  `wmsousa.atlassian.net`, criados por uma **API route do Next** (`pages/api/send-to-jira.js`)
   que lê o `.env`. O **chat de triagem** (`components/gpt/ChatGptChat.jsx`) posta em
   `/api/send-to-jira`. Projeto/issuetype são configuráveis por env
   (`JIRA_LEAD_PROJECT`/`JIRA_LEAD_ISSUETYPE`). A triagem (tipo/urgência/orçamento/segmento)
@@ -28,6 +28,58 @@ Big idea da marca: *"Coloque seu negócio para trabalhar online."*
   virou **legado/redundante** — o caminho vivo é a API route.
 - Analytics: **GA** (`NEXT_PUBLIC_GOOGLE_ANALYTICS`), **GTM-NPJRJJX6**, **Google Ads
   AW-961364895** (conversão gtag já instalada em `_document.js`). **Não há Meta Pixel.**
+
+## A Web Makers é a holding — como o portfólio vive no Jira
+
+Todos os outros projetos em `Projetos/` são subprodutos ou serviços da Web Makers. O
+portfólio é gerenciado em **`wmsousa.atlassian.net`**, recriado em 2026-11-18 depois que
+o site antigo (`wdesousa`) foi desativado e o backlog anterior se perdeu:
+
+| Chave | Projeto | Papel |
+|---|---|---|
+| `WM` | Web Makers · Portfólio | **Camada de holding.** Um Epic por unidade de negócio, iniciativas dentro. Onde você *olha*, não onde trabalha. |
+| `FNX` | FENIXX Uniformes | Entrega do cliente (`Projetos/atende-ai`) |
+| `WMS` | Web Makers · Site e Growth | Entrega **deste repo** |
+| `OPS` | Back-office e Ferramentas | Central MEI, ferramentas, portfólio, infra — separado por **componente** |
+| `LEAD` | Web Makers · Leads | **Integração viva.** Não mudar chave nem issuetype sem mexer no `.env`. |
+| `RNT` | Renan Teixeira · Site | Entrega do cliente (`Projetos/renan-teixeira-site`) |
+
+Duas unidades têm Jira próprio e ficam fora do dashboard e do rollup: **Contenta AI** em
+`contentaai.atlassian.net` e **Fora da Caixa** em `tarefaspfc.atlassian.net`. No `WM` elas
+têm apenas o Epic de unidade.
+
+Todos são **company-managed** (classic) com o mesmo esquema — Epic · História ·
+Tarefa · Subtarefa · Bug e os mesmos status. É proposital: workflow compartilhado é o
+que faz JQL e dashboard entre projetos agregarem sem tradução.
+
+### A label `bu-*` é obrigatória — ela é a hierarquia
+
+O plano é **Jira Software Free**, que **não tem Plans nem nível acima de Epic**, e cujas
+regras de automação são **single-project com teto de 100 execuções/mês**. Não existe
+rollup nativo entre projetos. O substituto é uma label de unidade em **toda** issue:
+
+`bu-contenta` · `bu-fenixx` · `bu-fdc` · `bu-webmakers` · `bu-lead` · `bu-ops` · `bu-parked` · `bu-renan`
+
+Com ela, `labels = bu-renan AND statusCategory != Done` atravessa qualquer projeto.
+**Issue sem `bu-*` é invisível para o portfólio** — some do dashboard, do rollup e do
+review semanal. Ao criar issue por API ou script, a label vai junto. A exceção são os
+leads: `pages/api/send-to-jira.js` não grava `bu-lead`, então o filtro e o rollup da
+unidade comercial também contam `project = LEAD`.
+
+Labels de estado que o dashboard usa: **`owner-action`** (trava numa console de terceiro
+— Cloudflare, Vercel, Meta, Google Ads — e só você desbloqueia), **`bloqueado`** (trava em
+terceiro), **`parado`** (pausado por decisão sua, com o motivo na descrição),
+**`iniciativa`** e **`unidade`** (marcam as duas camadas dentro do `WM`).
+
+### Onde olhar
+
+- **Dashboard "Holding · Web Makers"** — `/jira/dashboards/10001`. Esquerda: o que decidir
+  e o que está travado. Direita: uma caixa por unidade.
+- **11 filtros salvos** com prefixo `Holding ·`, todos favoritados.
+- **`node scripts/ops/jira-rollup.mjs`** — rollup por linha de comando (`resumo`,
+  `unidade <nome>`, `travados`, `semana`, `jql "<jql>"`, todos com `--json`). Dep-free,
+  lê `JIRA_*` do `.env` da raiz. É **consulta**, não automação: não gasta as 100
+  execuções/mês. O `--json` existe para o `/painel` consumir.
 
 ## Duas peças de growth engineering neste repo
 
